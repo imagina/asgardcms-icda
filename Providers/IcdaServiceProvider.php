@@ -66,6 +66,18 @@ class IcdaServiceProvider extends ServiceProvider
                 return new \Modules\Icda\Repositories\Cache\CacheVehiclesDecorator($repository);
             }
         );
+        $this->app->bind(
+          'Modules\Icda\Repositories\TypesVehiclesRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentTypesVehiclesRepository(new \Modules\Icda\Entities\TypesVehicles());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CacheTypesVehiclesDecorator($repository);
+          }
+        );
 // add bindings
 
     }

@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypesVehicles extends Model
 {
-    protected $fillable = [];
+    protected $table = 'icda__types_vehicles';
+    protected $fillable = ['name'];
 }
