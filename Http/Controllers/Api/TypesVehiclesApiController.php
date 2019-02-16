@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Transformers
-//use Modules\Icda\Transformers\TypesVehiclesTransformer;
+use Modules\Icda\Transformers\TypesVehiclesTransformer;
 
 // Entities
 use Modules\Icda\Entities\TypesVehicles;
