@@ -3,7 +3,7 @@
 namespace Modules\Icda\Http\Controllers\Api;
 
 // Requests & Response
-use Modules\Icda\Http\Requests\CreateTypesVehiclesRequest;
+use Modules\Icda\Http\Requests\CreateTypesFuelsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -11,23 +11,23 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Transformers
-use Modules\Icda\Transformers\TypesVehiclesTransformer;
+use Modules\Icda\Transformers\TypesFuelsTransformer;
 
 // Entities
-use Modules\Icda\Entities\TypesVehicles;
+use Modules\Icda\Entities\TypesFuels;
 
 // Repositories
-use Modules\Icda\Repositories\TypesVehiclesRepository;
+use Modules\Icda\Repositories\TypesFuelsRepository;
 
-class TypesVehiclesApiController extends BaseApiController
+class TypesFuelsApiController extends BaseApiController
 {
 
-  private $typeVehicle;
+  private $typeFuel;
 
 
-  public function __construct(TypesVehiclesRepository $typeVehicle)
+  public function __construct(TypesFuelsRepository $typeFuel)
   {
-    $this->typeVehicle = $typeVehicle;
+    $this->typeFuel = $typeFuel;
   }
 
   /**
@@ -38,12 +38,12 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeVehicles = $this->typeVehicle->getItemsBy($this->getParamsRequest($request));
+      $typeFuels = $this->typeFuel->getItemsBy($this->getParamsRequest($request));
 
       //Response
-      $response = ['data' => TypesVehiclesTransformer::collection($typeVehicles)];
+      $response = ['data' => TypesFuelsTransformer::collection($typeFuels)];
       //If request pagination add meta-page
-      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($typeVehicles)] : false;
+      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($typeFuels)] : false;
 
     } catch (\Exception $e) {
       //Message Error
@@ -65,10 +65,10 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeVehicle = $this->typeVehicle->getItem($criteria,$this->getParamsRequest($request));
+      $typeFuel = $this->typeFuel->getItem($criteria,$this->getParamsRequest($request));
 
       $response = [
-        'data' => $typeVehicle ? new TypesVehiclesTransformer($typeVehicle) : '',
+        'data' => $typeFuel ? new TypesVehiclesTransformer($typeFuel) : '',
       ];
 
     } catch (\Exception $e) {
@@ -88,9 +88,9 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Validate Request
-      $this->validateRequestApi(new CreateTypesVehiclesRequest($request->all()));
+      $this->validateRequestApi(new CreateTypesFuelsRequest($request->all()));
       //Create
-      $this->typeVehicle->create($request->all());
+      $this->typeFuel->create($request->all());
 
       $response = ['data' => ''];
 
@@ -112,7 +112,7 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
 
-      $this->typeVehicle->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+      $this->typeFuel->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 
@@ -134,7 +134,7 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
 
-      $this->typeVehicle->deleteBy($criteria,$this->getParamsRequest($request));
+      $this->typeFuel->deleteBy($criteria,$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 

@@ -4,7 +4,7 @@ namespace Modules\Icda\Transformers;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class TypesVehiclesTransformer extends Resource
+class TypesFuelsTransformer extends Resource
 {
   public function toArray($request)
   {

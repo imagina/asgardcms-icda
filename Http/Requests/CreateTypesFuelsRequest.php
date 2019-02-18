@@ -4,7 +4,7 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateTypesVehiclesRequest extends BaseFormRequest
+class CreateTypesFuelsRequest extends BaseFormRequest
 {
     public function rules()
     {

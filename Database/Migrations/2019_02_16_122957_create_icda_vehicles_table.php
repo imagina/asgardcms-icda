@@ -15,10 +15,10 @@ class CreateIcdaVehiclesTable extends Migration
         Schema::create('icda__vehicles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('service_type');//Tipo de servicio
-            $table->integer('icda__types_vehicles_id')->unsigned();
-            $table->foreign('icda__types_vehicles_id')->references('id')->on('icda__types_vehicles');
-            $table->integer('icda__types_fuels_id')->unsigned();
-            $table->foreign('icda__types_fuels_id')->references('id')->on('icda__types_fuels');
+            $table->integer('types_vehicles_id')->unsigned();
+            $table->foreign('types_vehicles_id')->references('id')->on('icda__types_vehicles');
+            $table->integer('types_fuels_id')->unsigned();
+            $table->foreign('types_fuels_id')->references('id')->on('icda__types_fuels');
             $table->string('brand');
             $table->string('line');
             $table->string('model');
