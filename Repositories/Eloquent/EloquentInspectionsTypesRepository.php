@@ -2,12 +2,11 @@
 
 namespace Modules\Icda\Repositories\Eloquent;
 
-use Modules\Icda\Repositories\VehiclesRepository;
+use Modules\Icda\Repositories\InspectionsTypesRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
-class EloquentVehiclesRepository extends EloquentBaseRepository implements VehiclesRepository
+class EloquentInspectionsTypesRepository extends EloquentBaseRepository implements InspectionsTypesRepository
 {
-
   public function getItem($criteria,$params){
     // INITIALIZE QUERY
     $query = $this->model->query();
@@ -52,7 +51,7 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
     if(in_array('*',$params->include)){//If Request all relationships
       $query->with([]);
     }else{//Especific relationships
-      $includeDefault = ['type_vehicle','type_fuel'];//Default relationships
+      $includeDefault = [];//Default relationships
       if (isset($params->include))//merge relations with default relationships
         $includeDefault = array_merge($includeDefault, $params->include);
       $query->with($includeDefault);//Add Relationships to query
@@ -70,15 +69,6 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
           $query->whereDate($date->field, '>=', $date->from);
         if (isset($date->to))//to a date
           $query->whereDate($date->field, '<=', $date->to);
-      }
-
-      //Filter by type fuels
-      if(isset($filter->types_fuels_id)){
-        $query->where('types_fuels_id',$filter->types_fuels_id);
-      }
-      //Filter by type vehicles
-      if(isset($filter->types_vehicles_id)){
-        $query->where('types_vehicles_id',$filter->types_vehicles_id);
       }
 
       //Order by
@@ -149,5 +139,4 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
       $model->delete();
     }
   }//deleteBy
-
 }

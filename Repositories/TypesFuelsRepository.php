@@ -4,7 +4,7 @@ namespace Modules\Icda\Repositories;
 
 use Modules\Core\Repositories\BaseRepository;
 
-interface VehiclesRepository extends BaseRepository
+interface TypesFuelsRepository extends BaseRepository
 {
   public function getItem($criteria,$params);
   public function getItemsBy($params);

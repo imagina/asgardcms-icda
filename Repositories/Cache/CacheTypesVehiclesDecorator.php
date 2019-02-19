@@ -11,6 +11,6 @@ class CacheVehiclesDecorator extends BaseCacheDecorator implements VehiclesRepos
     {
         parent::__construct();
         $this->entityName = 'icda.types_vehicles';
-        $this->repository = $vehicles;
+        $this->repository = $types_vehicless;
     }
 }

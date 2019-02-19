@@ -3,7 +3,7 @@
 namespace Modules\Icda\Http\Controllers\Api;
 
 // Requests & Response
-use Modules\Icda\Http\Requests\CreateTypesFuelsRequest;
+use Modules\Icda\Http\Requests\CreatePreInspectionsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -11,23 +11,23 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Transformers
-use Modules\Icda\Transformers\TypesFuelsTransformer;
+use Modules\Icda\Transformers\PreInspectionsTransformer;
 
 // Entities
-use Modules\Icda\Entities\TypesFuels;
+use Modules\Icda\Entities\PreInspections;
 
 // Repositories
-use Modules\Icda\Repositories\TypesFuelsRepository;
+use Modules\Icda\Repositories\PreInspectionsRepository;
 
-class TypesFuelsApiController extends BaseApiController
+class PreInspectionsApiController extends BaseApiController
 {
 
-  private $typeFuel;
+  private $preInspection;
 
 
-  public function __construct(TypesFuelsRepository $typeFuel)
+  public function __construct(PreInspectionsRepository $preInspection)
   {
-    $this->typeFuel = $typeFuel;
+    $this->preInspection = $preInspection;
   }
 
   /**
@@ -38,12 +38,13 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeFuels = $this->typeFuel->getItemsBy($this->getParamsRequest($request));
+      $preInspections = $this->preInspection->getItemsBy($this->getParamsRequest($request));
 
       //Response
-      $response = ['data' => TypesFuelsTransformer::collection($typeFuels)];
+      $response = ['data' => PreInspectionsTransformer::collection($preInspections)];
+
       //If request pagination add meta-page
-      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($typeFuels)] : false;
+      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($preInspections)] : false;
 
     } catch (\Exception $e) {
       //Message Error
@@ -65,10 +66,10 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeFuel = $this->typeFuel->getItem($criteria,$this->getParamsRequest($request));
+      $preInspection = $this->preInspection->getItem($criteria,$this->getParamsRequest($request));
 
       $response = [
-        'data' => $typeFuel ? new TypesFuelsTransformer($typeFuel) : '',
+        'data' => $preInspection ? new PreInspectionsTransformer($preInspection) : '',
       ];
 
     } catch (\Exception $e) {
@@ -88,9 +89,9 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
       //Validate Request
-      $this->validateRequestApi(new CreateTypesFuelsRequest($request->all()));
+      $this->validateRequestApi(new CreatePreInspectionsRequest($request->all()));
       //Create
-      $this->typeFuel->create($request->all());
+      $this->preInspection->create($request->all());
 
       $response = ['data' => ''];
 
@@ -112,7 +113,7 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
 
-      $this->typeFuel->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+      $this->preInspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 
@@ -134,7 +135,7 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
 
-      $this->typeFuel->deleteBy($criteria,$this->getParamsRequest($request));
+      $this->preInspection->deleteBy($criteria,$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 

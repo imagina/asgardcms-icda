@@ -9,5 +9,9 @@ $router->group(['prefix' => '/icda'/*,'middleware' => ['auth:api']*/], function 
   require('ApiRoutes/typesFuelsRoutes.php');
 //======   Vehicles
   require('ApiRoutes/vehiclesRoutes.php');
+//======   Inspections Types
+  require('ApiRoutes/inspectionsTypesRoutes.php');
+//======   Pre Inspections
+  require('ApiRoutes/preInspectionsRoutes.php');
 
 });

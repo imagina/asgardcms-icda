@@ -66,6 +66,7 @@ class IcdaServiceProvider extends ServiceProvider
                 return new \Modules\Icda\Repositories\Cache\CacheVehiclesDecorator($repository);
             }
         );
+        //Types Vehicles
         $this->app->bind(
           'Modules\Icda\Repositories\TypesVehiclesRepository',
           function () {
@@ -76,6 +77,32 @@ class IcdaServiceProvider extends ServiceProvider
             }
 
             return new \Modules\Icda\Repositories\Cache\CacheTypesVehiclesDecorator($repository);
+          }
+        );
+        //Types Fuels
+        $this->app->bind(
+          'Modules\Icda\Repositories\TypesFuelsRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentTypesFuelsRepository(new \Modules\Icda\Entities\TypesFuel());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CacheTypesFuelsDecorator($repository);
+          }
+        );
+        //Inspections Types
+        $this->app->bind(
+          'Modules\Icda\Repositories\InspectionsTypesRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentInspectionsTypesRepository(new \Modules\Icda\Entities\InspectionsTypes());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CacheInspectionsTypesDecorator($repository);
           }
         );
 // add bindings
