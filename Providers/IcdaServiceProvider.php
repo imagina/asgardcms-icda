@@ -105,6 +105,19 @@ class IcdaServiceProvider extends ServiceProvider
             return new \Modules\Icda\Repositories\Cache\CacheInspectionsTypesDecorator($repository);
           }
         );
+        //Pre Inspections
+        $this->app->bind(
+          'Modules\Icda\Repositories\PreInspectionsRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentPreInspectionsRepository(new \Modules\Icda\Entities\PreInspections());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CachePreInspectionsDecorator($repository);
+          }
+        );
 // add bindings
 
     }
