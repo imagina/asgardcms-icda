@@ -2,10 +2,10 @@
 
 namespace Modules\Icda\Repositories\Cache;
 
-use Modules\Icda\Repositories\VehiclesRepository;
+use Modules\Icda\Repositories\TypesVehiclesRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
-class CacheVehiclesDecorator extends BaseCacheDecorator implements VehiclesRepository
+class CacheTypesVehiclesDecorator extends BaseCacheDecorator implements TypesVehiclesRepository
 {
     public function __construct(VehiclesRepository $vehicles)
     {

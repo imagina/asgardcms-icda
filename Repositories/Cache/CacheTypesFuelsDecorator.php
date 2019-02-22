@@ -5,7 +5,7 @@ namespace Modules\Icda\Repositories\Cache;
 use Modules\Icda\Repositories\TypesFuelsRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
-class CacheVehiclesDecorator extends BaseCacheDecorator implements TypesFuelsRepository
+class CacheTypesFuelsDecorator extends BaseCacheDecorator implements TypesFuelsRepository
 {
     public function __construct(VehiclesRepository $vehicles)
     {

@@ -4,7 +4,7 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateInspectionsTypesRequest extends BaseFormRequest
+class CreatePreInspectionsRequest extends BaseFormRequest
 {
     public function rules()
     {

@@ -4,6 +4,7 @@ namespace Modules\Icda\Http\Controllers\Api;
 
 // Requests & Response
 use Modules\Icda\Http\Requests\CreatePreInspectionsRequest;
+use Modules\Icda\Http\Requests\UpdatePreInspectionsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -91,8 +92,7 @@ class PreInspectionsApiController extends BaseApiController
       //Validate Request
       $this->validateRequestApi(new CreatePreInspectionsRequest($request->all()));
       //Create
-      $this->preInspection->create($request->all());
-
+      $t=$this->preInspection->create($request->all());
       $response = ['data' => ''];
 
     } catch (\Exception $e) {
@@ -112,7 +112,9 @@ class PreInspectionsApiController extends BaseApiController
   public function update($criteria, Request $request)
   {
     try {
-
+      //Validate Request
+      $this->validateRequestApi(new UpdatePreInspectionsRequest($request->all()));
+      //Update
       $this->preInspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
 
       $response = ['data' => ''];
