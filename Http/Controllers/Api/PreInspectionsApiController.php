@@ -92,7 +92,7 @@ class PreInspectionsApiController extends BaseApiController
       //Validate Request
       $this->validateRequestApi(new CreatePreInspectionsRequest($request->all()));
       //Create
-      $t=$this->preInspection->create($request->all());
+      $this->preInspection->create($request->all());
       $response = ['data' => ''];
 
     } catch (\Exception $e) {

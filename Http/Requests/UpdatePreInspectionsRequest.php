@@ -4,12 +4,14 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateTypesVehiclesRequest extends BaseFormRequest
+class UpdatePreInspectionsRequest extends BaseFormRequest
 {
     public function rules()
     {
         return [
-          'name'=>'required'
+          'name'=>'string',
+          'type'=>'in:boolean,select',
+          'values'=>'string'
         ];
     }
 
