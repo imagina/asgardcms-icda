@@ -14,4 +14,8 @@ class PreInspectionsPivot extends Model
       'inspections_id',
       'value'
     ];
+
+    public function preInspection(){
+      return $this->belongsTo('Modules\Icda\Entities\PreInspections','pre_inspections_id');
+    }
 }

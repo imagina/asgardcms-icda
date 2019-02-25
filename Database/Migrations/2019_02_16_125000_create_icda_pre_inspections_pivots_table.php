@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIcdaPreInspectionsPivotsTable extends Migration
+class CreateIcdaAxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateIcdaPreInspectionsPivotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('icda__pre_inspections_pivots', function (Blueprint $table) {
+        Schema::create('icda__axes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pre_inspections_id')->unsigned();
-            $table->foreign('pre_inspections_id')->references('id')->on('icda__pre_inspections');
             $table->integer('inspections_id')->unsigned();
             $table->foreign('inspections_id')->references('id')->on('icda__inspections');
-            $table->string('value');//Value
+            $table->text('values');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateIcdaPreInspectionsPivotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('icda__pre_inspections_pivots');
+        Schema::dropIfExists('icda__axes');
     }
 }

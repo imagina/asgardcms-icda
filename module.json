@@ -8,11 +8,13 @@
     "order": 1,
     "providers": [
         "Modules\\Icda\\Providers\\IcdaServiceProvider",
-        "Modules\\Icda\\Providers\\RouteServiceProvider"
+        "Modules\\Icda\\Providers\\RouteServiceProvider",
+        "Modules\\Icda\\Providers\\EventServiceProvider"
+
     ],
     "aliases": {},
     "files": [
-        
+
     ],
     "requires": []
 }

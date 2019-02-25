@@ -17,6 +17,8 @@ class CreateIcdaInspectionsTable extends Migration
             $table->increments('id');
             $table->integer('inspections_types_id')->unsigned();
             $table->foreign('inspections_types_id')->references('id')->on('icda__inspections_types');
+            $table->integer('vehicles_id')->unsigned();
+            $table->foreign('vehicles_id')->references('id')->on('icda__vehicles');
             $table->boolean('teaching_vehicle');
             $table->integer('mileage');//
             $table->integer('exhosto_diameter')->nullable();//Diametro exhosto

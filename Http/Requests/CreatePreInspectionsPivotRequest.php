@@ -4,19 +4,13 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateInspectionsRequest extends BaseFormRequest
+class CreatePreInspectionsPivotRequest extends BaseFormRequest
 {
     public function rules()
     {
         return [
-          'inspections_types_id'=>'required|exists:icda__inspections_types,id',
-          'vehicles_id'=>'required|exists:icda__vehicles,id',
-          'teaching_vehicle'=>'required|boolean',
-          'mileage'=>'required|numeric',
-          'exhosto_diameter'=>'numeric',
-          'engine_cylinders'=>'numeric',
-          'axes'=>'required|array',
-          'pre_inspections'=>'required|array'
+          'pre_inspection_id'=>'required|exists:icda__pre_inspections,id',
+          'value'=>'required'
         ];
     }
 

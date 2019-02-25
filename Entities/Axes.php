@@ -13,4 +13,10 @@ class Axes extends Model
       'inspections_id',
       'values'
     ];
+
+    protected $fakeColumns = ['values'];
+
+    protected $casts = [
+      'values' => 'array'
+    ];
 }
