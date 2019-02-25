@@ -4,12 +4,16 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateTypesVehiclesRequest extends BaseFormRequest
+class UpdateInspectionsRequest extends BaseFormRequest
 {
     public function rules()
     {
         return [
-          'name'=>'required'
+          'inspections_types_id'=>'exists:icda__inspections_types,id',
+          'teaching_vehicle'=>'boolean',
+          'mileage'=>'required|numeric',
+          'exhosto_diameter'=>'numeric',
+          'engine_cylinders'=>'numeric'
         ];
     }
 

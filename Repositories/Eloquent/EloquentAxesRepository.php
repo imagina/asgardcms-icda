@@ -2,10 +2,10 @@
 
 namespace Modules\Icda\Repositories\Eloquent;
 
-use Modules\Icda\Repositories\PreInspectionsRepository;
+use Modules\Icda\Repositories\AxesRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
-class EloquentPreInspectionsRepository extends EloquentBaseRepository implements PreInspectionsRepository
+class EloquentAxesRepository extends EloquentBaseRepository implements AxesRepository
 {
   public function getItem($criteria,$params){
     // INITIALIZE QUERY

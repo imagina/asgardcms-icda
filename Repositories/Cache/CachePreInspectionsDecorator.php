@@ -11,6 +11,6 @@ class CachePreInspectionsDecorator extends BaseCacheDecorator implements PreInsp
     {
         parent::__construct();
         $this->entityName = 'icda.pre_inspections';
-        $this->repository = $types_fuels;
+        $this->repository = $pre_inspections;
     }
 }

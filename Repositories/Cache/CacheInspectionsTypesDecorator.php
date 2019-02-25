@@ -11,6 +11,6 @@ class CacheInspectionsTypesDecorator extends BaseCacheDecorator implements Inspe
     {
         parent::__construct();
         $this->entityName = 'icda.inspections_types';
-        $this->repository = $types_fuels;
+        $this->repository = $inspections_types;
     }
 }

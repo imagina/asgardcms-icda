@@ -4,7 +4,7 @@ namespace Modules\Icda\Repositories;
 
 use Modules\Core\Repositories\BaseRepository;
 
-interface PreInspectionsRepository extends BaseRepository
+interface InspectionsRepository extends BaseRepository
 {
   public function getItem($criteria,$params);//getItem()
   public function getItemsBy($params);//getItemsBy

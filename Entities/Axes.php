@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Axes extends Model
 {
-    protected $fillable = [];
+
+  protected $table = 'icda__axes';
+
+    protected $fillable = [
+      'inspections_id',
+      'values'
+    ];
 }

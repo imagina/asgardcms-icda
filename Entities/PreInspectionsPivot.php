@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreInspectionsPivot extends Model
 {
-    protected $fillable = [];
+
+  protected $table = 'icda__pre_inspections_pivots';
+
+    protected $fillable = [
+      'pre_inspections_id',
+      'inspections_id',
+      'value'
+    ];
 }

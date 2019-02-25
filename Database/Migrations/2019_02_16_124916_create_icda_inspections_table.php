@@ -15,8 +15,8 @@ class CreateIcdaInspectionsTable extends Migration
     {
         Schema::create('icda__inspections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('icda__inspections_types_id')->unsigned();
-            $table->foreign('icda__inspections_types_id')->references('id')->on('icda__inspections_types');
+            $table->integer('inspections_types_id')->unsigned();
+            $table->foreign('inspections_types_id')->references('id')->on('icda__inspections_types');
             $table->boolean('teaching_vehicle');
             $table->integer('mileage');//
             $table->integer('exhosto_diameter')->nullable();//Diametro exhosto

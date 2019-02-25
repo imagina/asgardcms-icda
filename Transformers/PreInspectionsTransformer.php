@@ -11,7 +11,7 @@ class PreInspectionsTransformer extends Resource
     $data =  [
       'id' => $this->id,
       'name' => $this->name,
-      'type' => $this->description,
+      'type' => $this->type,
       'values' => $this->values,
       'created_at' => $this->created_at,
       'updated_at' => $this->updated_at,

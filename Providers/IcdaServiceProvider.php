@@ -118,6 +118,32 @@ class IcdaServiceProvider extends ServiceProvider
             return new \Modules\Icda\Repositories\Cache\CachePreInspectionsDecorator($repository);
           }
         );
+        //Inspections
+        $this->app->bind(
+          'Modules\Icda\Repositories\InspectionsRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentInspectionsRepository(new \Modules\Icda\Entities\Inspections());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CacheInspectionsDecorator($repository);
+          }
+        );
+        //Axes
+        $this->app->bind(
+          'Modules\Icda\Repositories\AxesRepository',
+          function () {
+            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentAxesRepository(new \Modules\Icda\Entities\Axes());
+
+            if (! config('app.cache')) {
+              return $repository;
+            }
+
+            return new \Modules\Icda\Repositories\Cache\CacheAxesDecorator($repository);
+          }
+        );
 // add bindings
 
     }

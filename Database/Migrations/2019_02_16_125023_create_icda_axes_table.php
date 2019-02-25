@@ -15,8 +15,8 @@ class CreateIcdaAxesTable extends Migration
     {
         Schema::create('icda__axes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('icda__inspections_id')->unsigned();
-            $table->foreign('icda__inspections_id')->references('id')->on('icda__inspections');
+            $table->integer('inspections_id')->unsigned();
+            $table->foreign('inspections_id')->references('id')->on('icda__inspections');
             $table->text('values');
             $table->timestamps();
         });

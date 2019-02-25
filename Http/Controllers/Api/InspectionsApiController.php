@@ -3,7 +3,8 @@
 namespace Modules\Icda\Http\Controllers\Api;
 
 // Requests & Response
-use Modules\Icda\Http\Requests\CreateTypesVehiclesRequest;
+use Modules\Icda\Http\Requests\CreateInspectionsRequest;
+use Modules\Icda\Http\Requests\UpdateInspectionsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -11,23 +12,23 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Transformers
-use Modules\Icda\Transformers\TypesVehiclesTransformer;
+use Modules\Icda\Transformers\InspectionsTransformer;
 
 // Entities
-use Modules\Icda\Entities\TypesVehicles;
+use Modules\Icda\Entities\Inspections;
 
 // Repositories
-use Modules\Icda\Repositories\TypesVehiclesRepository;
+use Modules\Icda\Repositories\InspectionsRepository;
 
-class TypesVehiclesApiController extends BaseApiController
+class InspectionsApiController extends BaseApiController
 {
 
-  private $typeVehicle;
+  private $Inspection;
 
 
-  public function __construct(TypesVehiclesRepository $typeVehicle)
+  public function __construct(InspectionsRepository $Inspection)
   {
-    $this->typeVehicle = $typeVehicle;
+    $this->Inspection = $Inspection;
   }
 
   /**
@@ -38,12 +39,13 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeVehicles = $this->typeVehicle->getItemsBy($this->getParamsRequest($request));
+      $Inspections = $this->Inspection->getItemsBy($this->getParamsRequest($request));
 
       //Response
-      $response = ['data' => TypesVehiclesTransformer::collection($typeVehicles)];
+      $response = ['data' => InspectionsTransformer::collection($Inspections)];
+
       //If request pagination add meta-page
-      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($typeVehicles)] : false;
+      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($Inspections)] : false;
 
     } catch (\Exception $e) {
       //Message Error
@@ -65,10 +67,10 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $typeVehicle = $this->typeVehicle->getItem($criteria,$this->getParamsRequest($request));
+      $Inspection = $this->Inspection->getItem($criteria,$this->getParamsRequest($request));
 
       $response = [
-        'data' => $typeVehicle ? new TypesVehiclesTransformer($typeVehicle) : '',
+        'data' => $Inspection ? new InspectionsTransformer($Inspection) : '',
       ];
 
     } catch (\Exception $e) {
@@ -88,10 +90,13 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
       //Validate Request
-      $this->validateRequestApi(new CreateTypesVehiclesRequest($request->all()));
+      $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
       //Create
-      $this->typeVehicle->create($request->all());
+      $this->Inspection->create($request->all());
+      //Event to create pre-inspections
 
+      //Event to create details of axes of inspection
+      
       $response = ['data' => ''];
 
     } catch (\Exception $e) {
@@ -111,8 +116,10 @@ class TypesVehiclesApiController extends BaseApiController
   public function update($criteria, Request $request)
   {
     try {
-
-      $this->typeVehicle->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+      //Validate Request
+      $this->validateRequestApi(new UpdateInspectionsRequest($request->all()));
+      //Update
+      $this->Inspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 
@@ -134,7 +141,7 @@ class TypesVehiclesApiController extends BaseApiController
   {
     try {
 
-      $this->typeVehicle->deleteBy($criteria,$this->getParamsRequest($request));
+      $this->Inspection->deleteBy($criteria,$this->getParamsRequest($request));
 
       $response = ['data' => ''];
 
