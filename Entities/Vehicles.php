@@ -42,4 +42,8 @@ class Vehicles extends Model
   {
     return $this->belongsTo('Modules\Icda\Entities\TypesFuel', 'types_fuels_id');
   }
+  public function user()
+  {
+    return $this->belongsTo('Modules\User\Entities\Sentinel\User', 'user_id');
+  }
 }

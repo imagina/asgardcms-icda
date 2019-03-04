@@ -30,5 +30,8 @@ class Inspections extends Model
     public function axes(){
       return $this->hasMany('Modules\Icda\Entities\Axes','inspections_id');//inspections_id Foreign key
     }
-
+    public function itemsInventory(){
+      return $this->hasMany('Modules\Icda\Entities\InspectionInventory','inspections_id');//inspections_id Foreign key
+    }
+    
 }

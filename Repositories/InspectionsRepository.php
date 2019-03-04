@@ -10,4 +10,5 @@ interface InspectionsRepository extends BaseRepository
   public function getItemsBy($params);//getItemsBy
   public function updateBy($criteria, $data, $params);//updateBy
   public function deleteBy($criteria, $params);//deleteBy
+  public function create($data);
 }

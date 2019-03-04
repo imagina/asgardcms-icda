@@ -20,9 +20,6 @@ use Modules\Icda\Entities\Inspections;
 // Repositories
 use Modules\Icda\Repositories\InspectionsRepository;
 
-//Events
-use Modules\Icda\Events\InspectionWasCreated;
-
 //DB to transactions
 use DB;
 class InspectionsApiController extends BaseApiController
@@ -94,20 +91,14 @@ class InspectionsApiController extends BaseApiController
   public function create(Request $request)
   {
     try {
+      //dd($request->all());
       DB::beginTransaction();
 
       //Validate Request
-      // dd($request->all());
       $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
-      //Validate to array values of pre-inspections
-
-      //Validate array axes to inspections
 
       //Create
       $inspection=$this->Inspection->create($request->all());
-
-      //Event to create axes and pre-inspections values
-      event(new InspectionWasCreated($inspection,$request->all()));
 
       $response = ['data' => ''];
     } catch (\Exception $e) {

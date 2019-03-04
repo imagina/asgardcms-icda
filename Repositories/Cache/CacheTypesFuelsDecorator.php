@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheTypesFuelsDecorator extends BaseCacheDecorator implements TypesFuelsRepository
 {
-    public function __construct(VehiclesRepository $vehicles)
+    public function __construct(TypesFuelsRepository $types_fuels)
     {
         parent::__construct();
         $this->entityName = 'icda.types_fuels';

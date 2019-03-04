@@ -13,7 +13,8 @@ class UpdateInspectionsRequest extends BaseFormRequest
           'teaching_vehicle'=>'boolean',
           'mileage'=>'required|numeric',
           'exhosto_diameter'=>'numeric',
-          'engine_cylinders'=>'numeric'
+          'engine_cylinders'=>'numeric',
+          'vehicles_id'=>'exists:icda__vehicles,id'
         ];
     }
 

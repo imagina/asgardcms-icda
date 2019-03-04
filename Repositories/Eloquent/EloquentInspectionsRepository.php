@@ -4,9 +4,23 @@ namespace Modules\Icda\Repositories\Eloquent;
 
 use Modules\Icda\Repositories\InspectionsRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
-
+//Events
+use Modules\Icda\Events\InspectionWasCreated;
 class EloquentInspectionsRepository extends EloquentBaseRepository implements InspectionsRepository
 {
+
+  /**
+   * @param $data
+   * @return mixed
+   */
+  public function create($data)
+  {
+      $inspection = $this->model->create($data);
+      //Event to create axes and pre-inspections values
+      event(new InspectionWasCreated($inspection,$data));
+      return $this->find($inspection->id);
+  }
+
   public function getItem($criteria,$params){
     // INITIALIZE QUERY
     $query = $this->model->query();

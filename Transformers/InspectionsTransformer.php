@@ -14,6 +14,7 @@ class InspectionsTransformer extends Resource
       'inspectionType' => new InspectionsTypesTransformer($this->inspectionType),
       'preInspections' => PreInspectionsPivotTransformer::collection($this->preInspections),
       'axes' => AxesTransformer::collection($this->axes),
+      'itemsInventory' => InspectionInventoryTransformer::collection($this->itemsInventory),
       'teaching_vehicle' => $this->teaching_vehicle,
       'mileage' => $this->mileage,
       'exhosto_diameter' => $this->exhosto_diameter,

@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CachePreInspectionsDecorator extends BaseCacheDecorator implements PreInspectionsRepository
 {
-    public function __construct(VehiclesRepository $vehicles)
+    public function __construct(PreInspectionsRepository $pre_inspections)
     {
         parent::__construct();
         $this->entityName = 'icda.pre_inspections';

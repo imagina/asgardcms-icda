@@ -16,7 +16,8 @@ class CreateInspectionsRequest extends BaseFormRequest
           'exhosto_diameter'=>'numeric',
           'engine_cylinders'=>'numeric',
           'axes'=>'required|array',
-          'pre_inspections'=>'required|array'
+          'pre_inspections'=>'required|array',
+          'items'=>'required|array'
         ];
     }
 

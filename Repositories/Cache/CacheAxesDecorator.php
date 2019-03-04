@@ -7,7 +7,7 @@ use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheAxesDecorator extends BaseCacheDecorator implements AxesRepository
 {
-    public function __construct(VehiclesRepository $vehicles)
+    public function __construct(AxesRepository $axes)
     {
         parent::__construct();
         $this->entityName = 'icda.axes';

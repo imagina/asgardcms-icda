@@ -30,7 +30,13 @@ class IcdaServiceProvider extends ServiceProvider
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('vehicles', array_dot(trans('icda::vehicles')));
+            $event->load('inventories', array_dot(trans('icda::inventories')));
+            $event->load('inventoryinspections', array_dot(trans('icda::inventoryinspections')));
+            $event->load('inspectioninventories', array_dot(trans('icda::inspectioninventories')));
             // append translations
+
+
+
 
         });
     }
@@ -144,7 +150,34 @@ class IcdaServiceProvider extends ServiceProvider
             return new \Modules\Icda\Repositories\Cache\CacheAxesDecorator($repository);
           }
         );
+        $this->app->bind(
+            'Modules\Icda\Repositories\InventoryRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentInventoryRepository(new \Modules\Icda\Entities\Inventory());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheInventoryDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Icda\Repositories\InspectionInventoryRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentInspectionInventoryRepository(new \Modules\Icda\Entities\InspectionInventory());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheInspectionInventoryDecorator($repository);
+            }
+        );
 // add bindings
+
+
+
 
     }
 }
