@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Icda\Transformers;
-
+use Modules\User\Transformers\UserTransformer;
 use Illuminate\Http\Resources\Json\Resource;
 
 class VehiclesTransformer extends Resource
@@ -32,6 +32,7 @@ class VehiclesTransformer extends Resource
       'gas_certificate'=>$this->gas_certificate,
       'gas_certifier'=>$this->gas_certifier,
       'gas_certificate_expiration'=>$this->gas_certificate_expiration,
+      'user'=>new UserTransformer($this->user),
       'created_at' => $this->created_at->format('d-m-Y'),
       'updated_at' => $this->updated_at->format('d-m-Y'),
     ];

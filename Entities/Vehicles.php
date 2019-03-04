@@ -30,7 +30,8 @@ class Vehicles extends Model
     'insurance_expiration',
     'gas_certificate',
     'gas_certifier',
-    'gas_certificate_expiration'
+    'gas_certificate_expiration',
+    'user_id'
   ];
 
   public function type_vehicle()

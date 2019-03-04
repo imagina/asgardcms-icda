@@ -26,7 +26,8 @@ class UpdateVehiclesRequest extends BaseFormRequest
           'weight'=>'in:heavy,light',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
-          'gas_certificate_expiration'=>'date'
+          'gas_certificate_expiration'=>'date',
+          'user_id'=>'exists:users,id'
         ];
     }
 
