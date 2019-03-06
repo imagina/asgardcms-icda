@@ -7,6 +7,14 @@ use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentInventoryRepository extends EloquentBaseRepository implements InventoryRepository
 {
+
+  public function create($data){
+    $inventory=$this->model->whereTranslation('name',$data['name'])->first();
+    if(!$inventory)
+      $inventory = $this->model->create($data);
+    return $inventory;
+  }
+
   public function getItem($criteria,$params){
     // INITIALIZE QUERY
     $query = $this->model->query();

@@ -92,8 +92,8 @@ class InventoryApiController extends BaseApiController
       //Validate Request
       $this->validateRequestApi(new CreateInventoryRequest($request->all()));
       //Create
-      $this->inventory->create($request->all());
-      $response = ['data' => ''];
+      $inventory=$this->inventory->create($request->all());
+      $response = ['data' => $inventory];
 
     } catch (\Exception $e) {
       $status = 500;
