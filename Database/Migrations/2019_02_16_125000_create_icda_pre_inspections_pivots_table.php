@@ -15,10 +15,10 @@ class CreateIcdaPreInspectionsPivotsTable extends Migration
     {
         Schema::create('icda__pre_inspections_pivots', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('icda__pre_inspections_id')->unsigned();
-            $table->foreign('icda__pre_inspections_id')->references('id')->on('icda__pre_inspections');
-            $table->integer('icda__inspections_id')->unsigned();
-            $table->foreign('icda__inspections_id')->references('id')->on('icda__inspections');
+            $table->integer('pre_inspections_id')->unsigned();
+            $table->foreign('pre_inspections_id')->references('id')->on('icda__pre_inspections');
+            $table->integer('inspections_id')->unsigned();
+            $table->foreign('inspections_id')->references('id')->on('icda__inspections');
             $table->string('value');//Value
             $table->timestamps();
         });

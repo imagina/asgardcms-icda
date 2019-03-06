@@ -11,7 +11,7 @@ class UpdatePreInspectionsRequest extends BaseFormRequest
         return [
           'name'=>'string',
           'type'=>'in:boolean,select',
-          'values'=>'string'
+          'values'=>'required_if:type,select|array'
         ];
     }
 

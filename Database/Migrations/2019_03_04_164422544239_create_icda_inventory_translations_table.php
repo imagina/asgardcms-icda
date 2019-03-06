@@ -13,7 +13,6 @@ class CreateIcdaInventoryTranslationsTable extends Migration
     public function up()
     {
         Schema::create('icda__inventory_translations', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             // Your translatable fields
             $table->string('name');

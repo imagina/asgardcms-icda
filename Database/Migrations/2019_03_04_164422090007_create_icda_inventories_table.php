@@ -13,7 +13,6 @@ class CreateIcdaInventoriesTable extends Migration
     public function up()
     {
         Schema::create('icda__inventories', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->boolean('status')->default('1');//Enable - Disable
             // Your fields

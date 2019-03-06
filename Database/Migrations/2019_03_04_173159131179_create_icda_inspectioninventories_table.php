@@ -13,7 +13,6 @@ class CreateIcdaInspectionInventoriesTable extends Migration
     public function up()
     {
         Schema::create('icda__inspectioninventories', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->enum('evaluation',['B','R','M']);//B,R,M
             $table->integer('quantity');

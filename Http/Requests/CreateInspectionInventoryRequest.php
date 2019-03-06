@@ -11,7 +11,7 @@ class CreateInspectionInventoryRequest extends BaseFormRequest
         return [
           'inventory_id'=>'required|exists:icda__inventories,id',
           'quantity'=>'required|numeric',
-          'evaluation'=>'in:B,R,M',
+          'evaluation'=>'required|in:B,R,M',
 
         ];
     }

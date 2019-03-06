@@ -24,7 +24,7 @@ class CreateIcdaVehiclesTable extends Migration
             $table->string('model');
             $table->string('color');
             $table->string('transit_license');//Licencia de transito
-            $table->string('enrollment_date');//fecha de matrícula
+            $table->date('enrollment_date');//fecha de matrícula
             $table->string('board');//Placa
             $table->string('chasis_number');//Número de chasis
             $table->string('engine_number');//Número de motor

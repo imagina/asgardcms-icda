@@ -11,7 +11,7 @@ class CreatePreInspectionsRequest extends BaseFormRequest
         return [
           'name'=>'required',
           'type'=>'required|in:boolean,select',
-          'values'=>''
+          'values'=>'required_if:type,select|array'
         ];
     }
 

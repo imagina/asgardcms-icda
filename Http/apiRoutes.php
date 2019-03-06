@@ -13,7 +13,8 @@ $router->group(['prefix' => '/icda'/*,'middleware' => ['auth:api']*/], function 
   require('ApiRoutes/inspectionsTypesRoutes.php');
 //======   Pre Inspections
   require('ApiRoutes/preInspectionsRoutes.php');
-//======   Inspections
-  require('ApiRoutes/inspectionsRoutes.php');
-
+  //======   Inspections
+    require('ApiRoutes/inspectionsRoutes.php');
+  //======   Inventory
+    require('ApiRoutes/inventoryRoutes.php');
 });
