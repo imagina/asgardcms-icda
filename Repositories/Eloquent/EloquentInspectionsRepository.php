@@ -16,7 +16,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
   public function create($data)
   {
       $inspection = $this->model->create($data);
-      //Event to create axes and pre-inspections values
+      //Event to create inventory items of inspection
       event(new InspectionWasCreated($inspection,$data));
       return $this->find($inspection->id);
   }

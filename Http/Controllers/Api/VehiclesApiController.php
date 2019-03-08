@@ -40,7 +40,6 @@ class VehiclesApiController extends BaseApiController
     try {
       //Request to Repository
       $vehicles = $this->vehicle->getItemsBy($this->getParamsRequest($request));
-
       //Response
       $response = ['data' => VehiclesTransformer::collection($vehicles)];
       //If request pagination add meta-page

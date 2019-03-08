@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIcdaTypesVehiclesTable extends Migration
+class CreateFieldAxesPreinspectionsInspectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateIcdaTypesVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('icda__types_vehicles', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('icda__inspections', function (Blueprint $table) {
+            $table->text('axes');
+            $table->text('pre_inspections');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateIcdaTypesVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('icda__types_vehicles');
+
     }
 }

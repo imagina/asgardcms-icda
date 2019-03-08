@@ -17,7 +17,23 @@ class CreateInspectionsRequest extends BaseFormRequest
           'engine_cylinders'=>'numeric',
           'axes'=>'required|array',
           'pre_inspections'=>'required|array',
-          'items'=>'required|array'
+          'items'=>'required|array',
+          'insurance_expedition'=>'date',
+          'insurance_expiration'=>'date',
+          'gas_certificate_expiration'=>'date',
+          'governor'=>'boolean',
+          'taximeter'=>'boolean',
+          'polarized_glasses'=>'boolean',
+          'armored_vehicle'=>'boolean',
+          'modified_engine'=>'boolean',
+          'spare_tires'=>'numeric',
+          'observations'=>'string',
+          'vehicle_prepared'=>'required|boolean',
+          'seen_technical_director'=>'boolean',
+          'vehicle_delivery_signature'=>'required',
+          'signature_received_report'=>'',
+          'type_vehicle'=>'required|string'
+
         ];
     }
 

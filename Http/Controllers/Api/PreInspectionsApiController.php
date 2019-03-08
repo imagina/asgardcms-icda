@@ -3,8 +3,8 @@
 namespace Modules\Icda\Http\Controllers\Api;
 
 // Requests & Response
-use Modules\Icda\Http\Requests\CreatePreInspectionsRequest;
-use Modules\Icda\Http\Requests\UpdatePreInspectionsRequest;
+// use Modules\Icda\Http\Requests\CreatePreInspectionsRequest;
+// use Modules\Icda\Http\Requests\UpdatePreInspectionsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,13 +12,13 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Transformers
-use Modules\Icda\Transformers\PreInspectionsTransformer;
+// use Modules\Icda\Transformers\PreInspectionsTransformer;
 
 // Entities
-use Modules\Icda\Entities\PreInspections;
+// use Modules\Icda\Entities\PreInspections;
 
 // Repositories
-use Modules\Icda\Repositories\PreInspectionsRepository;
+// use Modules\Icda\Repositories\PreInspectionsRepository;
 
 class PreInspectionsApiController extends BaseApiController
 {
@@ -26,9 +26,10 @@ class PreInspectionsApiController extends BaseApiController
   private $preInspection;
 
 
-  public function __construct(PreInspectionsRepository $preInspection)
+  // public function __construct(PreInspectionsRepository $preInspection)
+  public function __construct()
   {
-    $this->preInspection = $preInspection;
+    // $this->preInspection = $preInspection;
   }
 
   /**
@@ -39,14 +40,14 @@ class PreInspectionsApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      $preInspections = $this->preInspection->getItemsBy($this->getParamsRequest($request));
+      // $preInspections = $this->preInspection->getItemsBy($this->getParamsRequest($request));
 
       //Response
-      $response = ['data' => PreInspectionsTransformer::collection($preInspections)];
+      // $response = ['data' => PreInspectionsTransformer::collection($preInspections)];
 
       //If request pagination add meta-page
-      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($preInspections)] : false;
-
+      // $request->page ? $response['meta'] = ['page' => $this->pageTransformer($preInspections)] : false;
+      $response=['data'=>config("asgard.icda.config.preInspections")];
     } catch (\Exception $e) {
       //Message Error
       $status = 500;
@@ -63,90 +64,90 @@ class PreInspectionsApiController extends BaseApiController
    *  &fields = type string
    *  &include = type string
    */
-  public function show($criteria, Request $request)
-  {
-    try {
-      //Request to Repository
-      $preInspection = $this->preInspection->getItem($criteria,$this->getParamsRequest($request));
-
-      $response = [
-        'data' => $preInspection ? new PreInspectionsTransformer($preInspection) : '',
-      ];
-
-    } catch (\Exception $e) {
-      $status = 500;
-      $response = [
-        'errors' => $e->getMessage()
-      ];
-    }
-    return response()->json($response, $status ?? 200);
-  }
+  // public function show($criteria, Request $request)
+  // {
+  //   try {
+  //     //Request to Repository
+  //     $preInspection = $this->preInspection->getItem($criteria,$this->getParamsRequest($request));
+  //
+  //     $response = [
+  //       'data' => $preInspection ? new PreInspectionsTransformer($preInspection) : '',
+  //     ];
+  //
+  //   } catch (\Exception $e) {
+  //     $status = 500;
+  //     $response = [
+  //       'errors' => $e->getMessage()
+  //     ];
+  //   }
+  //   return response()->json($response, $status ?? 200);
+  // }
 
   /**
    * Show the form for creating a new resource.
    * @return Response
    */
-  public function create(Request $request)
-  {
-    try {
-      //Validate Request
-      $this->validateRequestApi(new CreatePreInspectionsRequest($request->all()));
-      //Create
-      $this->preInspection->create($request->all());
-      $response = ['data' => ''];
-
-    } catch (\Exception $e) {
-      $status = 500;
-      $response = [
-        'errors' => $e->getMessage()
-      ];
-    }
-    return response()->json($response, $status ?? 200);
-  }
+  // public function create(Request $request)
+  // {
+  //   try {
+  //     //Validate Request
+  //     $this->validateRequestApi(new CreatePreInspectionsRequest($request->all()));
+  //     //Create
+  //     $this->preInspection->create($request->all());
+  //     $response = ['data' => ''];
+  //
+  //   } catch (\Exception $e) {
+  //     $status = 500;
+  //     $response = [
+  //       'errors' => $e->getMessage()
+  //     ];
+  //   }
+  //   return response()->json($response, $status ?? 200);
+  // }
 
   /**
    * Update the specified resource in storage.
    * @param  Request $request
    * @return Response
    */
-  public function update($criteria, Request $request)
-  {
-    try {
-      //Validate Request
-      $this->validateRequestApi(new UpdatePreInspectionsRequest($request->all()));
-      //Update
-      $this->preInspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
-
-      $response = ['data' => ''];
-
-    } catch (\Exception $e) {
-      $status = 500;
-      $response = [
-        'errors' => $e->getMessage()
-      ];
-    }
-    return response()->json($response, $status ?? 200);
-  }
+  // public function update($criteria, Request $request)
+  // {
+  //   try {
+  //     //Validate Request
+  //     $this->validateRequestApi(new UpdatePreInspectionsRequest($request->all()));
+  //     //Update
+  //     $this->preInspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+  //
+  //     $response = ['data' => ''];
+  //
+  //   } catch (\Exception $e) {
+  //     $status = 500;
+  //     $response = [
+  //       'errors' => $e->getMessage()
+  //     ];
+  //   }
+  //   return response()->json($response, $status ?? 200);
+  // }
 
 
   /**
    * Remove the specified resource from storage.
    * @return Response
    */
-  public function delete($criteria, Request $request)
-  {
-    try {
-
-      $this->preInspection->deleteBy($criteria,$this->getParamsRequest($request));
-
-      $response = ['data' => ''];
-
-    } catch (\Exception $e) {
-      $status = 500;
-      $response = [
-        'errors' => $e->getMessage()
-      ];
-    }
-    return response()->json($response, $status ?? 200);
-  }
+  // public function delete($criteria, Request $request)
+  // {
+  //   try {
+  //
+  //     $this->preInspection->deleteBy($criteria,$this->getParamsRequest($request));
+  //
+  //     $response = ['data' => ''];
+  //
+  //   } catch (\Exception $e) {
+  //     $status = 500;
+  //     $response = [
+  //       'errors' => $e->getMessage()
+  //     ];
+  //   }
+  //   return response()->json($response, $status ?? 200);
+  // }
 }

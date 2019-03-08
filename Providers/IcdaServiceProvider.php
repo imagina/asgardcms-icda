@@ -29,10 +29,7 @@ class IcdaServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterIcdaSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('vehicles', array_dot(trans('icda::vehicles')));
-            $event->load('inventories', array_dot(trans('icda::inventories')));
-            $event->load('inventoryinspections', array_dot(trans('icda::inventoryinspections')));
-            $event->load('inspectioninventories', array_dot(trans('icda::inspectioninventories')));
+            // $event->load('vehicles', array_dot(trans('icda::vehicles')));
             // append translations
 
 
@@ -44,6 +41,7 @@ class IcdaServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('icda', 'permissions');
+        $this->publishConfig('icda', 'config');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
@@ -72,32 +70,6 @@ class IcdaServiceProvider extends ServiceProvider
                 return new \Modules\Icda\Repositories\Cache\CacheVehiclesDecorator($repository);
             }
         );
-        //Types Vehicles
-        $this->app->bind(
-          'Modules\Icda\Repositories\TypesVehiclesRepository',
-          function () {
-            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentTypesVehiclesRepository(new \Modules\Icda\Entities\TypesVehicles());
-
-            if (! config('app.cache')) {
-              return $repository;
-            }
-
-            return new \Modules\Icda\Repositories\Cache\CacheTypesVehiclesDecorator($repository);
-          }
-        );
-        //Types Fuels
-        $this->app->bind(
-          'Modules\Icda\Repositories\TypesFuelsRepository',
-          function () {
-            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentTypesFuelsRepository(new \Modules\Icda\Entities\TypesFuel());
-
-            if (! config('app.cache')) {
-              return $repository;
-            }
-
-            return new \Modules\Icda\Repositories\Cache\CacheTypesFuelsDecorator($repository);
-          }
-        );
         //Inspections Types
         $this->app->bind(
           'Modules\Icda\Repositories\InspectionsTypesRepository',
@@ -111,19 +83,6 @@ class IcdaServiceProvider extends ServiceProvider
             return new \Modules\Icda\Repositories\Cache\CacheInspectionsTypesDecorator($repository);
           }
         );
-        //Pre Inspections
-        $this->app->bind(
-          'Modules\Icda\Repositories\PreInspectionsRepository',
-          function () {
-            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentPreInspectionsRepository(new \Modules\Icda\Entities\PreInspections());
-
-            if (! config('app.cache')) {
-              return $repository;
-            }
-
-            return new \Modules\Icda\Repositories\Cache\CachePreInspectionsDecorator($repository);
-          }
-        );
         //Inspections
         $this->app->bind(
           'Modules\Icda\Repositories\InspectionsRepository',
@@ -135,19 +94,6 @@ class IcdaServiceProvider extends ServiceProvider
             }
 
             return new \Modules\Icda\Repositories\Cache\CacheInspectionsDecorator($repository);
-          }
-        );
-        //Axes
-        $this->app->bind(
-          'Modules\Icda\Repositories\AxesRepository',
-          function () {
-            $repository = new \Modules\Icda\Repositories\Eloquent\EloquentAxesRepository(new \Modules\Icda\Entities\Axes());
-
-            if (! config('app.cache')) {
-              return $repository;
-            }
-
-            return new \Modules\Icda\Repositories\Cache\CacheAxesDecorator($repository);
           }
         );
         $this->app->bind(

@@ -12,8 +12,10 @@ class InspectionsTypesTransformer extends Resource
       'id' => $this->id,
       'name' => $this->name,
       'description' => $this->description,
-      'created_at' => $this->created_at,
-      'updated_at' => $this->updated_at,
+      'createdAtDate' => $this->created_at->format('Y-m-d'),
+      'createdAtTime' => $this->created_at->format('H:m:s'),
+      'updateAtDate' => $this->updated_at->format('Y-m-d'),
+      'updateAtTime' => $this->updated_at->format('H:m:s'),
     ];
 
     return $data;

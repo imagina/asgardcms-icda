@@ -10,8 +10,8 @@ class CreateVehiclesRequest extends BaseFormRequest
     {
         return [
           'service_type'=>'required',
-          'types_vehicles_id'=>'required|exists:icda__types_vehicles,id',
-          'types_fuels_id'=>'required|exists:icda__types_fuels,id',
+          'type_vehicle'=>'required|string',
+          'type_fuel'=>'required|string',
           'brand'=>'required|max:45',
           'line'=>'required|max:45',
           'model'=>'required|max:45',
@@ -23,10 +23,7 @@ class CreateVehiclesRequest extends BaseFormRequest
           'engine_number'=>'required|max:60',
           'displacement'=>'required|max:30',
           'axes_number'=>'numeric',
-          'weight'=>'required|in:heavy,light',
-          'insurance_expedition'=>'date',
-          'insurance_expiration'=>'date',
-          'gas_certificate_expiration'=>'date',
+          // 'weight'=>'required|in:heavy,light',
           'user_id'=>'required|exists:users,id'
         ];
     }

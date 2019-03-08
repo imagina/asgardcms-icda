@@ -98,7 +98,7 @@ class InspectionsApiController extends BaseApiController
       $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
 
       //Create
-      $inspection=$this->Inspection->create($request->all());
+      $this->Inspection->create($request->all());
 
       $response = ['data' => ''];
     } catch (\Exception $e) {

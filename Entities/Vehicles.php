@@ -12,8 +12,8 @@ class Vehicles extends Model
   protected $table = 'icda__vehicles';
   protected $fillable = [
     'service_type',
-    'types_vehicles_id',
-    'types_fuels_id',
+    'type_vehicle',
+    'type_fuel',
     'brand',
     'line',
     'model',
@@ -25,23 +25,12 @@ class Vehicles extends Model
     'engine_number',
     'displacement',
     'axes_number',
-    'weight',
+    // 'weight',
     'insurance_expedition',
     'insurance_expiration',
-    'gas_certificate',
-    'gas_certifier',
-    'gas_certificate_expiration',
     'user_id'
   ];
 
-  public function type_vehicle()
-  {
-    return $this->belongsTo('Modules\Icda\Entities\TypesVehicles', 'types_vehicles_id');
-  }
-  public function type_fuel()
-  {
-    return $this->belongsTo('Modules\Icda\Entities\TypesFuel', 'types_fuels_id');
-  }
   public function user()
   {
     return $this->belongsTo('Modules\User\Entities\Sentinel\User', 'user_id');

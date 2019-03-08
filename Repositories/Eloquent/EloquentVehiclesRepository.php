@@ -52,7 +52,7 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
     if(in_array('*',$params->include)){//If Request all relationships
       $query->with([]);
     }else{//Especific relationships
-      $includeDefault = ['type_vehicle','type_fuel'];//Default relationships
+      $includeDefault = [];//Default relationships
       if (isset($params->include))//merge relations with default relationships
         $includeDefault = array_merge($includeDefault, $params->include);
       $query->with($includeDefault);//Add Relationships to query

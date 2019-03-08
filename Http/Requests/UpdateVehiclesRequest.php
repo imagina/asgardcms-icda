@@ -10,8 +10,8 @@ class UpdateVehiclesRequest extends BaseFormRequest
     {
         return [
           'service_type'=>'string',
-          'types_vehicles_id'=>'exists:icda__types_vehicles,id',
-          'types_fuels_id'=>'exists:icda__types_fuels,id',
+          'type_vehicle'=>'string',
+          'type_fuel'=>'string',
           'brand'=>'max:45',
           'line'=>'max:45',
           'model'=>'max:45',
@@ -23,7 +23,7 @@ class UpdateVehiclesRequest extends BaseFormRequest
           'engine_number'=>'max:60',
           'displacement'=>'max:30',
           'axes_number'=>'numeric',
-          'weight'=>'in:heavy,light',
+          // 'weight'=>'in:heavy,light',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
           'gas_certificate_expiration'=>'date',

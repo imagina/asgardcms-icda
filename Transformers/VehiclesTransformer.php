@@ -10,33 +10,36 @@ class VehiclesTransformer extends Resource
   {
     $data =  [
       'id' => $this->id,
-      'service_type'=>$this->service_type,
-      // 'types_vehicles_id'=>$this->types_vehicles_id,
-      'type_vehicle'=>$this->type_vehicle->name,
-      // 'types_fuels_id'=>$this->types_fuels_id,
-      'type_fuel'=>$this->type_fuel->name,
+      'serviceType'=>$this->service_type,
+      'typeVehicle'=>$this->type_vehicle,
+      'typeFuel'=>$this->type_fuel,
       'brand'=>$this->brand,
       'line'=>$this->line,
       'model'=>$this->model,
       'color'=>$this->color,
-      'transit_license'=>$this->transit_license,
-      'enrollment_date'=>$this->enrollment_date,
+      'transitLicense'=>$this->transit_license,
+      'enrollmentDate'=>$this->enrollment_date,
       'board'=>$this->board,
-      'chasis_number'=>$this->chasis_number,
-      'engine_number'=>$this->engine_number,
+      'chasisNumber'=>$this->chasis_number,
+      'engineNumber'=>$this->engine_number,
       'displacement'=>$this->displacement,
-      'axes_number'=>$this->axes_number,
-      'weight'=>$this->weight,
-      'insurance_expedition'=>$this->insurance_expedition,
-      'insurance_expiration'=>$this->insurance_expiration,
-      'gas_certificate'=>$this->gas_certificate,
-      'gas_certifier'=>$this->gas_certifier,
-      'gas_certificate_expiration'=>$this->gas_certificate_expiration,
+      'axesNumber'=>$this->axes_number,
+      // 'weight'=>$this->weight,
+      'insuranceExpedition'=>$this->insurance_expedition,
+      'insuranceExpiration'=>$this->insurance_expiration,
       'user'=>new UserTransformer($this->user),
-      'created_at' => $this->created_at->format('d-m-Y'),
-      'updated_at' => $this->updated_at->format('d-m-Y'),
+      'createdAtDate' => $this->created_at->format('Y-m-d'),
+      'createdAtTime' => $this->created_at->format('H:m:s'),
+      'updateAtDate' => $this->updated_at->format('Y-m-d'),
+      'updateAtTime' => $this->updated_at->format('H:m:s'),
     ];
-
+    if($this->insurance_expiration && $this->insurance_expiration!=null){
+      if($this->insurance_expiration<(\Carbon\Carbon::now()))
+        $data['insurance_status']=false;//No vigente
+      else
+        $data['insurance_status']=true;//Vigente
+    }else
+      $data['insurance_status']=false;//No vigente
     return $data;
   }
 }
