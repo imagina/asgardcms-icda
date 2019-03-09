@@ -51,4 +51,14 @@ class Inspections extends Model
     return $this->hasMany('Modules\Icda\Entities\InspectionInventory','inspections_id');//inspections_id Foreign key
   }
 
+  public function getGalleryAttribute()
+  {
+
+      $images = \Storage::disk('publicmedia')->files('assets/icda/inspections/' . $this->id);
+      if (count($images)) {
+          return $images;
+      }
+      return null;
+  }
+
 }

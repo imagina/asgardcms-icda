@@ -18,7 +18,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
       $inspection = $this->model->create($data);
       //Event to create inventory items of inspection
       event(new InspectionWasCreated($inspection,$data));
-      return $this->find($inspection->id);
+      return $inspection;
   }
 
   public function getItem($criteria,$params){

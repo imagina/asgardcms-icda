@@ -5,6 +5,7 @@ namespace Modules\Icda\Http\Controllers\Api;
 // Requests & Response
 use Modules\Icda\Http\Requests\CreateInspectionsRequest;
 use Modules\Icda\Http\Requests\UpdateInspectionsRequest;
+use Modules\Icda\Http\Requests\MediaUploadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -98,8 +99,11 @@ class InspectionsApiController extends BaseApiController
       $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
 
       //Create
-      $this->Inspection->create($request->all());
+      $inspection=$this->Inspection->create($request->all());
 
+      //Rename folder galery
+      if(isset($request->code))
+        Storage::move('assets/icda/inspections/' . $request->code, 'assets/icda/inspections/' . $inspection->id); //rename folder gallery of inspection
       $response = ['data' => ''];
     } catch (\Exception $e) {
       DB::rollBack();
@@ -158,4 +162,83 @@ class InspectionsApiController extends BaseApiController
     }
     return response()->json($response, $status ?? 200);
   }
+
+    /**
+    * CREATE A ITEM
+    *
+    * @param Request $request
+    * @return mixed
+    */
+    public function mediaUpload(Request $request)
+    {
+      try {
+        //Validate Request
+        $this->validateRequestApi(new MediaUploadRequest($request->all()));
+        $data = $request->all();//Get data
+        // $name = $data['nameFile'];
+        $code = $data['code'];//Name folder
+        $file = $request->file('file');
+        $name=$file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        $nameFile = $name . '.' . $extension;
+        $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF', 'ICO', 'BMP', 'PDF', 'DOC', 'DOCX', 'ODT', 'MP3', '3G2', '3GP', 'AVI', 'FLV', 'H264', 'M4V', 'MKV', 'MOV', 'MP4', 'MPG', 'MPEG', 'WMV');
+        $destination_path = 'assets/icda/inspections/' . $code . '/' . $nameFile;
+        $disk = 'publicmedia';
+        if (!in_array(strtoupper($extension), $allowedextensions)) {
+          throw new Exception(trans('icda::inspections.messages.file not allowed'));
+        }
+        if (in_array(strtoupper($extension), ['JPG', 'JPEG'])) {
+          $image = \Image::make($file);
+
+          \Storage::disk($disk)->put($destination_path, $image->stream($extension, '90'));
+        } else {
+
+          \Storage::disk($disk)->put($destination_path, \File::get($file));
+        }
+
+        $status = 200;
+        $response = ["data" => ['url' => $destination_path]];
+      } catch (\Exception $e) {
+        \Log::Error($e);
+        $status = $this->getStatusError($e->getCode());
+        $response = ["errors" => $e->getMessage()];
+      }
+
+      return response()->json($response ?? ["data" => "Request successful"], $status ?? 200);
+    }
+
+    /**
+    * CREATE A ITEM
+    *
+    * @param Request $request
+    * @return mixed
+    */
+    public function mediaDelete(Request $request)
+    {
+      try {
+        $data = $request->all();//Get data
+        $disk = "publicmedia";
+        $dirdata = $request->input('file');
+        \Storage::disk($disk)->delete($dirdata);
+        $status = 200;
+        $response = [
+          'susses' => [
+            'code' => '201',
+            "source" => [
+              "pointer" => url($request->path())
+            ],
+            "title" => trans('core::core.messages.resource delete'),
+            "detail" => [
+            ]
+          ]
+        ];
+
+      } catch (\Exception $e) {
+        \Log::Error($e);
+        $status = $this->getStatusError($e->getCode());
+        $response = ["errors" => $e->getMessage()];
+      }
+
+      return response()->json($response ?? ["data" => "Request successful"], $status ?? 200);
+    }
 }
