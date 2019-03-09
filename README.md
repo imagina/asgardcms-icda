@@ -4,25 +4,25 @@
 //Type Vehicles (Tipos de vehículos)
 (Motocicleta,automóvil,etc..)
 
-Get: http://pruebasim.imaginacolombia.com/api/icda/typesVehicles
+Get: localhost:8000/api/icda/typesVehicles
 
 //Inspections Types (Tipos de inspecciones):
 
-Get: http://pruebasim.imaginacolombia.com/api/icda/inspectionsTypes
-Post: http://pruebasim.imaginacolombia.com/api/icda/inspectionsTypes
+Get: localhost:8000/api/icda/inspectionsTypes
+Post: localhost:8000/api/icda/inspectionsTypes
 --Params:
 1) name - String
 
 //Pre-inspections (Pre-Inspecciones) :
-Get: http://pruebasim.imaginacolombia.com/api/icda/preInspections
+Get: localhost:8000/api/icda/preInspections
 --Structure:
 1) name,
 2) type (boolean or select),
 3) values - Array - R if type is select.
 
 //Vehicles (Vehículos)
-Get: http://pruebasim.imaginacolombia.com/api/icda/vehicles
-Post: http://pruebasim.imaginacolombia.com/api/icda/vehicles
+Get: localhost:8000/api/icda/vehicles
+Post: localhost:8000/api/icda/vehicles
 --Params:
 1)service_type - String - Example (Particular)
 2)types_vehicles_id (Id of types vehicles table)
@@ -44,24 +44,24 @@ Post: http://pruebasim.imaginacolombia.com/api/icda/vehicles
 
 
 -Search vehicle by board AAA00A (Buscar vehículo por placa AAA00A):
-Get: http://pruebasim.imaginacolombia.com/api/icda/vehicles/AAA00A?filter={"field":"board"}
+Get: localhost:8000/api/icda/vehicles/AAA00A?filter={"field":"board"}
 
 //Inventory (Inventario)
-Get: http://pruebasim.imaginacolombia.com/api/icda/inventory
-Post: http://pruebasim.imaginacolombia.com/api/icda/inventory
+Get: localhost:8000/api/icda/inventory
+Post: localhost:8000/api/icda/inventory
 --Params:
 1) name - String - Example: Tablero
 2) status - No required - Default: 1 - Boolean - Example: 0 (false)
 
 //Gallery image to inspection
-Post:http://pruebasim.imaginacolombia.com/api/icda/inspections/media/upload
+Post:localhost:8000/api/icda/inspections/media/upload
 --Params:
 1)code - Random code to create folder of inspection images
 2)file - Image
 
 //Inspections (Inspecciones)
-Get: http://pruebasim.imaginacolombia.com/api/icda/inspections
-Post: http://pruebasim.imaginacolombia.com/api/icda/inspections
+Get: localhost:8000/api/icda/inspections
+Post: localhost:8000/api/icda/inspections
 --Params:
 1) inspections_types_id - (Id of inspections_types table) - Example id:1.
 2) teaching_vehicle - Boolean -  Example: 1 or 0 (true or false).
