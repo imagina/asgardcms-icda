@@ -18,8 +18,6 @@ class CreateInspectionsRequest extends BaseFormRequest
           'axes'=>'required|array',
           'pre_inspections'=>'required|array',
           'items'=>'required|array',
-          'insurance_expedition'=>'date',
-          'insurance_expiration'=>'date',
           'gas_certificate_expiration'=>'date',
           'governor'=>'boolean',
           'taximeter'=>'boolean',

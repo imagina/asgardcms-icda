@@ -23,7 +23,8 @@ class CreateVehiclesRequest extends BaseFormRequest
           'engine_number'=>'required|max:60',
           'displacement'=>'required|max:30',
           'axes_number'=>'numeric',
-          // 'weight'=>'required|in:heavy,light',
+          'insurance_expedition'=>'date',
+          'insurance_expiration'=>'date',
           'user_id'=>'required|exists:users,id'
         ];
     }

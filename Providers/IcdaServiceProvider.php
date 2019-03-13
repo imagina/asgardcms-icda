@@ -29,7 +29,7 @@ class IcdaServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterIcdaSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            // $event->load('vehicles', array_dot(trans('icda::vehicles')));
+            $event->load('vehicles', array_dot(trans('icda::vehicles')));
             // append translations
 
 
@@ -118,6 +118,18 @@ class IcdaServiceProvider extends ServiceProvider
                 }
 
                 return new \Modules\Icda\Repositories\Cache\CacheInspectionInventoryDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Icda\Repositories\InspectionHistoryRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentInspectionHistoryRepository(new \Modules\Icda\Entities\InspectionHistory());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheInspectionHistoryDecorator($repository);
             }
         );
 // add bindings

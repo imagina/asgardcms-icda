@@ -2,25 +2,26 @@
 
 @section('content-header')
     <h1>
-        {{ trans('icda::vehicles.title.create vehicles') }}
+        {{ trans('icda::inspections.title.edit inspections') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.icda.vehicles.index') }}">{{ trans('icda::vehicles.title.vehicles') }}</a></li>
-        <li class="active">{{ trans('icda::vehicles.title.create vehicles') }}</li>
+        <li><a href="{{ route('admin.icda.inspections.index') }}">{{ trans('icda::inspections.title.inspections') }}</a></li>
+        <li class="active">{{ trans('icda::inspections.title.edit inspections') }}</li>
     </ol>
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.icda.vehicles.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.icda.inspections.update', $inspections->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
-                  @include('icda::admin.vehicles.partials.create-fields')
+                    @include('icda::admin.inspections.partials.edit-fields')
+
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.icda.vehicles.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.icda.inspections.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
@@ -44,7 +45,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.icda.vehicles.index') ?>" }
+                    { key: 'b', route: "<?= route('admin.icda.inspections.index') ?>" }
                 ]
             });
         });
@@ -56,5 +57,22 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+    </script>
+    <?php $locale = locale(); ?>
+    <script type="text/javascript">
+    $(function () {
+      $('.data-table').dataTable({
+        "paginate": true,
+        "lengthChange": true,
+        "filter": true,
+        "sort": true,
+        "info": true,
+        "autoWidth": true,
+        "order": [[ 0, "desc" ]],
+        "language": {
+          "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+        }
+      });
+    });
     </script>
 @endpush

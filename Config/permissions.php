@@ -7,6 +7,11 @@ return [
         'edit' => 'icda::vehicles.edit resource',
         'destroy' => 'icda::vehicles.destroy resource',
     ],
-// append
+    'icda.inspections' => [
+        'index' => 'icda::inspections.list resource',
+        'create' => 'icda::inspections.create resource',
+        'edit' => 'icda::inspections.edit resource',
+        'destroy' => 'icda::inspections.destroy resource',
+    ],
 
 ];

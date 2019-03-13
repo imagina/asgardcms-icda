@@ -37,24 +37,33 @@ class RegisterIcdaSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('icda::icdas.title.icdas'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('icda::vehicles.title.vehicles'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.icda.vehicles.create');
-                    $item->route('admin.icda.vehicles.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('icda.vehicles.index')
-                    );
-                });
+          $group->item(trans('icda::common.icda'), function (Item $item) {
+              $item->icon('fa fa-car');
+              $item->weight(10);
+              $item->authorize(
+                   /* append */
+              );
+              $item->item(trans('icda::vehicles.title.vehicles'), function (Item $item) {
+                  $item->icon('fa fa-car');
+                  $item->weight(0);
+                  $item->append('admin.icda.vehicles.create');
+                  $item->route('admin.icda.vehicles.index');
+                  $item->authorize(
+                      $this->auth->hasAccess('icda.vehicles.index')
+                  );
+              });
+              $item->item(trans('icda::inspections.title.inspections'), function (Item $item) {
+                  $item->icon('fa fa-pencil-square-o');
+                  $item->weight(0);
+                  $item->append('admin.icda.inspections.create');
+                  $item->route('admin.icda.inspections.index');
+                  $item->authorize(
+                      $this->auth->hasAccess('icda.inspections.index')
+                  );
+              });
 // append
 
-            });
+          });
         });
 
         return $menu;

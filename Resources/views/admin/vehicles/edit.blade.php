@@ -16,15 +16,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="nav-tabs-custom">
-                @include('partials.form-tab-headers')
                 <div class="tab-content">
-                    <?php $i = 0; ?>
-                    @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
-                        <?php $i++; ?>
-                        <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('icda::admin.vehicles.partials.edit-fields', ['lang' => $locale])
-                        </div>
-                    @endforeach
+                    @include('icda::admin.vehicles.partials.edit-fields')
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
@@ -64,5 +57,22 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+    </script>
+    <?php $locale = locale(); ?>
+    <script type="text/javascript">
+    $(function () {
+      $('.data-table').dataTable({
+        "paginate": true,
+        "lengthChange": true,
+        "filter": true,
+        "sort": true,
+        "info": true,
+        "autoWidth": true,
+        "order": [[ 0, "desc" ]],
+        "language": {
+          "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+        }
+      });
+    });
     </script>
 @endpush

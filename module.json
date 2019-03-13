@@ -10,10 +10,10 @@
         "Modules\\Icda\\Providers\\IcdaServiceProvider",
         "Modules\\Icda\\Providers\\RouteServiceProvider",
         "Modules\\Icda\\Providers\\EventServiceProvider"
-
     ],
     "aliases": {},
     "files": [
+      "helpers.php"
 
     ],
     "requires": []

@@ -35,4 +35,7 @@ class Vehicles extends Model
   {
     return $this->belongsTo('Modules\User\Entities\Sentinel\User', 'user_id');
   }
+  public function inspections(){
+    return $this->hasMany('Modules\Icda\Entities\Inspections','vehicles_id');//inspections_id Foreign key
+  }
 }

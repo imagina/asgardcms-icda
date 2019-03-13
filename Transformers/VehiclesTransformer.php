@@ -24,7 +24,6 @@ class VehiclesTransformer extends Resource
       'engineNumber'=>$this->engine_number,
       'displacement'=>$this->displacement,
       'axesNumber'=>$this->axes_number,
-      // 'weight'=>$this->weight,
       'insuranceExpedition'=>$this->insurance_expedition,
       'insuranceExpiration'=>$this->insurance_expiration,
       'user'=>new UserTransformer($this->user),
