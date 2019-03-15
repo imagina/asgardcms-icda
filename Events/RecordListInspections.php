@@ -28,7 +28,8 @@ class RecordListInspections implements ShouldBroadcast
     public function __construct(Inspections $inspection)
     {
         $this->inspection=$inspection;
-        $this->message  = "Inspection # {$inspection->id} has been created for the vehicle with board {$inspection->vehicle->board}";
+        $usr=\Auth::guard('api')->user();
+        $this->message  = "Inspection # {$inspection->id} has been created by {$usr->first_name} {$usr->last_name}";
     }
     // public function broadcastWith()
     // {
