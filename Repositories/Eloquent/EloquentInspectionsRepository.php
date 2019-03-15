@@ -6,6 +6,7 @@ use Modules\Icda\Repositories\InspectionsRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 //Events
 use Modules\Icda\Events\InspectionWasCreated;
+use Modules\Icda\Events\RecordListInspections;
 class EloquentInspectionsRepository extends EloquentBaseRepository implements InspectionsRepository
 {
 
@@ -18,6 +19,8 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
       $inspection = $this->model->create($data);
       //Event to create inventory items of inspection
       event(new InspectionWasCreated($inspection,$data));
+      //Pusher notification record list inspections
+      event(new RecordListInspections($inspection));
       return $inspection;
   }
 
