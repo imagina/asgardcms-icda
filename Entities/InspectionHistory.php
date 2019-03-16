@@ -11,7 +11,7 @@ class InspectionHistory extends Model
     protected $fillable = [
       'inspections_id',
       'status',
-      'notify',
+      //'notify',
       'comment'
     ];
 

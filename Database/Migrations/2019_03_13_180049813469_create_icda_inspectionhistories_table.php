@@ -17,7 +17,7 @@ class CreateIcdaInspectionHistoriesTable extends Migration
           $table->integer('inspections_id')->unsigned();
           $table->foreign('inspections_id')->references('id')->on('icda__inspections')->onDelete('restrict');
           $table->tinyInteger('status')->default(0)->unsigned();
-          $table->integer('notify')->unsigned();
+          $table->integer('notify')->default(0)->unsigned();
           $table->text('comment')->default('')->nullable();
           $table->timestamps();
         });

@@ -8,6 +8,7 @@ $router->group(['prefix' => '/inspections'/*,'middleware' => ['auth:api']*/], fu
   $router->post('/', [
     'as' => $locale . 'api.icda.inspections.create',
     'uses' => 'InspectionsApiController@create',
+    'middleware' => ['auth:api']
   ]);
   $router->get('/', [
     'as' => $locale . 'api.icda.inspections.index',

@@ -97,7 +97,7 @@ class InspectionsApiController extends BaseApiController
 
       //Validate Request
       $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
-
+      //dd($request->all());
       //Create
       $inspection=$this->Inspection->create($request->all());
 
@@ -178,9 +178,10 @@ class InspectionsApiController extends BaseApiController
         // $name = $data['nameFile'];
         $code = $data['code'];//Name folder
         $file = $request->file('file');
-        $name=$file->getClientOriginalName();
+        // $name=$file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
-        $nameFile = $name . '.' . $extension;
+        // $nameFile = $name . '.' . $extension;
+        $nameFile =$file->getClientOriginalName();
         $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF', 'ICO', 'BMP', 'PDF', 'DOC', 'DOCX', 'ODT', 'MP3', '3G2', '3GP', 'AVI', 'FLV', 'H264', 'M4V', 'MKV', 'MOV', 'MP4', 'MPG', 'MPEG', 'WMV');
         $destination_path = 'assets/icda/inspections/' . $code . '/' . $nameFile;
         $disk = 'publicmedia';

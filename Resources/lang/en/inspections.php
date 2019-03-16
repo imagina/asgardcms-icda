@@ -7,11 +7,13 @@ return [
     'destroy resource' => 'Destroy inspections',
     'title' => [
         'inspections' => 'Inspections',
+        'inspection'=>'Inspection',
         'create inspections' => 'Create a inspections',
         'edit inspections' => 'Edit a inspections',
     ],
     'button' => [
         'create inspections' => 'Create a inspections',
+        'add history'=>'Add history',
     ],
     'table' => [
       'inspection type'=> 'Inspection Type',
@@ -41,18 +43,27 @@ return [
       'quantity'=>'Quantity',
       'tires'=>'Tires',
       'observations'=>'Observations',
-      'observations'=>'Vehicle prepared for inspection',
-      'observations'=>'Signature and certificate delivery vehicle',
-      'observations'=>'Seen good of the director',
-      'observations'=>'Signature and cedula I received a report, FUR and vehicle',
-
+      'vehicle prepared'=>'Vehicle prepared for inspection',
+      'signature certificate vehicle'=>'Signature and certificate delivery vehicle',
+      'seen good director'=>'Seen good of the director',
+      'signature cedula received report'=>'Signature and cedula I received a report, FUR and vehicle',
+      'inspection history'=>'Inspection History',
+      'history'=>'History',
+      'comment'=>'Comment',
+      'status'=>'Status',
+      'add inspection history'=>'Add inspection history',
+      'customer notify'=>'Customer Notify',
+      'inspection details'=>'Inspector Details',
+      'inspector data'=>'Inspector Data',
+      'data owner vehicle'=>'Data of the owner of the vehicle',
     ],
     'form' => [
       'yes'=>'Yes',
       'no' => 'Not'
     ],
     'messages' => [
-      'file not allowed'=>'File not allowed'
+      'file not allowed'=>'File not allowed',
+      'error add history'=>'Error add history'
     ],
     'validation' => [
     ],

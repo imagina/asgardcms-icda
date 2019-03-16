@@ -39,6 +39,8 @@ class Inspections extends Model
     'vehicle_delivery_signature',
     'signature_received_report',
     'options',
+    'inspection_status',
+    'inspector_id'
   ];
 
   public function vehicle(){
@@ -49,6 +51,15 @@ class Inspections extends Model
   }
   public function itemsInventory(){
     return $this->hasMany('Modules\Icda\Entities\InspectionInventory','inspections_id');//inspections_id Foreign key
+  }
+  public function inspector()
+  {
+    return $this->belongsTo('Modules\User\Entities\Sentinel\User', 'inspector_id');
+  }
+
+  public function inspectionHistory()
+  {
+    return $this->hasMany(InspectionHistory::class);
   }
 
   public function getGalleryAttribute()

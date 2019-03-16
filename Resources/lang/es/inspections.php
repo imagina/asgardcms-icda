@@ -7,11 +7,14 @@ return [
     'destroy resource' => 'Borrar inspección',
     'title' => [
         'inspections' => 'Inspecciones',
+        'inspection'=>'Inspección',
         'create inspections' => 'Crear una inspección',
         'edit inspections' => 'Editar una inspección',
     ],
     'button' => [
         'create inspections' => 'Crear una inspección',
+        'add history'=>'Agregar historia',
+
     ],
     'table' => [
       'inspection type'=> 'Tipo de Inspección',
@@ -30,7 +33,7 @@ return [
       'armored vehicle'=>'Vehículo Blindado',
       'modified engine'=>'Motor Modificado',
       'spare tires'=>'Llantas de Respuesto',
-      'pre inspection' =>'Pre-Inspeccion',
+      'pre inspection' =>'Pre-Inspección',
       'axes' => 'Ejes',
       'axe'=>'Eje',
       'side'=>'Lugar',
@@ -41,6 +44,19 @@ return [
       'quantity'=>'Cantidad',
       'tires'=>'Llantas',
       'observations'=>'Observaciones',
+      'vehicle prepared'=>'Vehículo preparado para la inspección',
+      'signature certificate vehicle'=>'Firma y cédula entrega vehículo',
+      'seen good director'=>'Visto bueno del director',
+      'signature cedula received report'=>'Firma y cedúla recibí informe, FUR y vehículo',
+      'inspection history'=>'Historia de la Inspección',
+      'history'=>'Historia',
+      'comment'=>'Comentario',
+      'status'=>'Estado',
+      'add inspection history'=>'Agregar historia de inspección',
+      'customer notify'=>'Notificar a cliente',
+      'inspection details'=>'Detalles de la Inspección',
+      'inspector data'=>'Datos del inspector',
+      'data owner vehicle'=>'Datos del dueño del vehículo',
 
     ],
     'form' => [
@@ -48,7 +64,9 @@ return [
       'no' => 'No'
     ],
     'messages' => [
-      'file not allowed'=>'Archivo no permitido'
+      'file not allowed'=>'Archivo no permitido',
+      'error add history'=>'Error al agregar una historia'
+
     ],
     'validation' => [
     ],

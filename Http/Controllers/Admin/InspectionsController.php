@@ -5,6 +5,7 @@ namespace Modules\Icda\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Icda\Entities\Inspections;
+use Modules\Icda\Entities\InspectionStatus;
 use Modules\Icda\Http\Requests\CreateInspectionsRequest;
 use Modules\Icda\Http\Requests\UpdateInspectionsRequest;
 use Modules\Icda\Repositories\InspectionsRepository;
@@ -69,7 +70,8 @@ class InspectionsController extends AdminBaseController
     public function edit(Inspections $inspections)
     {
         //dd($inspections->inspections);
-        return view('icda::admin.inspections.edit', compact('inspections'));
+        $inspectionStatus = new InspectionStatus();
+        return view('icda::admin.inspections.edit', compact('inspections','inspectionStatus'));
     }
     /**
      * Show the form of specified resource.

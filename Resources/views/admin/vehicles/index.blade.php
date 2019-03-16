@@ -114,6 +114,23 @@ $( document ).ready(function() {
   });
 });
 </script>
+  <!-- pusher -->
+  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+  <script type="text/javascript">
+  // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+    var pusher = new Pusher('34b55d8592d2a9d31baf', {
+      cluster: 'us2',
+      encrypted: true
+    });
+    // Subscribe to the channel we specified in our Laravel Event
+      var channel = pusher.subscribe('inspections-list');
+    // Bind a function to a Event (the full Laravel class)
+      channel.bind('Modules\\Icda\\Events\\RecordListInspections', function(data) {
+        console.log('Msg: '+data.message);
+      });
+  </script>
+  <!--End pusher -->
 <?php $locale = locale(); ?>
 <script type="text/javascript">
 $(function () {
