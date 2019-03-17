@@ -16,11 +16,12 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
    */
   public function create($data)
   {
+      $data['inspector_id']=\Auth::guard('api')->user()->id;
       $inspection = $this->model->create($data);
       //Event to create inventory items of inspection
       event(new InspectionWasCreated($inspection,$data));
       //Pusher notification record list inspections
-      event(new RecordListInspections($inspection));
+      event(new RecordListInspections($inspection->id));
       return $inspection;
   }
 

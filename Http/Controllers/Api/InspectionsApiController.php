@@ -43,7 +43,6 @@ class InspectionsApiController extends BaseApiController
     try {
       //Request to Repository
       $Inspections = $this->Inspection->getItemsBy($this->getParamsRequest($request));
-
       //Response
       $response = ['data' => InspectionsTransformer::collection($Inspections)];
 
@@ -102,8 +101,8 @@ class InspectionsApiController extends BaseApiController
       $inspection=$this->Inspection->create($request->all());
 
       //Rename folder galery
-      if(isset($request->code))
-        Storage::move('assets/icda/inspections/' . $request->code, 'assets/icda/inspections/' . $inspection->id); //rename folder gallery of inspection
+      if(isset($request->code) && \Storage::disk('publicmedia')->exists('assets/icda/inspections/' . $request->code))
+        \Storage::disk('publicmedia')->move('assets/icda/inspections/' . $request->code, 'assets/icda/inspections/' . $inspection->id); //rename folder gallery of inspection
       $response = ['data' => ''];
     } catch (\Exception $e) {
       DB::rollBack();

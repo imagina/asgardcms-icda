@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-use Modules\Icda\Entities\Inspections;
+//use Modules\Icda\Entities\Inspections;
 
 
 // class RecordListInspections implements ShouldBroadcastNow
@@ -23,13 +23,13 @@ class RecordListInspections implements ShouldBroadcast
      * @return void
      */
 
-    public $inspection;
+    //public $inspection;
     public $message;
-    public function __construct(Inspections $inspection)
+    public function __construct($inspection_id)
     {
-        $this->inspection=$inspection;
+        //$this->inspection=$inspection;
         $usr=\Auth::guard('api')->user();
-        $this->message  = "Inspection # {$inspection->id} has been created by {$usr->first_name} {$usr->last_name}";
+        $this->message  = "Inspection # {$inspection_id} has been created by {$usr->first_name} {$usr->last_name}";
     }
     // public function broadcastWith()
     // {
