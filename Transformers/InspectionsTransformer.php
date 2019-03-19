@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Icda\Transformers;
+use Modules\User\Transformers\UserTransformer;
 
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -11,35 +12,36 @@ class InspectionsTransformer extends Resource
     $data =  [
       'id' => $this->id,
       'vehicle' => new VehiclesTransformer($this->vehicle),
-      'inspectionType' => new InspectionsTypesTransformer($this->inspectionType),
-      'preInspections' => $this->pre_inspections,
+      'inspector'=>new UserTransformer($this->inspector),
+      'inspection_type' => new InspectionsTypesTransformer($this->inspectionType),
+      'pre_inspections' => $this->pre_inspections,
       'axes' => $this->axes,
-      'itemsInventory' => InspectionInventoryTransformer::collection($this->itemsInventory),
-      'typeVehicle'=>$this->type_vehicle,
-      'teachingVehicle' => $this->teaching_vehicle,
+      'items_inventory' => InspectionInventoryTransformer::collection($this->itemsInventory),
+      'type_vehicle'=>$this->type_vehicle,
+      'teaching_vehicle' => $this->teaching_vehicle,
       'mileage' => $this->mileage,
-      'exhostoDiameter' => $this->exhosto_diameter,
-      'engineCylinders' => $this->engine_cylinders,
-      'gasCertificate'=>$this->gas_certificate,
-      'gasCertifier'=>$this->gas_certifier,
-      'gasCertificate_expiration'=>$this->gas_certificate_expiration,
+      'exhosto_diameter' => $this->exhosto_diameter,
+      'engine_cylinders' => $this->engine_cylinders,
+      'gas_certificate'=>$this->gas_certificate,
+      'gas_certifier'=>$this->gas_certifier,
+      'gas_certificate_expiration'=>$this->gas_certificate_expiration,
       'governor'=>$this->governor,
       'taximeter'=>$this->taximeter,
-      'polarizedGlasses'=>$this->polarized_glasses,
-      'armoredVehicle'=>$this->armored_vehicle,
-      'modifiedEngine'=>$this->modified_engine,
-      'spareTires'=>$this->spare_tires,
+      'polarized_glasses'=>$this->polarized_glasses,
+      'armored_vehicle'=>$this->armored_vehicle,
+      'modified_vngine'=>$this->modified_engine,
+      'spare_tires'=>$this->spare_tires,
       'observations'=>$this->observations,
-      'vehiclePrepared'=>$this->vehicle_prepared,
-      'seenTechnicalDirector'=>$this->seen_technical_director,
-      'vehicleDeliverySignature'=>$this->vehicle_delivery_signature,
-      'signatureReceivedReport'=>$this->signature_received_report,
+      'vehicle_prepared'=>$this->vehicle_prepared,
+      'seen_technical_director'=>$this->seen_technical_director,
+      'vehicle_delivery_signature'=>$this->vehicle_delivery_signature,
+      'signature_received_report'=>$this->signature_received_report,
       // 'options'=>$this->options,
       'gallery' => $this->gallery,
-      'createdAtDate' => $this->created_at->format('Y-m-d'),
-      'createdAtTime' => $this->created_at->format('H:m:s'),
-      'updateAtDate' => $this->updated_at->format('Y-m-d'),
-      'updateAtTime' => $this->updated_at->format('H:m:s'),
+      'created_at_date' => $this->created_at->format('Y-m-d'),
+      'created_at_time' => $this->created_at->format('H:m:s'),
+      'update_at_date' => $this->updated_at->format('Y-m-d'),
+      'update_at_time' => $this->updated_at->format('H:m:s'),
     ];
 
     return $data;

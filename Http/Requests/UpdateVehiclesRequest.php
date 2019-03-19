@@ -23,7 +23,6 @@ class UpdateVehiclesRequest extends BaseFormRequest
           'engine_number'=>'max:60',
           'displacement'=>'max:30',
           'axes_number'=>'numeric',
-          // 'weight'=>'in:heavy,light',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
           'gas_certificate_expiration'=>'date',

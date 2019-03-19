@@ -13,7 +13,6 @@ return [
     'button' => [
         'create vehicles' => 'Crear un vehículo',
         'see inspections' => 'Ver inspecciones'
-
     ],
     'table' => [
       'board'=>'Placa',
@@ -21,12 +20,27 @@ return [
       'model'=>'Modelo',
       'brand'=>'Marca',
       'color'=>'Color',
-      'owner'=>'Dueño'
+      'owner'=>'Dueño',
+      'service type' => 'Tipo de Servicio',
+      'type vehicle' => 'Tipo de vehículo',
+      'type fuel' => 'Tipo de combustible',
+      'transit license' => 'Licencia de Tránsito',
+      'enrollment date' => 'Fecha de Matrícula',
+      'chasis number' => 'Número de Chasis',
+      'engine number' => 'Número de Motor',
+      'displacement' => 'Cilindraje',
+      'axes number' => 'Número de Ejes',
+      'insurance expedition' => 'Fecha de Expedición del Seguro',
+      'insurance expiration' => 'Fecha de Expiración del Seguro',
     ],
     'form' => [
+      'select a owner'=>'Selecciona un dueño',
     ],
     'messages' => [
+      'successfully registered vehicle'=>'Vehículo registrado exitosamente',
     ],
     'validation' => [
+      'vehicle board exists'=>'Ya existe un vehículo registrado con esta placa',
+      'vehicle has inspections' => 'Este vehículo tiene inspecciones registradas',
     ],
 ];

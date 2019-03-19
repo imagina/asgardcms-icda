@@ -30,6 +30,7 @@ class IcdaServiceProvider extends ServiceProvider
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('vehicles', array_dot(trans('icda::vehicles')));
+            $event->load('inspections', array_dot(trans('icda::inspections')));
             // append translations
 
 

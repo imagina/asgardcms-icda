@@ -186,6 +186,9 @@
                       <label>Firma y cédula entrega vehículo</label>
                       <img id="vehicleDeliverySignature" class="img-responsive img-fluid">
                     </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <hr>
                     <div class="col-md-2" style="display:none;" id="seenTechnicalDirectorContainer">
                       <label>Visto bueno del director</label>
                       <input type="text" class="form-control" id="seenTechnicalDirector" readonly>
@@ -241,24 +244,24 @@
         var htmlPreInspection="";
         var htmlAxes="";
         var htmlInventory="";
-        $('#inspectionType').val(result.data.inspectionType.name);
-        $('#vehicleType').val(result.data.typeVehicle);
+        $('#inspectionType').val(result.data.inspection_type.name);
+        $('#vehicleType').val(result.data.type_vehicle);
         //Teaching Vehicle
-        if(result.data.teachingVehicle==1)
+        if(result.data.teaching_vehicle==1)
           $('#teachingVehicle').val("{{trans('icda::inspections.form.yes')}}");
         else
           $('#teachingVehicle').val("{{trans('icda::inspections.form.no')}}");
         //Kilometraje
         $('#mileage').val(result.data.mileage);
         //Exhosto Diameter
-        if(result.data.exhostoDiameter){
-          $('#exhostoDiameter').val(result.data.exhostoDiameter);
+        if(result.data.exhosto_diameter){
+          $('#exhostoDiameter').val(result.data.exhosto_diameter);
           $('#exhostoDiameterContainer').show();
         }else
         $('#exhostoDiameterContainer').hide();
         //Engine Cylinders
-        if(result.data.engineCylinders){
-          $('#engineCylinders').val(result.data.engineCylinders);
+        if(result.data.engine_cylinders){
+          $('#engineCylinders').val(result.data.engine_cylinders);
           $('#engineCylindersContainer').show();
         }else
         $('#engineCylindersContainer').hide();
@@ -281,18 +284,18 @@
         }else
         $('#taximeterContainer').hide();
         //Gas cerificate
-        if(result.data.gasCertificate){
-          $('#gasCertificate').val(result.data.gasCertificate);
-          $('#gasCertifier').val(result.data.gasCertifier);
-          $('#gasCertificateExpiration').val(result.data.gasCertificateExpiration);
+        if(result.data.gas_certificate){
+          $('#gasCertificate').val(result.data.gas_certificate);
+          $('#gasCertifier').val(result.data.gas_certifier);
+          $('#gasCertificateExpiration').val(result.data.gas_certificate_expiration);
           $('.gasCertificate').show();
         }else{
           console.log('hide gas certificates');
           $('.gasCertificate').hide();
         }
         //polarizedGlasses
-        if(result.data.polarizedGlasses){
-          if(result.data.polarizedGlasses==1)
+        if(result.data.polarized_glasses){
+          if(result.data.polarized_glasses==1)
           $('#polarizedGlasses').val("{{trans('icda::inspections.form.yes')}}");
           else
           $('#polarizedGlasses').val("{{trans('icda::inspections.form.no')}}");
@@ -300,8 +303,8 @@
         }else
         $('#polarizedGlassesContainer').hide();
         //armoredVehicle
-        if(result.data.armoredVehicle){
-          if(result.data.armoredVehicle==1)
+        if(result.data.armored_vehicle){
+          if(result.data.armored_vehicle==1)
           $('#armoredVehicle').val("{{trans('icda::inspections.form.yes')}}");
           else
           $('#armoredVehicle').val("{{trans('icda::inspections.form.no')}}");
@@ -309,8 +312,8 @@
         }else
         $('#armoredVehicleContainer').hide();
         //modifiedEngine
-        if(result.data.modifiedEngine){
-          if(result.data.modifiedEngine==1)
+        if(result.data.modified_engine){
+          if(result.data.modified_engine==1)
           $('#modifiedEngine').val("{{trans('icda::inspections.form.yes')}}");
           else
           $('#modifiedEngine').val("{{trans('icda::inspections.form.no')}}");
@@ -318,16 +321,16 @@
         }else
         $('#modifiedEngineContainer').hide();
         //spareTires
-        if(result.data.spareTires){
+        if(result.data.spare_tires){
           $('#spareTires').val(spareTires);
           $('#spareTiresContainer').show();
         }else
         $('#spareTiresContainer').hide();
         //preInspections
-        for(var i=0;i<result.data.preInspections.length;i++){
+        for(var i=0;i<result.data.pre_inspections.length;i++){
           htmlPreInspection+="<div class='col-md-4'>";
-          htmlPreInspection+='<label >'+result.data.preInspections[i].name+':</label>';
-          if(result.data.preInspections[i].value==1)
+          htmlPreInspection+='<label >'+result.data.pre_inspections[i].name+':</label>';
+          if(result.data.pre_inspections[i].value==1)
           htmlPreInspection+='<input type="text" class="form-control" value="{{trans('icda::inspections.form.yes')}}" readonly>';
           else
           htmlPreInspection+='<input type="text" class="form-control" value="{{trans('icda::inspections.form.no')}}" readonly>';
@@ -356,11 +359,11 @@
         }//for
         $('#axes').html(htmlAxes);
         //Inventory items
-        for (var i = 0; i < result.data.itemsInventory.length; i++) {
+        for (var i = 0; i < result.data.items_inventory.length; i++) {
           htmlInventory+="<tr>";
-          htmlInventory+="<td>"+result.data.itemsInventory[i].name+"</td>";
-          htmlInventory+="<td>"+result.data.itemsInventory[i].evaluation+"</td>";
-          htmlInventory+="<td>"+result.data.itemsInventory[i].quantity+"</td>";
+          htmlInventory+="<td>"+result.data.items_inventory[i].name+"</td>";
+          htmlInventory+="<td>"+result.data.items_inventory[i].evaluation+"</td>";
+          htmlInventory+="<td>"+result.data.items_inventory[i].quantity+"</td>";
           htmlInventory+="</tr>";
         }//for items inventory
         if ( $.fn.DataTable.isDataTable('#tableInventory') )
@@ -374,15 +377,15 @@
         }else
         $('#observationsContainer').hide();
         //Vehicle Prepared to inspection
-        if(result.data.vehiclePrepared==1)
+        if(result.data.vehicle_prepared==1)
         $('#vehiclePrepared').val("{{trans('icda::inspections.form.yes')}}");
         else
         $('#vehiclePrepared').val("{{trans('icda::inspections.form.no')}}");
         //Signature
-        $("#vehicleDeliverySignature").attr("src",result.data.vehicleDeliverySignature);
+        $("#vehicleDeliverySignature").attr("src",result.data.vehicle_delivery_signature);
         //Vehicle Prepared to inspection
-        if (result.data.seenTechnicalDirector) {
-          if(result.data.seenTechnicalDirector==1)
+        if (result.data.seen_technical_director) {
+          if(result.data.seen_technical_director==1)
           $('#seenTechnicalDirector').val("{{trans('icda::inspections.form.yes')}}");
           else
           $('#seenTechnicalDirector').val("{{trans('icda::inspections.form.no')}}");
@@ -390,8 +393,8 @@
         }else
         $('#seenTechnicalDirectorContainer').hide();
         //Signature received report
-        if(result.data.signatureReceivedReport){
-          $("#signatureReceivedReport").attr("src",result.data.signatureReceivedReport);
+        if(result.data.signature_received_report){
+          $("#signatureReceivedReport").attr("src",result.data.signature_received_report);
           $('#signatureReceivedReportContainer').show();
         }else
         $('#signatureReceivedReportContainer').hide();

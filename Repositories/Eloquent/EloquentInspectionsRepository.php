@@ -6,6 +6,7 @@ use Modules\Icda\Repositories\InspectionsRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 //Events
 use Modules\Icda\Events\InspectionWasCreated;
+use Modules\Icda\Events\InspectionWasUpdated;
 use Modules\Icda\Events\RecordListInspections;
 class EloquentInspectionsRepository extends EloquentBaseRepository implements InspectionsRepository
 {
@@ -131,6 +132,9 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
 
     if($model) {
       $model->update($data);
+      if(isset($data['items'])){
+        event(new InspectionWasUpdated($model,$data));
+      }
     }
     return $model;
   }//updateBy

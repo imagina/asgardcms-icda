@@ -15,9 +15,12 @@
   <div class="col-xs-12">
     <div class="row">
       <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+{{--
         <a href="{{ route('admin.icda.inspections.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
           <i class="fa fa-pencil"></i> {{ trans('icda::inspections.button.create inspections') }}
         </a>
+        --}}
+
       </div>
     </div>
     <div class="box box-primary">

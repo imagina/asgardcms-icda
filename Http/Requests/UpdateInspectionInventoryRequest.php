@@ -8,7 +8,11 @@ class UpdateInspectionInventoryRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [];
+        return [
+          'inspection_inventory_id'=>'required|exists:icda__inspectioninventories,id',
+          'quantity'=>'numeric',
+          'evaluation'=>'in:B,R,M',
+        ];
     }
 
     public function translationRules()

@@ -1,3 +1,75 @@
 <div class="box-body row">
-
+  <div class="col-md-4">
+    <label for="service type">{{trans('icda::vehicles.table.service type')}}:</label>
+    <input type="text" id="service_type" required class="form-control" value="{{$vehicles->service_type}}" name="service_type">
+  </div>
+  <div class="col-md-4">
+    <label for="type vehicle">{{trans('icda::vehicles.table.type vehicle')}}:</label>
+    <input type="text" id="type_vehicle" required class="form-control" value="{{$vehicles->type_vehicle}}" name="type_vehicle">
+  </div>
+  <div class="col-md-4">
+    <label for="type fuel">{{trans('icda::vehicles.table.type fuel')}}:</label>
+    <input type="text" id="type_fuel" required class="form-control" value="{{$vehicles->type_fuel}}" name="type_fuel">
+  </div>
+  <div class="col-md-4">
+    <label for="board">{{trans('icda::vehicles.table.board')}}:</label>
+    <input type="text" id="board" required class="form-control" value="{{$vehicles->board}}" name="board">
+  </div>
+  <div class="col-md-4">
+    <label for="brand">{{trans('icda::vehicles.table.brand')}}:</label>
+    <input type="text" id="brand" required class="form-control" value="{{$vehicles->brand}}" name="brand">
+  </div>
+  <div class="col-md-4">
+    <label for="line">{{trans('icda::vehicles.table.line')}}:</label>
+    <input type="text" id="line" required class="form-control" value="{{$vehicles->line}}" name="line">
+  </div>
+  <div class="col-md-4">
+    <label for="model">{{trans('icda::vehicles.table.model')}}:</label>
+    <input type="text" id="model" required class="form-control" value="{{$vehicles->model}}" name="model">
+  </div>
+  <div class="col-md-4">
+    <label for="color">{{trans('icda::vehicles.table.color')}}:</label>
+    <input type="text" id="color" required class="form-control" value="{{$vehicles->color}}" name="color">
+  </div>
+  <div class="col-md-4">
+    <label for="transit_license">{{trans('icda::vehicles.table.transit license')}}:</label>
+    <input type="text" id="transit_license" required class="form-control" value="{{$vehicles->transit_license}}" name="transit_license">
+  </div>
+  <div class="col-md-4">
+    <label for="enrollment_date">{{trans('icda::vehicles.table.enrollment date')}}:</label>
+    <input type="date" id="enrollment_date" required class="form-control" value="{{$vehicles->enrollment_date}}" name="enrollment_date">
+  </div>
+  <div class="col-md-4">
+    <label for="chasis_number">{{trans('icda::vehicles.table.chasis number')}}:</label>
+    <input type="text" id="chasis_number" required class="form-control" value="{{$vehicles->chasis_number}}" name="chasis_number">
+  </div>
+  <div class="col-md-4">
+    <label for="engine number">{{trans('icda::vehicles.table.engine number')}}:</label>
+    <input type="text" id="engine_number" required class="form-control" value="{{$vehicles->engine_number}}" name="engine_number">
+  </div>
+  <div class="col-md-4">
+    <label for="displacement">{{trans('icda::vehicles.table.displacement')}}:</label>
+    <input type="text" id="displacement" required class="form-control" value="{{$vehicles->displacement}}" name="displacement">
+  </div>
+  <div class="col-md-4">
+    <label for="axes_number">{{trans('icda::vehicles.table.axes number')}}:</label>
+    <input type="text" id="axes_number" class="form-control" value="{{$vehicles->axes_number}}" name="axes_number">
+  </div>
+  <div class="col-md-4">
+    <label for="insurance_expedition">{{trans('icda::vehicles.table.insurance expedition')}}:</label>
+    <input type="date" id="insurance_expedition" required class="form-control" value="{{$vehicles->insurance_expedition}}" name="insurance_expedition">
+  </div>
+  <div class="col-md-4">
+    <label for="insurance_expiration">{{trans('icda::vehicles.table.insurance expiration')}}:</label>
+    <input type="date" id="insurance_expiration" required class="form-control" value="{{$vehicles->insurance_expiration}}" name="insurance_expiration">
+  </div>
+  <div class="col-md-4">
+    <label for="Owner">{{trans('icda::vehicles.table.owner')}}:</label>
+    <select class="form-control" required id="user_id" name="user_id">
+        <option value="0">{{trans('icda::vehicles.form.select a owner')}}</option>
+        @foreach($users as $user)
+          <option value="{{$user->id}}" @if($vehicles->user_id==$user->id) selected @endif>{{$user->first_name}} {{$user->last_name}}</option>
+        @endforeach
+    </select>
+  </div>
 </div>

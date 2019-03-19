@@ -29,7 +29,7 @@ class CreateInspectionsRequest extends BaseFormRequest
           'vehicle_prepared'=>'required|boolean',
           'seen_technical_director'=>'boolean',
           'vehicle_delivery_signature'=>'required',
-          'signature_received_report'=>'',
+          'signature_received_report'=>'nullable',
           'type_vehicle'=>'required|string'
 
         ];

@@ -13,7 +13,6 @@
 @section('content')
 <div class="row">
   <div class="col-xs-12">
-    {{--
     <div class="row">
       <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
         <a href="{{ route('admin.icda.vehicles.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
@@ -21,7 +20,6 @@
         </a>
       </div>
     </div>
-    --}}
     <div class="box box-primary">
       <div class="box-header">
       </div>
@@ -59,12 +57,10 @@
                     <td>
                       <div class="btn-group">
                         @if(count($vehicles->inspections)>0)
-                        <a href="{{ route('admin.icda.vehicles.inspections', [$vehicles->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-eye"> {{trans('icda::vehicles.button.see inspections')}}</i></a>
+                        <a href="{{ route('admin.icda.vehicles.inspections', [$vehicles->id]) }}" title="{{trans('icda::vehicles.button.see inspections')}}" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a>
                         @endif
-                        {{--
                         <a href="{{ route('admin.icda.vehicles.edit', [$vehicles->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.icda.vehicles.destroy', [$vehicles->id]) }}"><i class="fa fa-trash"></i></button>
-                        --}}
                       </div>
                     </td>
                   </tr>
@@ -114,23 +110,6 @@ $( document ).ready(function() {
   });
 });
 </script>
-  <!-- pusher -->
-  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script type="text/javascript">
-  // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-    var pusher = new Pusher('34b55d8592d2a9d31baf', {
-      cluster: 'us2',
-      encrypted: true
-    });
-    // Subscribe to the channel we specified in our Laravel Event
-      var channel = pusher.subscribe('inspections-list');
-    // Bind a function to a Event (the full Laravel class)
-      channel.bind('Modules\\Icda\\Events\\RecordListInspections', function(data) {
-        console.log('Msg: '+data.message);
-      });
-  </script>
-  <!--End pusher -->
 <?php $locale = locale(); ?>
 <script type="text/javascript">
 $(function () {
