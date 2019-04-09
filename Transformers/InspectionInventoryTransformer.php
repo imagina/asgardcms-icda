@@ -12,7 +12,7 @@ class InspectionInventoryTransformer extends Resource
       'id' => $this->id,
       'evaluation' => $this->evaluation,
       'quantity' => $this->quantity,
-      'name'=>$this->inventory->name,
+      'name'=>$this->inventory->name ?? $this->inventory->translations[0]->name,
       //'inventory'=>new InventoryTransformer($this->inventory),
       // 'createdAtDate' => $this->created_at->format('Y-m-d'),
       // 'createdAtTime' => $this->created_at->format('H:m:s'),

@@ -96,14 +96,15 @@ class InspectionsApiController extends BaseApiController
 
       //Validate Request
       $this->validateRequestApi(new CreateInspectionsRequest($request->all()));
-      //dd($request->all());
+
       //Create
       $inspection=$this->Inspection->create($request->all());
 
       //Rename folder galery
       if(isset($request->code) && \Storage::disk('publicmedia')->exists('assets/icda/inspections/' . $request->code))
         \Storage::disk('publicmedia')->move('assets/icda/inspections/' . $request->code, 'assets/icda/inspections/' . $inspection->id); //rename folder gallery of inspection
-      $response = ['data' => ''];
+
+      $response = ['data' => $inspection];
     } catch (\Exception $e) {
       DB::rollBack();
 
@@ -121,24 +122,23 @@ class InspectionsApiController extends BaseApiController
    * @param  Request $request
    * @return Response
    */
-  public function update($criteria, Request $request)
-  {
-    try {
-      //Validate Request
-      $this->validateRequestApi(new UpdateInspectionsRequest($request->all()));
-      //Update
-      $this->Inspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+   public function update($criteria, Request $request)
+   {
+     try {
+       //Validate Request
+       $this->validateRequestApi(new UpdateInspectionsRequest($request->all()));
+       //Update
+       $inspection=$this->Inspection->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
+       $response = ['data' => $inspection];
 
-      $response = ['data' => ''];
-
-    } catch (\Exception $e) {
-      $status = 500;
-      $response = [
-        'errors' => $e->getMessage()
-      ];
-    }
-    return response()->json($response, $status ?? 200);
-  }
+     } catch (\Exception $e) {
+       $status = 500;
+       $response = [
+         'errors' => $e->getMessage()
+       ];
+     }
+     return response()->json($response, $status ?? 200);
+   }
 
 
   /**

@@ -70,7 +70,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
     if(in_array('*',$params->include)){//If Request all relationships
       $query->with([]);
     }else{//Especific relationships
-      $includeDefault = [];//Default relationships
+      $includeDefault = ['itemsInventory.inventory'];//Default relationships
       if (isset($params->include))//merge relations with default relationships
         $includeDefault = array_merge($includeDefault, $params->include);
       $query->with($includeDefault);//Add Relationships to query
@@ -88,6 +88,18 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
           $query->whereDate($date->field, '>=', $date->from);
         if (isset($date->to))//to a date
           $query->whereDate($date->field, '<=', $date->to);
+      }
+      //Filter by board vehicle
+      if(isset($filter->board)){
+        $query->whereHas('vehicle',function($query) use($filter){
+          $query->where('board',$filter->board);
+        });
+      }
+
+      //Filter by inspection status
+      if(isset($filter->inspection_status)){
+        is_array($filter->inspection_status) ? true : $filter->inspection_status = [$filter->inspection_status];
+        $query->whereIn('inspection_status',$filter->inspection_status);
       }
 
       //Order by

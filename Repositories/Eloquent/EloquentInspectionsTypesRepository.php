@@ -2,11 +2,19 @@
 
 namespace Modules\Icda\Repositories\Eloquent;
 
-use Modules\Icda\Repositories\InspectionsTypesRepository;
+use Modules\Icda\Repositories\InventoryRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
-class EloquentInspectionsTypesRepository extends EloquentBaseRepository implements InspectionsTypesRepository
+class EloquentInventoryRepository extends EloquentBaseRepository implements InventoryRepository
 {
+
+  public function create($data){
+    $inventory=$this->model->whereTranslation('name',$data['name'])->first();
+    if(!$inventory)
+      $inventory = $this->model->create($data);
+    return $inventory;
+  }
+
   public function getItem($criteria,$params){
     // INITIALIZE QUERY
     $query = $this->model->query();
@@ -136,7 +144,10 @@ class EloquentInspectionsTypesRepository extends EloquentBaseRepository implemen
     $model = $query->first();
 
     if($model) {
+      //if(count($model->itemsInventory)>0)
+      //  throw new \Exception("Can't delete item of inventory because belongs to in many inspections");
       $model->delete();
     }
   }//deleteBy
+
 }

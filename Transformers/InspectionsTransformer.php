@@ -11,6 +11,7 @@ class InspectionsTransformer extends Resource
   {
     $data =  [
       'id' => $this->id,
+      'inspection_status'=>icommerce_get_Inspectionstatus()->get($this->inspection_status),
       'vehicle' => new VehiclesTransformer($this->vehicle),
       'inspector'=>new UserTransformer($this->inspector),
       'inspection_type' => new InspectionsTypesTransformer($this->inspectionType),
@@ -29,7 +30,7 @@ class InspectionsTransformer extends Resource
       'taximeter'=>$this->taximeter,
       'polarized_glasses'=>$this->polarized_glasses,
       'armored_vehicle'=>$this->armored_vehicle,
-      'modified_vngine'=>$this->modified_engine,
+      'modified_engine'=>$this->modified_engine,
       'spare_tires'=>$this->spare_tires,
       'observations'=>$this->observations,
       'vehicle_prepared'=>$this->vehicle_prepared,

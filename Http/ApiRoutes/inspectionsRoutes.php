@@ -22,6 +22,7 @@ $router->group(['prefix' => '/inspections'/*,'middleware' => ['auth:api']*/], fu
   $router->delete('/{criteria}', [
     'as' => $locale . 'api.icda.inspections.delete',
     'uses' => 'InspectionsApiController@delete',
+    'middleware' => ['auth:api']
   ]);
   $router->get('/{criteria}', [
     'as' => $locale . 'api.icda.inspections.show',

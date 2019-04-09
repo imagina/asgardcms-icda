@@ -13,6 +13,7 @@ use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Entities
 use Modules\Icda\Entities\InspectionHistory;
+use Modules\Icda\Entities\InspectionStatus;
 
 // Repositories
 use Modules\Icda\Repositories\InspectionHistoryRepository;
@@ -37,14 +38,10 @@ class InspectionHistoryApiController extends BaseApiController
   public function index(Request $request)
   {
     try {
-      //Request to Repository
-      $Inspections = $this->Inspection->getItemsBy($this->getParamsRequest($request));
-
+      $statuses = new InspectionStatus();
+      $statuses=$statuses->lists();
       //Response
-      $response = ['data' => InspectionsTransformer::collection($Inspections)];
-
-      //If request pagination add meta-page
-      $request->page ? $response['meta'] = ['page' => $this->pageTransformer($Inspections)] : false;
+      $response = ['data' => $statuses];
 
     } catch (\Exception $e) {
       //Message Error

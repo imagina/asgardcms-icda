@@ -17,4 +17,6 @@ $router->group(['prefix' => '/icda'/*,'middleware' => ['auth:api']*/], function 
     require('ApiRoutes/inventoryRoutes.php');
     //======   Inspection History
     require('ApiRoutes/inspectionHistoryRoutes.php');
+    //======   Inspection Statues
+    require('ApiRoutes/inspectionStatusesRoutes.php');
 });

@@ -111,8 +111,16 @@ class VehiclesApiController extends BaseApiController
   public function update($criteria, Request $request)
   {
     try {
+      $data=$request->all();
+      if(isset($request->board)){
+        $vehicleBoard=Vehicles::where('board',$request->board)->where('id','!=',$criteria)->first();
+        if($vehicleBoard)
+        return redirect()->back()->withError(trans('icda::vehicles.validation.vehicle board exists'));
+        else
+          unset($data['board']);
+      }
       //Validate Request
-      $this->validateRequestApi(new UpdateVehiclesRequest($request->all()));
+      $this->validateRequestApi(new UpdateVehiclesRequest($data));
       //Update
       $this->vehicle->updateBy($criteria, $request->all(),$this->getParamsRequest($request));
 

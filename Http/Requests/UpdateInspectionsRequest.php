@@ -27,7 +27,7 @@ class UpdateInspectionsRequest extends BaseFormRequest
           'armored_vehicle'=>'boolean',
           'modified_engine'=>'boolean',
           'spare_tires'=>'numeric',
-          'observations'=>'string',
+          'observations'=>'nullable',
           'vehicle_prepared'=>'boolean',
           'seen_technical_director'=>'boolean',
           'vehicle_delivery_signature'=>'',
