@@ -25,11 +25,13 @@ class RecordListInspections implements ShouldBroadcast
 
     //public $inspection;
     public $message;
+    public $inspection_id;
     public function __construct($inspection_id)
     {
         //$this->inspection=$inspection;
         $usr=\Auth::guard('api')->user();
         $this->message  = "Inspection # {$inspection_id} has been created by {$usr->first_name} {$usr->last_name}";
+        $this->$inspection_id=$inspection_id;
     }
     // public function broadcastWith()
     // {
@@ -40,7 +42,7 @@ class RecordListInspections implements ShouldBroadcast
 
     // public function broadcastAs()
     // {
-    //     return 'newRecord';
+    //     return 'new-inspections';
     // }
 
     /**
@@ -50,7 +52,7 @@ class RecordListInspections implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new Channel('record-'.$this->newRecord->product->id);
+        // return new Channel('inspections-list');
         return ['inspections-list'];
     }
 }

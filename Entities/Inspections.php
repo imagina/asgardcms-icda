@@ -65,7 +65,8 @@ class Inspections extends Model
   public function getGalleryAttribute()
   {
 
-      $images = \Storage::disk('publicmedia')->files('assets/icda/inspections/' . $this->id);
+      //$images = \Storage::disk('publicmedia')->files('assets/icda/inspections/' . $this->id);
+      $images = \Storage::disk('publicmedia')->files('assets/icda/inspections/' . $this->id.'/gallery');
       if (count($images)) {
           return $images;
       }
