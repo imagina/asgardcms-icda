@@ -2,8 +2,8 @@
 //////////Icda Module
 
 //Type Vehicles (Tipos de vehículos)
-(Motocicleta,automóvil,etc..)
-
+--The vehicle types are configured in a typesVehicles array, in the config file of the module. Example: (Motorcycle(Motocicleta),car(automóvil),etc.)
+--And you get it in the following way:
 Get: localhost:8000/api/icda/typesVehicles
 
 //Inspections Types (Tipos de inspecciones):
@@ -14,25 +14,30 @@ Post: localhost:8000/api/icda/inspectionsTypes
 1) name - String
 
 //Pre-inspections (Pre-Inspecciones) :
-Get: localhost:8000/api/icda/preInspections
---Structure:
+--The pre-inspections are configured in the config file of the module, in an array with the following structure::
 1) name,
 2) type (boolean or select),
-3) values - Array - R if type is select.
+3) values - Array - if type is select else null.
+--And you get it in the following way:
+Get: localhost:8000/api/icda/preInspections
 
 //Vehicles (Vehículos)
+-Search vehicle by board AAA00A (Buscar vehículo por placa AAA00A):
+Get: localhost:8000/api/icda/vehicles/AAA00A?filter={"field":"board"}
+-All vehicles
 Get: localhost:8000/api/icda/vehicles
+-Create vehicle
 Post: localhost:8000/api/icda/vehicles
 --Params:
-1)service_type - String - Example (Particular)
-2)types_vehicles_id (Id of types vehicles table)
-3)types_fuels_id (Id of types fuels table)
+1)service_type - String - Example (PARTICLE)
+2)type_vehicle (HEAVY)
+3)type_fuel (GASOLINE)
 4)brand - String (max 45 digits) - Example (KIA)
 5)line - String (max 45 digits) - Example (SOUL LX)
 6)model - String (Max 45 digits) - Example (2012)
-7)color - String (Max 45 digits) - Example (Gris)
+7)color - String (Max 45 digits) - Example (GRAY)
 8)transit_license - String ( Max 60 digits ) - Example (10010522505)
-9)enrollment_date - String ( Max 60 digits ) - Example (14/07/2011)
+9)enrollment_date - Date - Example (2019/04/12)
 10)board - String (max 15 digits / Unique) - Example (AAA00A)
 11)chasis_number - String  (Max 60 digits) - Example (KNAJT811AC7290082)
 12) engine_number - String (max 60 digits) - Example (G4FCBH2655)
@@ -42,15 +47,18 @@ Post: localhost:8000/api/icda/vehicles
 16)insurance_expidition - Not required - Date.
 17)insurance_expiration - Not required - Date.
 
-
--Search vehicle by board AAA00A (Buscar vehículo por placa AAA00A):
-Get: localhost:8000/api/icda/vehicles/AAA00A?filter={"field":"board"}
+-Delete vehicle
+Delete: localhost:8000/api/icda/vehicles/{id}
+-Show vehicle
+GET: localhost:8000/api/icda/vehicles/{id}
 
 //Inventory (Inventario)
+-Get all items of inventory
 Get: localhost:8000/api/icda/inventory
+-Create item in inventory
 Post: localhost:8000/api/icda/inventory
 --Params:
-1) name - String - Example: Tablero
+1) name - String - Example: Mirror
 2) status - No required - Default: 1 - Boolean - Example: 0 (false)
 
 //Gallery image to inspection
@@ -60,7 +68,13 @@ Post:localhost:8000/api/icda/inspections/media/upload
 2)file - Image
 
 //Inspections (Inspecciones)
+-Get all inspections
 Get: localhost:8000/api/icda/inspections
+-Get inspections in order desc
+Get: localhost:8000/api/icda/inspections?filter={"order":{"field":"created_at","way":"desc"}}
+-Get inspections with status 0
+Get: localhost:8000/api/icda/inspections?filter={"inspection_status":0}
+-Create inspection
 Post: localhost:8000/api/icda/inspections
 --Params:
 1) inspections_types_id - (Id of inspections_types table) - Example id:1.
@@ -146,12 +160,14 @@ CheckAndGo (2 axes - 2 ejes):
 7)pre_inspections - Array - Structure array example:
 [
 
-	name:"Motocicleta sucia",
+	name:"Dirty motorcycle",
+	type:"boolean",
 	value:1
 
 ],
 [
-	name:"Descargado",
+	name:"Discharged",
+	type:"boolean",
 	value:0
 ]
 8)items - Array - Structure array example:
@@ -177,7 +193,7 @@ CheckAndGo (2 axes - 2 ejes):
 19)observations - Not required - String.
 20)vehicle_prepared - Boolean.
 21)seen_technical_director - Not Required - Boolean.
-22)vehicle_delivery_signature - String - Example: image base:64..
-23)signature_received_report - Not required- String - Example: image base:64...
-24)type_vehicle - Example: (MOTOCICLETA)
+22)vehicle_delivery_signature - String - Example: data:image/png;base64,/9j/4A...
+23)signature_received_report - Not required- String - Example: data:image/png;base64,/9j/4A...
+24)type_vehicle - Example: (MOTORCYCLE)
 25)code - Not Required. //If receive this code, it will rename the image gallery folder of the inspection that was created with this code, by the inspection id.

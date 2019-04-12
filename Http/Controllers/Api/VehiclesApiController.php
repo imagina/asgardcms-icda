@@ -90,9 +90,9 @@ class VehiclesApiController extends BaseApiController
       //Validate Request
       $this->validateRequestApi(new CreateVehiclesRequest($request->all()));
       //Create
-      $this->vehicle->create($request->all());
+      $vehicle=$this->vehicle->create($request->all());
 
-      $response = ['data' => ''];
+      $response = ['data' => $vehicle];
 
     } catch (\Exception $e) {
       $status = 500;

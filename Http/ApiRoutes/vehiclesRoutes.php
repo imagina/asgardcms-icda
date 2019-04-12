@@ -8,6 +8,7 @@ $router->group(['prefix' => '/vehicles'/*,'middleware' => ['auth:api']*/], funct
   $router->post('/', [
     'as' => $locale . 'api.icda.vehicles.create',
     'uses' => 'VehiclesApiController@create',
+     'middleware' => ['auth:api']
   ]);
   $router->get('/', [
     'as' => $locale . 'api.icda.vehicles.index',
@@ -16,14 +17,16 @@ $router->group(['prefix' => '/vehicles'/*,'middleware' => ['auth:api']*/], funct
   $router->put('/{criteria}', [
     'as' => $locale . 'api.icda.vehicles.update',
     'uses' => 'VehiclesApiController@update',
+     'middleware' => ['auth:api']
   ]);
   $router->delete('/{criteria}', [
     'as' => $locale . 'api.icda.vehicles.delete',
     'uses' => 'VehiclesApiController@delete',
+     'middleware' => ['auth:api']
   ]);
   $router->get('/{criteria}', [
     'as' => $locale . 'api.icda.vehicles.show',
-    'uses' => 'VehiclesApiController@show',
+    'uses' => 'VehiclesApiController@show'
   ]);
 
 });
