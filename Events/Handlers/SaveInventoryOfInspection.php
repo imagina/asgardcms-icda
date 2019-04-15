@@ -25,7 +25,6 @@ class SaveInventoryOfInspection
      */
     public function handle(InspectionWasCreated $event)
     {
-
         $entity = $event->entity;//Entity Inspection
         $items=$event->data['items'];//Items inventory
         foreach($items as $item){

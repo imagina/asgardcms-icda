@@ -38,7 +38,7 @@ class UpdateInventoryOfInspection
             $errors = json_decode($validator->errors());
             throw new \Exception(json_encode($errors), 401);
           }
-          $inspectionInventory=InspectionInventory::find($item['inspection_inventory_id']);
+          $inspectionInventory=InspectionInventory::find($item['id']);//Id pivot inspection inventory id
           $inspectionInventory->update($item);
         }//inventories
     }

@@ -8,7 +8,8 @@ $router->group(['prefix' => '/inspections'/*,'middleware' => ['auth:api']*/], fu
   $router->post('/', [
     'as' => $locale . 'api.icda.inspections.create',
     'uses' => 'InspectionsApiController@create',
-    'middleware' => ['auth:api']
+     'middleware' => ['auth:api']
+
   ]);
   $router->get('/', [
     'as' => $locale . 'api.icda.inspections.index',
@@ -17,12 +18,10 @@ $router->group(['prefix' => '/inspections'/*,'middleware' => ['auth:api']*/], fu
   $router->put('/{criteria}', [
     'as' => $locale . 'api.icda.inspections.update',
     'uses' => 'InspectionsApiController@update',
-    'middleware' => ['auth:api']
   ]);
   $router->delete('/{criteria}', [
     'as' => $locale . 'api.icda.inspections.delete',
     'uses' => 'InspectionsApiController@delete',
-    'middleware' => ['auth:api']
   ]);
   $router->get('/{criteria}', [
     'as' => $locale . 'api.icda.inspections.show',
@@ -31,11 +30,11 @@ $router->group(['prefix' => '/inspections'/*,'middleware' => ['auth:api']*/], fu
   $router->post('/media/upload', [
       'as' => 'api.profile.users.media.upload',
       'uses' => 'InspectionsApiController@mediaUpload',
-      'middleware' => ['auth:api']
+      // 'middleware' => ['auth:api']
   ]);
   $router->post('/media/delete', [
       'as' => 'api.profile.users.media.delete',
       'uses' => 'InspectionsApiController@mediaDelete',
-      'middleware' => ['auth:api']
+      // 'middleware' => ['auth:api']
   ]);
 });
