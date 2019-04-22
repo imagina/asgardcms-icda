@@ -39,6 +39,14 @@ return [
     'messages' => [
       'successfully registered vehicle'=>'Vehículo registrado exitosamente',
     ],
+    'bulkload' => [
+      'title' => 'Importación de vehículos',
+      'Select File' => 'Selecciona un archivo',
+      'Submit'=>'Importar',
+      'Select Filecompatible files CSV, XLSX'=>'Seleccionar archivos compatibles CSV, XLSX',
+      'success migrate from vehicles' => 'Los vehículos se migrarán en unos minutos',
+      'error in migrate from page'=>'Ocurrió un error al intentar migrar los datos de vehículos',
+    ],
     'validation' => [
       'vehicle board exists'=>'Ya existe un vehículo registrado con esta placa',
       'vehicle has inspections' => 'Este vehículo tiene inspecciones registradas',

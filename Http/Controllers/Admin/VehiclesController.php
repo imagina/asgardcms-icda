@@ -10,6 +10,9 @@ use Modules\Icda\Http\Requests\UpdateBackendVehiclesRequest;
 use Modules\Icda\Repositories\VehiclesRepository;
 use Modules\User\Repositories\UserRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\User\Contracts\Authentication;
+use Modules\Icda\Imports\VehiclesImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VehiclesController extends AdminBaseController
 {
@@ -18,12 +21,14 @@ class VehiclesController extends AdminBaseController
   */
   private $vehicles;
   private $users;
-  public function __construct(VehiclesRepository $vehicles,UserRepository $users)
+  protected $auth;
+  public function __construct(VehiclesRepository $vehicles,Authentication $auth,UserRepository $users)
   {
     parent::__construct();
 
     $this->vehicles = $vehicles;
     $this->users = $users;
+    $this->auth = $auth;
   }
 
   /**
@@ -119,4 +124,24 @@ class VehiclesController extends AdminBaseController
     return redirect()->route('admin.icda.vehicles.index')
     ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('icda::vehicles.title.vehicles')]));
   }
+
+  public function indexImport()
+  {
+    return view('icda::admin.vehicles.bulkload.index');
+  }
+
+  public function import(Request $request){
+    $msg="";
+    try {
+      $data = ['user_id' => $this->auth->user()->id];
+      Excel::import(new VehiclesImport($this->vehicles,$data), $request->importfile);
+      $msg=trans('icda::vehicles.bulkload.success migrate from vehicles');
+      return redirect()->route('admin.icda.vehicles.index')
+      ->withSuccess($msg);
+    } catch (Exception $e) {
+      $msg  =  trans('icda::vehicles.bulkload.error in migrate from page');
+      return redirect()->route('admin.icda.vehicles.index')
+      ->withError($msg);
+    }
+  }//importProducts()
 }

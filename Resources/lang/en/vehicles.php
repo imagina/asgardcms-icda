@@ -39,6 +39,14 @@ return [
     'messages' => [
       'successfully registered vehicle'=>'Successfully registered vehicle',
     ],
+    'bulkload' => [
+      'title' => 'Import of vehicles',
+      'Select File' => 'Select a file',
+      'Submit'=>'Import',
+      'Select Filecompatible files CSV, XLSX'=>'Select Compatible files CSV, XLSX',
+      'success migrate from vehicles' => 'The vehicles will be migrated in a few minutes',
+      'error in migrate from page'=>'An error occurred while attempting to migrate vehicle data',
+    ],
     'validation' => [
       'vehicle board exists'=>'A vehicle with this plate already exists',
       'vehicle has inspections' => 'This vehicle has registered inspections',

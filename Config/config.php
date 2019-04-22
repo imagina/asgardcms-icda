@@ -26,5 +26,6 @@ return [
       'MOTOCICLETA',
       // 'Pesado',
       // 'Liviano'
-    ]
+    ],
+    'vehicleAutoCreate'=>1
 ];

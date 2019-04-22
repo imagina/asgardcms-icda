@@ -4,6 +4,7 @@ namespace Modules\Icda\Repositories\Eloquent;
 
 use Modules\Icda\Repositories\VehiclesRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
+use Modules\Icda\Events\RecordListVehicles;
 
 class EloquentVehiclesRepository extends EloquentBaseRepository implements VehiclesRepository
 {
@@ -149,5 +150,21 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
       $model->delete();
     }
   }//deleteBy
+
+  public function findByBoard($board)
+  {
+
+      return $this->model->where('board',$board)->first();
+  }
+
+  public function create($data)
+  {
+
+      $vehicle = $this->model->create($data);
+
+      event(new RecordListVehicles($vehicle->board));
+
+      return $vehicle;
+  }//create()
 
 }

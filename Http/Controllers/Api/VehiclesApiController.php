@@ -66,6 +66,12 @@ class VehiclesApiController extends BaseApiController
     try {
       //Request to Repository
       $vehicle = $this->vehicle->getItem($criteria,$this->getParamsRequest($request));
+      if(config('asgard.icda.config.vehicleAutoCreate') && !$vehicle){
+        $vehicle=$this->vehicle->create([
+          'board'=>$criteria,
+          'user_id'=>\Auth::guard('api')->user()->id
+        ]);
+      }
 
       $response = [
         'data' => $vehicle ? new VehiclesTransformer($vehicle) : '',

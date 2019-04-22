@@ -14,19 +14,19 @@ class CreateIcdaVehiclesTable extends Migration
     {
         Schema::create('icda__vehicles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('service_type');//Tipo de servicio
-            $table->string('type_vehicle');//AUTOMOVIL,Motocicleta
-            $table->string('type_fuel');
-            $table->string('brand');
-            $table->string('line');
-            $table->string('model');
-            $table->string('color');
-            $table->string('transit_license');//Licencia de transito
-            $table->date('enrollment_date');//fecha de matrícula
+            $table->string('service_type')->nullable();//Tipo de servicio
+            $table->string('type_vehicle')->nullable();//AUTOMOVIL,Motocicleta
+            $table->string('type_fuel')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('line')->nullable();
+            $table->string('model')->nullable();
+            $table->string('color')->nullable();
+            $table->string('transit_license')->nullable();//Licencia de transito
+            $table->date('enrollment_date')->nullable();//fecha de matrícula
             $table->string('board');//Placa
-            $table->string('chasis_number');//Número de chasis
-            $table->string('engine_number');//Número de motor
-            $table->string('displacement');//Cilindraje
+            $table->string('chasis_number')->nullable();//Número de chasis
+            $table->string('engine_number')->nullable();//Número de motor
+            $table->string('displacement')->nullable();//Cilindraje
             $table->integer('axes_number')->nullable();//Número de ejes
             $table->date('insurance_expedition')->nullable();//fecha expedición seguro
             $table->date('insurance_expiration')->nullable();//fecha vencimiento seguro
