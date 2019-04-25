@@ -4,16 +4,61 @@ use Illuminate\Database\Eloquent\Collection;
 use Modules\Icda\Entities\Inspections;
 use Modules\Icda\Entities\Order_History;
 use Modules\Icda\Entities\InspectionStatus;
+use Modules\Icda\Entities\TypesVehicles;
+use Modules\Icda\Entities\TypesFuel;
+use Modules\Icda\Entities\TypeService;
 
+/**
+ * Get Types Services
+ *
+ * @param  none
+ * @return Array $status
+ */
+if (!function_exists('icda_get_TypeService')) {
+
+    function icda_get_TypeService()
+    {
+        $TypeService = new TypeService();
+        return $TypeService;
+    }
+}
+/**
+ * Get Type Vehicles
+ *
+ * @param  none
+ * @return Array $status
+ */
+if (!function_exists('icda_get_TypeVehicle')) {
+
+    function icda_get_TypeVehicle()
+    {
+        $typeVehicle = new TypesVehicles();
+        return $typeVehicle;
+    }
+}
+/**
+ * Get Type Vehicles
+ *
+ * @param  none
+ * @return Array $status
+ */
+if (!function_exists('icda_get_TypeFuel')) {
+
+    function icda_get_TypeFuel()
+    {
+        $typeFuel = new TypesFuel();
+        return $typeFuel;
+    }
+}
 /**
  * Get Inspection Status Enabled / Disabled
  *
  * @param  none
  * @return Array $status
  */
-if (!function_exists('icommerce_get_Inspectionstatus')) {
+if (!function_exists('icda_get_Inspectionstatus')) {
 
-    function icommerce_get_Inspectionstatus()
+    function icda_get_Inspectionstatus()
     {
         $status = new InspectionStatus();
         return $status;

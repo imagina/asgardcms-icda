@@ -162,7 +162,7 @@ class EloquentVehiclesRepository extends EloquentBaseRepository implements Vehic
 
       $vehicle = $this->model->create($data);
 
-      event(new RecordListVehicles($vehicle->board));
+      event(new RecordListVehicles($vehicle));
 
       return $vehicle;
   }//create()

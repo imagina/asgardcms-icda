@@ -11,7 +11,7 @@ class InspectionsTransformer extends Resource
   {
     $data =  [
       'id' => $this->id,
-      'inspection_status'=>icommerce_get_Inspectionstatus()->get($this->inspection_status),
+      'inspection_status'=>icda_get_Inspectionstatus()->get($this->inspection_status),
       'vehicle' => new VehiclesTransformer($this->vehicle),
       'inspector'=>new UserTransformer($this->inspector),
       'inspection_type' => new InspectionsTypesTransformer($this->inspectionType),

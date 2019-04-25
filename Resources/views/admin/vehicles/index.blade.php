@@ -44,10 +44,28 @@
                 <?php foreach ($vehicles as $vehicles): ?>
                   <tr>
                     <td>{{$vehicles->board}}</td>
-                    <td>{{$vehicles->brand}}</td>
-                    <td>{{$vehicles->line}}</td>
+                    <td>
+                      @if($vehicles->brand)
+                      {{$vehicles->brand->name}}
+                      @else
+                      N/A
+                      @endif
+                    </td>
+                    <td>
+                      @if($vehicles->line)
+                      {{$vehicles->line->name}}
+                      @else
+                      N/A
+                      @endif
+                    </td>
                     <td>{{$vehicles->model}}</td>
-                    <td>{{$vehicles->color}}</td>
+                    <td>
+                      @if($vehicles->color)
+                      {{$vehicles->color->name}}
+                      @else
+                      N/A
+                      @endif
+                    </td>
                     <td>{{$vehicles->user->first_name}} {{$vehicles->user->last_name}}</td>
                     <td>
                       <a href="{{ route('admin.icda.vehicles.edit', [$vehicles->id]) }}">

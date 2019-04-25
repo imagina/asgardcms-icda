@@ -2,7 +2,9 @@
 
 return [
     'onhold'        => 'En Espera',
+    'revised'        => 'Revisado',
+    'invoiced'        => 'Facturado',
     'approved'           => 'Aprobado',
     'rejected'          => 'Rechazado',
-    'completed'         => 'Completado',
+    'canceled'         => 'Cancelado',
 ];

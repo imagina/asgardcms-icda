@@ -15,10 +15,12 @@ class RecordListVehicles implements ShouldBroadcast
      * @return void
      */
      public $message;
+     public $vehicle;
 
-     public function __construct($board)
+     public function __construct($vehicle)
      {
-         $this->message  = "A new vehicle has been created with the board {$board}";
+         $this->message  = "A new vehicle has been created with the board {$vehicle->board}";
+         $this->vehicle  =$vehicle;
      }
 
     /**

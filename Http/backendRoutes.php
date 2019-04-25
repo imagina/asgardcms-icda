@@ -43,6 +43,22 @@ $router->group(['prefix' =>'/icda'], function (Router $router) {
         'uses' => 'VehiclesController@destroy',
         'middleware' => 'can:icda.vehicles.destroy'
     ]);
+
+    $router->group(['prefix' =>'bulkload'], function (Router $router){
+
+        $router->get('index',[
+            'as'=>'admin.icda.bulkload.index',
+            'uses'=>'VehiclesController@indexImport',
+            'middleware'=>'can:icda.bulkload.import',
+        ]);
+
+        $router->post('import',[
+            'as'=>'admin.icda.bulkload.import',
+            'uses'=>'VehiclesController@import',
+             'middleware'=>'can:icda.bulkload.import',
+        ]);
+    });
+
     //Inspections
     $router->bind('inspections', function ($id) {
         return app('Modules\Icda\Repositories\InspectionsRepository')->find($id);
@@ -82,7 +98,111 @@ $router->group(['prefix' =>'/icda'], function (Router $router) {
         'uses' => 'InspectionsController@destroy',
         'middleware' => 'can:icda.inspections.destroy'
     ]);
+    $router->bind('brands', function ($id) {
+        return app('Modules\Icda\Repositories\BrandsRepository')->find($id);
+    });
+    $router->get('brands', [
+        'as' => 'admin.icda.brands.index',
+        'uses' => 'BrandsController@index',
+        'middleware' => 'can:icda.brands.index'
+    ]);
+    $router->get('brands/create', [
+        'as' => 'admin.icda.brands.create',
+        'uses' => 'BrandsController@create',
+        'middleware' => 'can:icda.brands.create'
+    ]);
+    $router->post('brands', [
+        'as' => 'admin.icda.brands.store',
+        'uses' => 'BrandsController@store',
+        'middleware' => 'can:icda.brands.create'
+    ]);
+    $router->get('brands/{brands}/edit', [
+        'as' => 'admin.icda.brands.edit',
+        'uses' => 'BrandsController@edit',
+        'middleware' => 'can:icda.brands.edit'
+    ]);
+    $router->put('brands/{brands}', [
+        'as' => 'admin.icda.brands.update',
+        'uses' => 'BrandsController@update',
+        'middleware' => 'can:icda.brands.edit'
+    ]);
+    $router->delete('brands/{brands}', [
+        'as' => 'admin.icda.brands.destroy',
+        'uses' => 'BrandsController@destroy',
+        'middleware' => 'can:icda.brands.destroy'
+    ]);
+    $router->bind('line', function ($id) {
+        return app('Modules\Icda\Repositories\LineRepository')->find($id);
+    });
+    $router->get('lines', [
+        'as' => 'admin.icda.line.index',
+        'uses' => 'LineController@index',
+        'middleware' => 'can:icda.lines.index'
+    ]);
+    $router->get('lines/create', [
+        'as' => 'admin.icda.line.create',
+        'uses' => 'LineController@create',
+        'middleware' => 'can:icda.lines.create'
+    ]);
+    $router->post('lines', [
+        'as' => 'admin.icda.line.store',
+        'uses' => 'LineController@store',
+        'middleware' => 'can:icda.lines.create'
+    ]);
+    $router->get('lines/{line}/edit', [
+        'as' => 'admin.icda.line.edit',
+        'uses' => 'LineController@edit',
+        'middleware' => 'can:icda.lines.edit'
+    ]);
+    $router->put('lines/{line}', [
+        'as' => 'admin.icda.line.update',
+        'uses' => 'LineController@update',
+        'middleware' => 'can:icda.lines.edit'
+    ]);
+    $router->delete('lines/{line}', [
+        'as' => 'admin.icda.line.destroy',
+        'uses' => 'LineController@destroy',
+        'middleware' => 'can:icda.lines.destroy'
+    ]);
+    $router->bind('color', function ($id) {
+        return app('Modules\Icda\Repositories\ColorRepository')->find($id);
+    });
+    $router->get('colors', [
+        'as' => 'admin.icda.color.index',
+        'uses' => 'ColorController@index',
+        'middleware' => 'can:icda.colors.index'
+    ]);
+    $router->get('colors/create', [
+        'as' => 'admin.icda.color.create',
+        'uses' => 'ColorController@create',
+        'middleware' => 'can:icda.colors.create'
+    ]);
+    $router->post('colors', [
+        'as' => 'admin.icda.color.store',
+        'uses' => 'ColorController@store',
+        'middleware' => 'can:icda.colors.create'
+    ]);
+    $router->get('colors/{color}/edit', [
+        'as' => 'admin.icda.color.edit',
+        'uses' => 'ColorController@edit',
+        'middleware' => 'can:icda.colors.edit'
+    ]);
+    $router->put('colors/{color}', [
+        'as' => 'admin.icda.color.update',
+        'uses' => 'ColorController@update',
+        'middleware' => 'can:icda.colors.edit'
+    ]);
+    $router->delete('colors/{color}', [
+        'as' => 'admin.icda.color.destroy',
+        'uses' => 'ColorController@destroy',
+        'middleware' => 'can:icda.colors.destroy'
+    ]);
 // append
+
+
+
+
+
 
 
 });

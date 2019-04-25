@@ -31,7 +31,13 @@ class IcdaServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('vehicles', array_dot(trans('icda::vehicles')));
             $event->load('inspections', array_dot(trans('icda::inspections')));
+            $event->load('brands', array_dot(trans('icda::brands')));
+            $event->load('lines', array_dot(trans('icda::lines')));
+            $event->load('colors', array_dot(trans('icda::colors')));
             // append translations
+
+
+
 
 
 
@@ -133,7 +139,46 @@ class IcdaServiceProvider extends ServiceProvider
                 return new \Modules\Icda\Repositories\Cache\CacheInspectionHistoryDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Icda\Repositories\BrandsRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentBrandsRepository(new \Modules\Icda\Entities\Brands());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheBrandsDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Icda\Repositories\LineRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentLineRepository(new \Modules\Icda\Entities\Line());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheLineDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Icda\Repositories\ColorRepository',
+            function () {
+                $repository = new \Modules\Icda\Repositories\Eloquent\EloquentColorRepository(new \Modules\Icda\Entities\Color());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Icda\Repositories\Cache\CacheColorDecorator($repository);
+            }
+        );
 // add bindings
+
+
+
 
 
 

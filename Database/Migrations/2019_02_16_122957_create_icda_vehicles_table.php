@@ -17,14 +17,15 @@ class CreateIcdaVehiclesTable extends Migration
             $table->string('service_type')->nullable();//Tipo de servicio
             $table->string('type_vehicle')->nullable();//AUTOMOVIL,Motocicleta
             $table->string('type_fuel')->nullable();
-            $table->string('brand')->nullable();
-            $table->string('line')->nullable();
+            $table->string('brand_id')->nullable();
+            $table->string('line_id')->nullable();
             $table->string('model')->nullable();
-            $table->string('color')->nullable();
+            $table->string('color_id')->nullable();
             $table->string('transit_license')->nullable();//Licencia de transito
             $table->date('enrollment_date')->nullable();//fecha de matrícula
             $table->string('board');//Placa
             $table->string('chasis_number')->nullable();//Número de chasis
+            $table->string('vin_number')->nullable();//Número de vin
             $table->string('engine_number')->nullable();//Número de motor
             $table->string('displacement')->nullable();//Cilindraje
             $table->integer('axes_number')->nullable();//Número de ejes

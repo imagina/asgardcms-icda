@@ -31,7 +31,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
       //Event to create inventory items of inspection
       event(new InspectionWasCreated($inspection,$data));
       //Pusher notification record list inspections
-      event(new RecordListInspections($inspection->id));
+      event(new RecordListInspections($inspection));
       return $inspection;
   }//create()
 

@@ -9,24 +9,24 @@ class UpdateVehiclesRequest extends BaseFormRequest
     public function rules()
     {
         return [
-          'service_type'=>'string',
-          'type_vehicle'=>'string',
-          'type_fuel'=>'string',
-          'brand'=>'max:45',
-          'line'=>'max:45',
+          'service_type'=>'numeric',
+          'type_vehicle'=>'numeric',
+          'type_fuel'=>'numeric',
+          'brand_id'=>'exists:icda__brands,id',
+          'line_id'=>'exists:icda__lines,id',
           'model'=>'max:45',
-          'color'=>'max:45',
+          'color_id'=>'exists:icda__colors,id',
           'transit_license'=>'max:60',
-          'enrollment_date'=>'max:60',
+          'enrollment_date'=>'date',
           'board'=>'max:15|unique:icda__vehicles,board',
+          'vin_number'=>'max:60',
           'chasis_number'=>'max:60',
           'engine_number'=>'max:60',
           'displacement'=>'max:30',
           'axes_number'=>'numeric',
+          'user_id'=>'exists:users,id',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
-          'gas_certificate_expiration'=>'date',
-          'user_id'=>'exists:users,id'
         ];
     }
 

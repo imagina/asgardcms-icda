@@ -13,19 +13,13 @@ return [
         "type"=>"boolean",
         "values"=>null
       ],
-      // [
-      //   "name"=> "Fallos encontrados",
-      //   "type"=> "select",
-      //   "values"=> [
-      //       "1",
-      //       "2"
-      //   ]
-      // ]
-    ],
-    'typesVehicles'=>[
-      'MOTOCICLETA',
-      // 'Pesado',
-      // 'Liviano'
-    ],
-    'vehicleAutoCreate'=>1
+      [
+        "name"=> "Fallos encontrados",
+        "type"=> "select",
+        "values"=> [
+            "1",
+            "2"
+        ]
+      ]
+    ]
 ];

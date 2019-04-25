@@ -44,7 +44,7 @@
                   <tr>
                     <td>{{$inspections->id}}</td>
                     <td>
-                      {{icommerce_get_Inspectionstatus()->get($inspections->inspection_status)}}
+                      {{icda_get_Inspectionstatus()->get($inspections->inspection_status)}}
                     </td>
                     <td>
                       <a href="{{ route('admin.icda.inspections.edit', [$inspections->id]) }}">

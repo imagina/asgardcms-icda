@@ -66,15 +66,29 @@ class VehiclesApiController extends BaseApiController
     try {
       //Request to Repository
       $vehicle = $this->vehicle->getItem($criteria,$this->getParamsRequest($request));
-      if(config('asgard.icda.config.vehicleAutoCreate') && !$vehicle){
-        $vehicle=$this->vehicle->create([
-          'board'=>$criteria,
-          'user_id'=>\Auth::guard('api')->user()->id
-        ]);
-      }
+      $statusCreated=false;
+      if($this->getAuthUser()){
+        //Auth
+        if(!$vehicle && isset($request['user_id'])){
+          //Create a vehicle
+          $vehicle=$this->vehicle->create([
+            'board'=>$criteria,
+            'user_id'=>$request['user_id']
+          ]);
+          $statusCreated=true;
+        }else if($vehicle && isset($request['user_id'])){
+          //Updaate owner vehicle
+          if(isset($request['filter']))
+          unset($request['filter']);
+          $vehicle=$this->vehicle->updateBy($vehicle->id, ['user_id'=>$request['user_id']],$this->getParamsRequest($request));
+          $vehicle=$this->vehicle->find($vehicle->id);
+        }
+
+      }//if auth
 
       $response = [
         'data' => $vehicle ? new VehiclesTransformer($vehicle) : '',
+        'created'=>$statusCreated
       ];
 
     } catch (\Exception $e) {
@@ -95,6 +109,7 @@ class VehiclesApiController extends BaseApiController
     try {
       //Validate Request
       $this->validateRequestApi(new CreateVehiclesRequest($request->all()));
+
       //Create
       $vehicle=$this->vehicle->create($request->all());
 

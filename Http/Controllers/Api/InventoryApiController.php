@@ -136,7 +136,7 @@ class InventoryApiController extends BaseApiController
   public function delete($criteria, Request $request)
   {
     try {
-
+      
       $this->inventory->deleteBy($criteria,$this->getParamsRequest($request));
 
       $response = ['data' => ''];

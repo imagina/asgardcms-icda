@@ -9,10 +9,12 @@ namespace Modules\Icda\Entities;
 class InspectionStatus
 {
 
-    const ONHOLD = 0;
-    const APPROVED = 1;
-    const COMPLETED = 2;
-    const REJECTED = 3;
+    const ONHOLD = 0;//Espera registro inicial
+    const REVISED = 1;//REVISADO
+    const INVOICED = 2;//REVISADO
+    const APPROVED = 3;//Aprobado
+    const REJECTED = 4;//RECHAZADO
+    const CANCELED = 5;//CANCELADO
 
     /**
      * @var array
@@ -23,9 +25,11 @@ class InspectionStatus
     {
         $this->statuses = [
             self::ONHOLD => trans('icda::inspection_status.onhold'),
+            self::REVISED => trans('icda::inspection_status.revised'),
+            self::INVOICED => trans('icda::inspection_status.invoiced'),
             self::APPROVED => trans('icda::inspection_status.approved'),
-            self::COMPLETED => trans('icda::inspection_status.completed'),
             self::REJECTED => trans('icda::inspection_status.rejected'),
+            self::CANCELED => trans('icda::inspection_status.canceled'),
         ];
     }
 

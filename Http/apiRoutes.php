@@ -5,6 +5,10 @@ use Illuminate\Routing\Router;
 $router->group(['prefix' => '/icda'/*,'middleware' => ['auth:api']*/], function (Router $router) {
 //======   Types vehicles
   require('ApiRoutes/typesVehiclesRoutes.php');
+//======   Types fuel
+  require('ApiRoutes/typesFuelsRoutes.php');
+//======   Types services
+  require('ApiRoutes/typesServicesRoutes.php');
 //======   Vehicles
   require('ApiRoutes/vehiclesRoutes.php');
 //======   Inspections Types
@@ -19,4 +23,10 @@ $router->group(['prefix' => '/icda'/*,'middleware' => ['auth:api']*/], function 
     require('ApiRoutes/inspectionHistoryRoutes.php');
     //======   Inspection Statues
     require('ApiRoutes/inspectionStatusesRoutes.php');
+    //======   Brands
+    require('ApiRoutes/brandRoutes.php');
+    //======   Lines
+    require('ApiRoutes/lineRoutes.php');
+    //======   Colors
+    require('ApiRoutes/colorRoutes.php');
 });

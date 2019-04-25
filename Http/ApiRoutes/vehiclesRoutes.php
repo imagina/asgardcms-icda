@@ -27,7 +27,7 @@ $router->group(['prefix' => '/vehicles'/*,'middleware' => ['auth:api']*/], funct
   $router->get('/{criteria}', [
     'as' => $locale . 'api.icda.vehicles.show',
     'uses' => 'VehiclesApiController@show',
-     'middleware' => ['auth:api']
+    //'middleware' => ['auth:api']
   ]);
 
 });

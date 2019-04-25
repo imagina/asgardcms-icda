@@ -10,16 +10,20 @@ class VehiclesTransformer extends Resource
   {
     $data =  [
       'id' => $this->id,
+      'service_type_text'=>icda_get_TypeService()->get($this->service_type),
+      'type_vehicle_text'=>icda_get_TypeVehicle()->get($this->type_vehicle),
+      'type_fuel_text'=>icda_get_TypeFuel()->get($this->type_fuel),
       'service_type'=>$this->service_type,
       'type_vehicle'=>$this->type_vehicle,
       'type_fuel'=>$this->type_fuel,
-      'brand'=>$this->brand,
-      'line'=>$this->line,
+      'brand_id'=>$this->brand_id,
+      'line_id'=>$this->line_id,
       'model'=>$this->model,
-      'color'=>$this->color,
+      'color_id'=>$this->color_id,
       'transit_license'=>$this->transit_license,
       'enrollment_date'=>$this->enrollment_date,
       'board'=>$this->board,
+      'vin_number'=>$this->vin_number,
       'chasis_number'=>$this->chasis_number,
       'engine_number'=>$this->engine_number,
       'displacement'=>$this->displacement,
@@ -39,6 +43,20 @@ class VehiclesTransformer extends Resource
         $data['insurance_status']=true;//Vigente
     }else
       $data['insurance_status']=false;//No vigente
+
+    if($this->brand_id)
+    $data['brand']=$this->brand->name;
+    else
+    $data['brand']=$this->brand_id;
+    if($this->line_id)
+    $data['line']=$this->line->name;
+    else
+    $data['line']=$this->line_id;
+    if($this->color_id)
+    $data['color']=$this->color->name;
+    else
+    $data['color']=$this->color_id;
+
     return $data;
   }
 }

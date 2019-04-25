@@ -144,6 +144,8 @@ class EloquentInventoryRepository extends EloquentBaseRepository implements Inve
     $model = $query->first();
 
     if($model) {
+      //if(count($model->itemsInventory)>0)
+      //  throw new \Exception("Can't delete item of inventory because belongs to in many inspections");
       $model->delete();
     }
   }//deleteBy
