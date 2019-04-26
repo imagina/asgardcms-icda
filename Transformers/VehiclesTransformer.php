@@ -32,6 +32,7 @@ class VehiclesTransformer extends Resource
       'insurance_expiration'=>$this->insurance_expiration,
       'tecnomecanica_expedition'=>$this->tecnomecanica_expedition,
       'tecnomecanica_expiration'=>$this->tecnomecanica_expiration,
+      'tecnomecanica_code'=>$this->tecnomecanica_code,
       'user'=>new UserTransformer($this->user),
       'created_at_date' => $this->created_at->format('Y-m-d'),
       'created_at_time' => $this->created_at->format('H:m:s'),

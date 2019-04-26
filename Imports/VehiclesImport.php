@@ -41,45 +41,14 @@ class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,Sho
           // Search by id
           $vehicle=$this->vehicle->find($vehicle_id);
           if(!$vehicle){
-            //Vehicle do not exist, mandatory fields to create it
-            // if(!isset($row->service_type))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a service type');
-            // if(!isset($row->type_vehicle))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a vehicle type');
-            // if(!isset($row->type_fuel))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a fuel type');
-            // if(!isset($row->brand))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a brand');
-            // if(!isset($row->line))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a line');
-            // if(!isset($row->model))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a model');
-            // if(!isset($row->color))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a color');
-            // if(!isset($row->transit_license))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a transit license');
-            // if(!isset($row->enrollment_date))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a enrollment date');
             if(!isset($row->board))
-            throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a board');
-            // if(!isset($row->numero_placa))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a board');
-            // if(!isset($row->chasis_number))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a chasis number');
-            // if(!isset($row->engine_number))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a engine number');
-            // if(!isset($row->displacement))
-            // throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a displacement');
-
-          }//Products not exist
+              throw new \Exception('Vehicle with id: '.$vehicle_id.', it is necessary that you have a board');
+          }//Vehicle not exist
           $vehicleByBoard=$this->vehicle->findByBoard($row->board);
           if($vehicleByBoard){
             if($vehicleByBoard->id!=$vehicle_id)
             throw new \Exception('Warning: There is already a vehicle with this plate other than id: '.$vehicle_id);
           }
-          // dd($vehicleByBoard);
-
-          // $data['id']=$vehicle_id;
           $data['id']=$vehicle_id;
           $data['user_id']=$this->info['user_id'];
           if(isset($row->service_type))
@@ -104,6 +73,8 @@ class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,Sho
             $data['board']=$row->board;
           if(isset($row->chasis_number))
             $data['chasis_number']=$row->chasis_number;
+          if(isset($row->vin_number))
+            $data['vin_number']=$row->vin_number;
           if(isset($row->engine_number))
             $data['engine_number']=$row->engine_number;
           if(isset($row->displacement))
@@ -124,7 +95,6 @@ class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,Sho
       } catch (\Exception $e) {
         // dd($e->getMessage());
         \Log::error('Vehicles Import error: '.$e->getMessage());
-        //dd($e->getMessage());
       }//catch
     }// foreach
   }//collection rows

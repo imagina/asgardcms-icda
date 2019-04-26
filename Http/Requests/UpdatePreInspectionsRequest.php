@@ -4,14 +4,14 @@ namespace Modules\Icda\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class MediaUploadRequest extends BaseFormRequest
+class UpdatePreInspectionsRequest extends BaseFormRequest
 {
     public function rules()
     {
         return [
-          // 'code'=>'required|numeric',
-          'code'=>'required',
-          'file'=>'required',
+          'name'=>'string',
+          'type'=>'in:boolean,select',
+          'values'=>'required_if:type,select|array'
         ];
     }
 

@@ -27,8 +27,9 @@ class CreateVehiclesRequest extends BaseFormRequest
           'user_id'=>'required|exists:users,id',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
-          'tecnomecanica_expedition'=>'date',
           'tecnomecanica_expiration'=>'date',
+          'tecnomecanica_expedition'=>'date',
+          'tecnomecanica_code'=>'max:50',
         ];
     }
 

@@ -18,8 +18,6 @@ class UpdateInspectionsRequest extends BaseFormRequest
           'axes'=>'array',
           'pre_inspections'=>'array',
           'items'=>'array',
-          'insurance_expedition'=>'date',
-          'insurance_expiration'=>'date',
           'gas_certificate_expiration'=>'date',
           'governor'=>'boolean',
           'taximeter'=>'boolean',
@@ -32,7 +30,11 @@ class UpdateInspectionsRequest extends BaseFormRequest
           'seen_technical_director'=>'boolean',
           'vehicle_delivery_signature'=>'',
           'signature_received_report'=>'nullable',
-          'type_vehicle'=>'string'
+          'type_vehicle'=>'string',
+          'tecnomecanica_code'=>'numeric',
+          'tecnomecanica_expiration'=>'date',
+          'tecnomecanica_expedition'=>'date',
+          'tecnomecanica_file'=>'',
         ];
     }
 

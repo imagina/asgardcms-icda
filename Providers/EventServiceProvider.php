@@ -10,6 +10,7 @@ use Modules\Icda\Events\Handlers\SaveInventoryOfInspection;
 use Modules\Icda\Events\Handlers\UpdateInventoryOfInspection;
 use Modules\Icda\Events\Handlers\SaveHistoryOfInspection;
 use Modules\Icda\Events\Handlers\UpdateStatusInspection;
+use Modules\Icda\Events\Handlers\UpdateVehicleOfInspection;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         InspectionWasUpdated::class => [
            UpdateInventoryOfInspection::class,
+           UpdateVehicleOfInspection::class
         ],
         InspectionHistoryWasCreated::class => [
            UpdateStatusInspection::class

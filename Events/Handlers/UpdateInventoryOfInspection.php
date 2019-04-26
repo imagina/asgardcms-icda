@@ -27,19 +27,21 @@ class UpdateInventoryOfInspection
     {
 
         $entity = $event->entity;//Entity Inspection
-        $items=$event->data['items'];//Items inventory
-        foreach($items as $item){
-          //Make Request data
-          $request=new UpdateInspectionInventoryRequest($item);
-          //Create Validator
-          $validator = Validator::make($request->all(), $request->rules());
-          //if get errors, throw errors
-          if ($validator->fails()) {
-            $errors = json_decode($validator->errors());
-            throw new \Exception(json_encode($errors), 401);
-          }
-          $inspectionInventory=InspectionInventory::find($item['id']);//Id pivot inspection inventory id
-          $inspectionInventory->update($item);
-        }//inventories
+        if(isset($event->data['items'])){
+          $items=$event->data['items'];//Items inventory
+          foreach($items as $item){
+            //Make Request data
+            $request=new UpdateInspectionInventoryRequest($item);
+            //Create Validator
+            $validator = Validator::make($request->all(), $request->rules());
+            //if get errors, throw errors
+            if ($validator->fails()) {
+              $errors = json_decode($validator->errors());
+              throw new \Exception(json_encode($errors), 401);
+            }
+            $inspectionInventory=InspectionInventory::find($item['id']);//Id pivot inspection inventory id
+            $inspectionInventory->update($item);
+          }//inventories
+        }
     }
 }

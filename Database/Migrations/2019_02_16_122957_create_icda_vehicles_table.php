@@ -31,8 +31,9 @@ class CreateIcdaVehiclesTable extends Migration
             $table->integer('axes_number')->nullable();//Número de ejes
             $table->date('insurance_expedition')->nullable();//fecha expedición seguro
             $table->date('insurance_expiration')->nullable();//fecha vencimiento seguro
-            $table->date('tecnomecanica_expedition')->nullable();//fecha expedición tecnomecanica
-            $table->date('tecnomecanica_expiration')->nullable();//fecha vencimiento tecnomecanica
+            $table->date('tecnomecanica_expiration')->nullable();//fecha expedición seguro
+            $table->date('tecnomecanica_expedition')->nullable();//fecha vencimiento seguro
+            $table->string('tecnomecanica_code')->nullable();//código tecnomecánica
             $table->timestamps();
         });
     }

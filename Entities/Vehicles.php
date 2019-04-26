@@ -26,10 +26,12 @@ class Vehicles extends Model
     'engine_number',
     'displacement',
     'axes_number',
+    // 'weight',
     'insurance_expedition',
-    'insurance_expiration',
     'tecnomecanica_expiration',
     'tecnomecanica_expedition',
+    'tecnomecanica_code',
+    'insurance_expiration',
     'user_id'
   ];
 
