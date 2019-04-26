@@ -67,7 +67,7 @@ class VehiclesApiController extends BaseApiController
       //Request to Repository
       $vehicle = $this->vehicle->getItem($criteria,$this->getParamsRequest($request));
       $statusCreated=false;
-      if($this->getAuthUser()){
+      if($this->getAuthUser() || \Auth::guard('api')->user()){
         //Auth
         if(!$vehicle && isset($request['user_id'])){
           //Create a vehicle

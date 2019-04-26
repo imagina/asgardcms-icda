@@ -28,6 +28,8 @@ class Vehicles extends Model
     'axes_number',
     'insurance_expedition',
     'insurance_expiration',
+    'tecnomecanica_expiration',
+    'tecnomecanica_expedition',
     'user_id'
   ];
 
