@@ -14,7 +14,7 @@ class CreateIcdaInspectionInventoriesTable extends Migration
     {
         Schema::create('icda__inspectioninventories', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('evaluation',['B','R','M']);//B,R,M
+            $table->enum('evaluation',['B','R','M','NA']);//B,R,M,NA
             $table->integer('quantity');
             $table->integer('inspections_id')->unsigned();
             $table->foreign('inspections_id')->references('id')->on('icda__inspections');

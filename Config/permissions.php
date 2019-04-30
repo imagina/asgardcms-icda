@@ -7,12 +7,12 @@ return [
         'edit' => 'icda::vehicles.edit resource',
         'destroy' => 'icda::vehicles.destroy resource',
     ],
-    'icda.brands' => [
-        'index' => 'icda::brands.list resource',
-        'create' => 'icda::brands.create resource',
-        'edit' => 'icda::brands.edit resource',
-        'destroy' => 'icda::brands.destroy resource',
-    ],
+    // 'icda.brands' => [
+    //     'index' => 'icda::brands.list resource',
+    //     'create' => 'icda::brands.create resource',
+    //     'edit' => 'icda::brands.edit resource',
+    //     'destroy' => 'icda::brands.destroy resource',
+    // ],
     'icda.inspections' => [
         'index' => 'icda::inspections.list resource',
         'create' => 'icda::inspections.create resource',

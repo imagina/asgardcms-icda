@@ -39,6 +39,7 @@ class InspectionsTransformer extends Resource
       'signature_received_report'=>$this->signature_received_report,
       // 'options'=>$this->options,
       'gallery' => $this->gallery,
+      'document' => $this->document,
       'created_at_date' => $this->created_at->format('Y-m-d'),
       'created_at_time' => $this->created_at->format('H:m:s'),
       'update_at_date' => $this->updated_at->format('Y-m-d'),

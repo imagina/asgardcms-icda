@@ -11,7 +11,7 @@ class UpdateInspectionInventoryRequest extends BaseFormRequest
         return [
           'id'=>'required|exists:icda__inspectioninventories,id',//Id pivot inspection inventory id
           'quantity'=>'numeric',
-          'evaluation'=>'in:B,R,M',
+          'evaluation'=>'in:B,R,M,NA',
         ];
     }
 

@@ -41,7 +41,7 @@ class RegisterIcdaSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->icon('fa fa-car');
                 $item->weight(10);
                 $item->authorize(
-                     /* append */
+                    $this->auth->hasAccess('icda.vehicles.index')
                 );
                 $item->item(trans('icda::vehicles.title.vehicles'), function (Item $item) {
                     $item->icon('fa fa-car');
@@ -70,33 +70,33 @@ class RegisterIcdaSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('icda.bulkload.import')
                     );
                 });
-                $item->item(trans('icda::brands.title.brands'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.icda.brands.create');
-                    $item->route('admin.icda.brands.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('icda.brands.index')
-                    );
-                });
-                $item->item(trans('icda::lines.title.lines'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.icda.line.create');
-                    $item->route('admin.icda.line.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('icda.lines.index')
-                    );
-                });
-                $item->item(trans('icda::colors.title.colors'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.icda.color.create');
-                    $item->route('admin.icda.color.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('icda.colors.index')
-                    );
-                });
+                // $item->item(trans('icda::brands.title.brands'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.icda.brands.create');
+                //     $item->route('admin.icda.brands.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('icda.brands.index')
+                //     );
+                // });
+                // $item->item(trans('icda::lines.title.lines'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.icda.line.create');
+                //     $item->route('admin.icda.line.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('icda.lines.index')
+                //     );
+                // });
+                // $item->item(trans('icda::colors.title.colors'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.icda.color.create');
+                //     $item->route('admin.icda.color.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('icda.colors.index')
+                //     );
+                // });
 // append
 
 

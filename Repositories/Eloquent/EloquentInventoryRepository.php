@@ -79,6 +79,10 @@ class EloquentInventoryRepository extends EloquentBaseRepository implements Inve
           $query->whereDate($date->field, '<=', $date->to);
       }
 
+      //Filter by status enabled/disabled
+      if(isset($filter->status))
+        $query->where('status',$filter->status);
+
       //Order by
       if (isset($filter->order)) {
         $orderByField = $filter->order->field ?? 'created_at';//Default field

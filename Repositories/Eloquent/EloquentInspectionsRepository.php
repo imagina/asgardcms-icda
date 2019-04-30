@@ -56,6 +56,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
     $data['signature_received_report']=icda_saveImage($data['signature_received_report'],'assets/icda/inspections/'.$model->id.'/signature_received_report.png');
     if($model) {
       $model->update($data);
+      // return response()->json(['exist_tecnomecanica_code'=>isset($data['tecnomecanica_code'])]);
       if(isset($data['items']) || isset($data['tecnomecanica_code'])){
          event(new InspectionWasUpdated($model,$data));
         if(isset($data['tecnomecanica_file'])){

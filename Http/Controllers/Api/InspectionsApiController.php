@@ -100,6 +100,10 @@ class InspectionsApiController extends BaseApiController
       //Create
       $inspection=$this->Inspection->create($request->all());
 
+      //Rename folder galery
+      //if(isset($request->code) && \Storage::disk('publicmedia')->exists('assets/icda/inspections/' . $request->code))
+      //  \Storage::disk('publicmedia')->move('assets/icda/inspections/' . $request->code, 'assets/icda/inspections/' . $inspection->id); //rename folder gallery of inspection
+
       $response = ['data' => $inspection];
     } catch (\Exception $e) {
       DB::rollBack();

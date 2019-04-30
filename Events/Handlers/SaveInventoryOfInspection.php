@@ -43,7 +43,8 @@ class SaveInventoryOfInspection
             'inspections_id'=>$entity->id,
             'inventory_id'=>$item['inventory_id'],
             'evaluation'=>$item['evaluation'],
-            'quantity'=>$item['quantity']
+            'quantity'=>$item['quantity'],
+            'status'=>0
           ];
           $InspectionInventory=InspectionInventory::create($data);
         }//inventories
