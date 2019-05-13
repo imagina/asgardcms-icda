@@ -9,13 +9,13 @@ class UpdateBackendVehiclesRequest extends BaseFormRequest
     public function rules()
     {
         return [
-          'service_type'=>'string',
-          'type_vehicle'=>'string',
-          'type_fuel'=>'string',
-          'brand'=>'max:45',
-          'line'=>'max:45',
+          'service_type'=>'numeric',
+          'type_vehicle'=>'numeric',
+          'type_fuel'=>'numeric',
+          'brand'=>'max:45|exists:icda__brands,id',
+          'line_id'=>'max:45|exists:icda__lines,id',
           'model'=>'max:45',
-          'color'=>'max:45',
+          'color'=>'max:45|exists:icda__colors,id',
           'transit_license'=>'max:60',
           'enrollment_date'=>'max:60',
           // 'board'=>'max:15|unique:icda__vehicles,board',

@@ -71,10 +71,13 @@ class VehiclesApiController extends BaseApiController
         //Auth
         if(!$vehicle && isset($request['user_id'])){
           //Create a vehicle
-          $vehicle=$this->vehicle->create([
+          $data=[
             'board'=>$criteria,
             'user_id'=>$request['user_id']
-          ]);
+          ];
+          if(isset($request->model))
+          $data['model']=$request->model;
+          $vehicle=$this->vehicle->create($data);
           $statusCreated=true;
         }else if($vehicle && isset($request['user_id'])){
           //Updaate owner vehicle
@@ -85,7 +88,6 @@ class VehiclesApiController extends BaseApiController
         }
 
       }//if auth
-
       $response = [
         'data' => $vehicle ? new VehiclesTransformer($vehicle) : '',
         'created'=>$statusCreated

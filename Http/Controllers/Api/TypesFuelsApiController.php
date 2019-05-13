@@ -28,7 +28,6 @@ class TypesFuelsApiController extends BaseApiController
   {
     try {
 
-      // $response=['data'=>config("asgard.icda.config.typesVehicles")];
       $typeFuels = new TypesFuel();
       $typeFuels=$typeFuels->lists();
       $response=['data'=>$typeFuels];

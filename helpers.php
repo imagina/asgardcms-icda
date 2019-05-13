@@ -7,6 +7,68 @@ use Modules\Icda\Entities\InspectionStatus;
 use Modules\Icda\Entities\TypesVehicles;
 use Modules\Icda\Entities\TypesFuel;
 use Modules\Icda\Entities\TypeService;
+use Modules\Icda\Entities\Vehicles;
+
+if (! function_exists('icda_getVehicles')) {
+
+    function icda_getVehicles($options=array())
+    {
+
+        $default_options = array(
+            'users' => null, //usuario o usuarios que desea llamar, se envia como arreglo ['users'=>[1,2,3]]
+            'exclude_users' => null, //usuario o usuarios que desea Excluir, se envia como arreglo ['users'=>[1,2,3]]
+            'created_at'=>['operator'=>'<=','date'=>date('Y-m-d H:i:s')],
+            'take' => 5, //Numero de posts a obtener,
+            'skip' => 0, //Omitir Cuantos post a llamar
+            'order' => 'desc'//orden de llamado
+        );
+
+        $options = array_merge($default_options, $options);
+
+        $posts = Vehicles::with(['user']);
+
+        if (!empty($options['users'])) {
+            $posts->whereHas('user', function ($query) use ($options) {
+                $query->whereIn('user_id', $options['users']);
+            });
+        }
+
+        if (isset($options['exclude_users'])) {
+            $posts->whereHas('user', function ($query) use ($options) {
+                $query->whereNotIn('user_id', $options['exclude_users']);
+            });
+        }
+        if (isset($options['created_at'])) {
+            $posts->where('created_at',$options['created_at']['operator'], $options['created_at']['date']);
+        }
+
+        $posts->skip($options['skip'])
+            ->take($options['take'])
+            ->orderBy('created_at', $options['order']);
+
+        return $posts->get();
+
+    }
+}
+
+if (! function_exists('icda_checkDate')) {
+
+    function icda_checkDate($date,$tip=0){
+
+        if(empty($date)){
+            if($tip==0)
+                $dateNew = "---";
+            else
+                $dateNew = "";
+        }else{
+            $format = 'd/m/Y';
+            $dateNew = date($format, strtotime($date));
+        }
+
+        return $dateNew;
+    }
+
+}
 
 /**
  * Get Types Services
