@@ -5,6 +5,10 @@ return [
     'create resource' => 'Create inspections',
     'edit resource' => 'Edit inspections',
     'destroy resource' => 'Destroy inspections',
+    'cancel inspection'=>'Cancel inspection in any time',
+    'check inspection'=>'Check inspection',
+    'register inspection'=>'Register inspection',
+
     'title' => [
         'inspections' => 'Inspections',
         'inspection'=>'Inspection',
@@ -64,6 +68,11 @@ return [
     'messages' => [
       'file not allowed'=>'File not allowed',
       'error add history'=>'Error add history'
+    ],
+    'pusher'=>[
+      'has been created by' => 'has been created by',
+      'updated to' => 'updated to',
+      'by' => 'by',
     ],
     'validation' => [
     ],

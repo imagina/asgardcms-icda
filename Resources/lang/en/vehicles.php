@@ -47,6 +47,9 @@ return [
       'success migrate from vehicles' => 'The vehicles will be migrated in a few minutes',
       'error in migrate from page'=>'An error occurred while attempting to migrate vehicle data',
     ],
+    'pusher' =>[
+      'new vehicle created'=>'A new vehicle has been created with the board',
+    ],
     'validation' => [
       'vehicle board exists'=>'A vehicle with this plate already exists',
       'vehicle has inspections' => 'This vehicle has registered inspections',

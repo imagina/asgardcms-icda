@@ -40,7 +40,10 @@ class Inspections extends Model
     'signature_received_report',
     'options',
     'inspection_status',
-    'inspector_id'
+    'inspector_id',
+    'num_fur',
+    'invoice_num',
+    'pin_num',
   ];
 
   public function vehicle(){

@@ -5,6 +5,9 @@ return [
     'create resource' => 'Crear inspección',
     'edit resource' => 'Editar inspección',
     'destroy resource' => 'Borrar inspección',
+    'cancel inspection'=>'Cancelar inspección en cualquier momento',
+    'check inspection'=>'Comprobar inspección',
+    'register inspection'=>'Registrar inspección',
     'title' => [
         'inspections' => 'Inspecciones',
         'inspection'=>'Inspección',
@@ -67,6 +70,11 @@ return [
       'file not allowed'=>'Archivo no permitido',
       'error add history'=>'Error al agregar una historia'
 
+    ],
+    'pusher'=>[
+      'has been created by' => 'ha sido creado por',
+      'updated to' => 'actualizado a',
+      'by' => 'por',
     ],
     'validation' => [
     ],

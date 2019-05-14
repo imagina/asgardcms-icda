@@ -52,6 +52,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
 
     // REQUEST
     $model = $query->first();
+    $inspection = $query->first();
     if(isset($data['signature_received_report']) && $data['signature_received_report'])
     $data['signature_received_report']=icda_saveImage($data['signature_received_report'],'assets/icda/inspections/'.$model->id.'/signature_received_report.png');
     if($model) {
@@ -63,6 +64,7 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
           \Storage::disk('publicmedia')->put("assets/icda/inspections/".$model->id."/document.pdf", \File::get($data['tecnomecanica_file']));
         }
       }//if items || tecno file
+      event(new RecordListInspections($inspection));
     }
     return $model;
   }//updateBy

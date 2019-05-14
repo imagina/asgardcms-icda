@@ -32,6 +32,22 @@ class InspectionStatusesApiController extends BaseApiController
     try {
       $statuses = new InspectionStatus();
       $statuses=$statuses->lists();
+      $auth=\Auth::guard('api')->user() ? \Auth::guard('api')->user() : $this->getAuthUser();
+      if($auth){
+        if($auth->hasAccess('icda.inspections.checkIn')){
+          unset($statuses[0]);
+          unset($statuses[1]);
+          unset($statuses[2]);
+          unset($statuses[4]);
+          unset($statuses[5]);
+          unset($statuses[6]);
+        }else if($auth->hasAccess('icda.inspections.register')){
+          unset($statuses[1]);
+          unset($statuses[3]);
+        }else if(!$auth->hasAccess('icda.inspections.all')){
+          $statuses=[];
+        }
+      }
       //Response
       $response = ['data' => $statuses];
 

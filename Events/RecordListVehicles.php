@@ -19,7 +19,7 @@ class RecordListVehicles implements ShouldBroadcast
 
      public function __construct($vehicle)
      {
-         $this->message  = "A new vehicle has been created with the board {$vehicle->board}";
+         $this->message  = trans('icda::vehicles.pusher.new vehicle created')."{$vehicle->board}";
          $this->vehicle  =$vehicle;
      }
 

@@ -29,23 +29,13 @@ class RecordListInspections implements ShouldBroadcast
     public $inspection;
     public function __construct($inspection)
     {
-        //$this->inspection=$inspection;
         $usr=\Auth::guard('api')->user();
-        $this->message  = "Inspection # {$inspection->id} has been created by {$usr->first_name} {$usr->last_name}";
+        //$this->message  = trans('icda::inspections.title.inspection')." # {$inspection->id} ".trans('icda::inspections.pusher.has been created by')." {$usr->first_name} {$usr->last_name}";
+        $this->message  = trans('icda::inspections.title.inspection')." # {$inspection->id} ".trans('icda::inspections.pusher.updated to')." ".icda_get_Inspectionstatus()->get($inspection->inspection_status)." ".trans('icda::inspections.pusher.by')." {$usr->first_name} {$usr->last_name}";
         $this->inspection_id=$inspection->id;
         $this->inspection=$inspection;
     }
-    // public function broadcastWith()
-    // {
-    //     return [
-    //         $this->inspection
-    //     ];
-    // }
 
-    // public function broadcastAs()
-    // {
-    //     return 'new-inspections';
-    // }
 
     /**
      * Get the channels the event should be broadcast on.

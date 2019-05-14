@@ -18,6 +18,9 @@ return [
         'create' => 'icda::inspections.create resource',
         'edit' => 'icda::inspections.edit resource',
         'destroy' => 'icda::inspections.destroy resource',
+        'all' => 'icda::inspections.cancel inspection',
+        'checkIn' => 'icda::inspections.check inspection',
+        'register' => 'icda::inspections.register inspection',
     ],
     'icda.bulkload' => [
         'import' => 'icda::vehicles.bulkload.title'
