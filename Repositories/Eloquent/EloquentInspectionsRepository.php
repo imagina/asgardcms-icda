@@ -49,7 +49,6 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
       else//where id
         $query->where('id', $criteria);
     }
-
     // REQUEST
     $model = $query->first();
     $inspection = $query->first();
@@ -58,14 +57,14 @@ class EloquentInspectionsRepository extends EloquentBaseRepository implements In
     if($model) {
       $model->update($data);
       // return response()->json(['exist_tecnomecanica_code'=>isset($data['tecnomecanica_code'])]);
-      if(isset($data['items']) || isset($data['tecnomecanica_code'])){
+        if(isset($data['items']) || isset($data['tecnomecanica_code'])){
          event(new InspectionWasUpdated($model,$data));
         if(isset($data['tecnomecanica_file'])){
           \Storage::disk('publicmedia')->put("assets/icda/inspections/".$model->id."/document.pdf", \File::get($data['tecnomecanica_file']));
         }
       }//if items || tecno file
-      event(new RecordListInspections($inspection));
     }
+      event(new RecordListInspections($inspection));
     return $model;
   }//updateBy
 

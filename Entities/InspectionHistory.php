@@ -17,6 +17,6 @@ class InspectionHistory extends Model
 
     public function inspection()
     {
-        return $this->belongsTo(Inspections::class);
+        return $this->belongsTo(Inspections::class,'inspections_id');
     }
 }

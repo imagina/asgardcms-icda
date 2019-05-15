@@ -9,11 +9,12 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-//use Modules\Icda\Entities\Inspections;
+
+use Modules\Icda\Entities\Inspections;
 
 
 // class RecordListInspections implements ShouldBroadcastNow
-class RecordListInspections implements ShouldBroadcast
+class RecordListInspections implements ShouldBroadcastNow
 {
     use SerializesModels, InteractsWithSockets;
 
@@ -27,13 +28,29 @@ class RecordListInspections implements ShouldBroadcast
     public $message;
     public $inspection_id;
     public $inspection;
-    public function __construct($inspection)
+
+    public function __construct(Inspections $inspection)
     {
-        $usr=\Auth::guard('api')->user();
+        $usr = \Auth::guard('api')->user();
         //$this->message  = trans('icda::inspections.title.inspection')." # {$inspection->id} ".trans('icda::inspections.pusher.has been created by')." {$usr->first_name} {$usr->last_name}";
-        $this->message  = trans('icda::inspections.title.inspection')." # {$inspection->id} ".trans('icda::inspections.pusher.updated to')." ".icda_get_Inspectionstatus()->get($inspection->inspection_status)." ".trans('icda::inspections.pusher.by')." {$usr->first_name} {$usr->last_name}";
-        $this->inspection_id=$inspection->id;
-        $this->inspection=$inspection;
+        $this->message = trans('icda::inspections.title.inspection') . " # {$inspection->id} " . trans('icda::inspections.pusher.updated to') . " " . icda_get_Inspectionstatus()->get($inspection->inspection_status) . " " . trans('icda::inspections.pusher.by') . " {$usr->first_name} {$usr->last_name}";
+        $this->inspection_id = $inspection->id;
+        $this->inspection = $inspection;
+        \Log::info($this->inspection);
+    }
+
+    public function broadcastWith()
+    {
+        return [
+          "inspection"=>  $this->inspection,
+           "message"=> $this->message,
+            "id"=>$this->inspection_id
+        ];
+    }
+
+    public function broadcastAs()
+    {
+        return 'inspections';
     }
 
 
@@ -44,7 +61,6 @@ class RecordListInspections implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // return new Channel('inspections-list');
-        return ['inspections-list'];
+        return new Channel('inspections-list');
     }
 }
