@@ -176,25 +176,31 @@ class InspectionsApiController extends BaseApiController
       $data = $request->all();//Get data
       // $name = $data['nameFile'];
       $code = $data['code'];//Name folder
-      $file = $request->file('file');
-      // $name=$file->getClientOriginalName();
-      $extension = $file->getClientOriginalExtension();
-      // $nameFile = $name . '.' . $extension;
-      $nameFile =$file->getClientOriginalName();
-      $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF', 'ICO', 'BMP', 'PDF', 'DOC', 'DOCX', 'ODT', 'MP3', '3G2', '3GP', 'AVI', 'FLV', 'H264', 'M4V', 'MKV', 'MOV', 'MP4', 'MPG', 'MPEG', 'WMV');
-      //$destination_path = 'assets/icda/inspections/' . $code . '/' . $nameFile;
-      $destination_path = 'assets/icda/inspections/' . $code . '/gallery/' . $nameFile;
-      $disk = 'publicmedia';
-      if (!in_array(strtoupper($extension), $allowedextensions)) {
-        throw new Exception(trans('icda::inspections.messages.file not allowed'));
-      }
-      if (in_array(strtoupper($extension), ['JPG', 'JPEG'])) {
-        $image = \Image::make($file);
+      $file = $request->file('file') ? $request->file('file') : $request->file ;
+      if (starts_with($file, 'data:image')) {
+        $random=\Illuminate\Support\Str::random(32);
+        $destination_path = 'assets/icda/inspections/' . $code . '/gallery/' . $random;
+        $destination_path=icda_saveImage($file,$destination_path);
+      }else{
+        // $name=$file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        // $nameFile = $name . '.' . $extension;
+        $nameFile =$file->getClientOriginalName();
+        $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF', 'ICO', 'BMP', 'PDF', 'DOC', 'DOCX', 'ODT', 'MP3', '3G2', '3GP', 'AVI', 'FLV', 'H264', 'M4V', 'MKV', 'MOV', 'MP4', 'MPG', 'MPEG', 'WMV');
+        //$destination_path = 'assets/icda/inspections/' . $code . '/' . $nameFile;
+        $destination_path = 'assets/icda/inspections/' . $code . '/gallery/' . $nameFile;
+        $disk = 'publicmedia';
+        if (!in_array(strtoupper($extension), $allowedextensions)) {
+          throw new Exception(trans('icda::inspections.messages.file not allowed'));
+        }
+        if (in_array(strtoupper($extension), ['JPG', 'JPEG'])) {
+          $image = \Image::make($file);
 
-        \Storage::disk($disk)->put($destination_path, $image->stream($extension, '90'));
-      } else {
+          \Storage::disk($disk)->put($destination_path, $image->stream($extension, '90'));
+        } else {
 
-        \Storage::disk($disk)->put($destination_path, \File::get($file));
+          \Storage::disk($disk)->put($destination_path, \File::get($file));
+        }
       }
 
       $status = 200;
