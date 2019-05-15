@@ -6,5 +6,5 @@ return [
     'invoiced'        => 'Facturado',
     'approved'           => 'Aprobado',
     'rejected'          => 'Rechazado',
-    'canceled'         => 'Cancelado',
+    'canceled'         => 'Anulado',
 ];

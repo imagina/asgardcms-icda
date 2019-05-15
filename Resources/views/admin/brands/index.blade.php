@@ -29,6 +29,7 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>{{trans('icda::common.table.name')}}</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -37,6 +38,11 @@
                             <?php if (isset($brands)): ?>
                             <?php foreach ($brands as $brands): ?>
                             <tr>
+                                <td>
+                                    <a href="{{ route('admin.icda.brands.edit', [$brands->id]) }}">
+                                        {{ $brands->name }}
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.icda.brands.edit', [$brands->id]) }}">
                                         {{ $brands->created_at }}
@@ -54,6 +60,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>{{trans('icda::common.table.name')}}</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th>{{ trans('core::core.table.actions') }}</th>
                             </tr>

@@ -5,6 +5,9 @@ return [
   'home' => [
     'title' => 'Home',
   ],
+  'table'=>[
+    'name'=>'Name',
+  ]
 
 
 ];
