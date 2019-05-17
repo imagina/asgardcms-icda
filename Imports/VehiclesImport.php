@@ -9,6 +9,9 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Modules\Icda\Repositories\VehiclesRepository;
 use Modules\Icda\Entities\Vehicles;
+use Modules\Icda\Entities\Line;
+use Modules\Icda\Entities\Color;
+use Modules\Icda\Entities\Brands;
 // class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow
 class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,ShouldQueue
 {
@@ -30,7 +33,7 @@ class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,Sho
   public function collection(Collection $rows)
   {
     $rows=json_decode(json_encode($rows));
-    // dd($rows);
+    //dd($rows);
     foreach ($rows as $row)
     {
       try {
@@ -48,6 +51,38 @@ class VehiclesImport implements ToCollection,WithChunkReading,WithHeadingRow,Sho
           if($vehicleByBoard){
             if($vehicleByBoard->id!=$vehicle_id)
             throw new \Exception('Warning: There is already a vehicle with this plate other than id: '.$vehicle_id);
+          }
+          //$locale=App::getLocale();
+          if(isset($row->vehicle_mark)){
+            if(!is_numeric($row->vehicle_mark)){
+              $brand=Brands::whereTranslation('name', $row->vehicle_mark, \App::getLocale())->first();
+              if(!$brand){
+                $brand=new Brands();
+                $brand->name=$row->vehicle_mark;
+                $brand->save();
+              }
+              $data['brand_id']=$brand->id;
+            }
+          }
+          if(isset($row->vehicle_line)){
+            $line=Line::whereTranslation('name', $row->vehicle_line, \App::getLocale())->first();
+            if(!$line){
+              $line=new Line();
+              $line->name=$row->vehicle_line;
+              $line->save();
+            }
+            $data['line_id']=$line->id;
+          }
+          if(isset($row->vehicle_color)){
+            if(!is_numeric($row->vehicle_color)){
+              $color=Color::whereTranslation('name', $row->vehicle_color, \App::getLocale())->first();
+              if(!$color){
+                $color=new Color();
+                $color->name=$row->vehicle_color;
+                $color->save();
+              }
+              $data['color_id']=$color->id;
+            }
           }
           $data['id']=$vehicle_id;
           $data['user_id']=$this->info['user_id'];

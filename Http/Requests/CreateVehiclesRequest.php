@@ -24,7 +24,7 @@ class CreateVehiclesRequest extends BaseFormRequest
           'engine_number'=>'required|max:60',
           'displacement'=>'required|max:30',
           'axes_number'=>'numeric',
-          'user_id'=>'required|exists:users,id',
+          'user_id'=>'exists:users,id',
           'insurance_expedition'=>'date',
           'insurance_expiration'=>'date',
           'tecnomecanica_expiration'=>'date',

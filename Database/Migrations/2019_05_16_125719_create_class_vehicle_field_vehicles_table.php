@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFieldUserIdVehiclesTable extends Migration
+class CreateClassVehicleFieldVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateFieldUserIdVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::table('icda__vehicles', function (Blueprint $table) {
-          $table->integer('user_id')->unsigned()->nullable();
-          $table->foreign('user_id')->references('id')->on(config('auth.table', 'users'))->onDelete('restrict');
-        });
+      Schema::table('icda__vehicles', function (Blueprint $table) {
+        $table->string('vehicle_class')->nullable();
+      });
     }
 
     /**

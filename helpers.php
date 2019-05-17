@@ -5,6 +5,7 @@ use Modules\Icda\Entities\Inspections;
 use Modules\Icda\Entities\Order_History;
 use Modules\Icda\Entities\InspectionStatus;
 use Modules\Icda\Entities\TypesVehicles;
+use Modules\Icda\Entities\VehiclesClass;
 use Modules\Icda\Entities\TypesFuel;
 use Modules\Icda\Entities\TypeService;
 use Modules\Icda\Entities\Vehicles;
@@ -96,6 +97,20 @@ if (!function_exists('icda_get_TypeVehicle')) {
     {
         $typeVehicle = new TypesVehicles();
         return $typeVehicle;
+    }
+}
+/**
+ * Get Class Vehicles
+ *
+ * @param  none
+ * @return Array $status
+ */
+if (!function_exists('icda_get_VehicleClass')) {
+
+    function icda_get_VehicleClass()
+    {
+        $vehicleClass = new VehiclesClass();
+        return $vehicleClass;
     }
 }
 /**
