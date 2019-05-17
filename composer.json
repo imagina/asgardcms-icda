@@ -1,5 +1,5 @@
 {
-    "name": "laravelcms/icda",
+    "name": "imagina/icda-module",
     "description": "",
     "type": "asgard-module",
     "license": "MIT",
@@ -32,7 +32,7 @@
                 "Modules\\Icda\\Providers\\IcdaServiceProvider"
             ],
             "aliases": {
-                
+
             }
         }
     },
