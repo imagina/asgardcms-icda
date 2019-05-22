@@ -12,4 +12,9 @@ class Brands extends Model
     protected $table = 'icda__brands';
     public $translatedAttributes = ['name'];
     protected $fillable = ['status'];
+
+    public function lines()
+    {
+        return $this->hasMany('Modules\Icda\Entities\Line', 'brand_id');
+    }
 }

@@ -11,5 +11,9 @@ class Line extends Model
 
     protected $table = 'icda__lines';
     public $translatedAttributes = ['name'];
-    protected $fillable = ['status'];
+    protected $fillable = ['status','brand_id'];
+
+    public function brand(){
+        return $this->belongsTo('Modules\Icda\Entities\Brands');//inspections_id Foreign key
+    }
 }

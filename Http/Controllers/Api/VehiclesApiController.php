@@ -16,10 +16,11 @@ use Modules\Icda\Transformers\VehiclesTransformer;
 
 // Entities
 use Modules\Icda\Entities\Vehicles;
+use Modules\Icda\Entities\Inspections;
 
 // Repositories
 use Modules\Icda\Repositories\VehiclesRepository;
-
+use Carbon\Carbon;
 class VehiclesApiController extends BaseApiController
 {
 
@@ -88,9 +89,20 @@ class VehiclesApiController extends BaseApiController
         }
 
       }//if auth
+      $reinspection=false;
+      $inspection=null;
+      $DiferenceInDays=0;
+      if($vehicle)
+        $inspection=Inspections::where('vehicles_id',$vehicle->id)->orderBy('created_at','DESC')->where('inspection_status',4)->first();
+      if($inspection){
+        $DiferenceInDays = Carbon::parse(Carbon::now()->format("Y-m-d"))->diffInDays($inspection->created_at->format("Y-m-d"));
+        if($DiferenceInDays<=15)
+        $reinspection=true;
+      }
       $response = [
         'data' => $vehicle ? new VehiclesTransformer($vehicle) : '',
-        'created'=>$statusCreated
+        'created'=>$statusCreated,
+        'reinspection'=>$reinspection
       ];
 
     } catch (\Exception $e) {

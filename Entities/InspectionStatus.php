@@ -11,14 +11,11 @@ class InspectionStatus
 
     const ONHOLD = 0;//Espera registro inicial
     const REVISED = 1;//REVISADO
-    const INVOICED = 2;//REVISADO
+    const INVOICED = 2;//FACTURADO
     const APPROVED = 3;//Aprobado
     const REJECTED = 4;//RECHAZADO
     const CANCELED = 5;//CANCELADO o ANULADO
-    // Permiso register: 0 en espera, 2 facturado, 4 rechazado y 5 cancelado (anulado)
-    //Permiso checkin solo puede ver facturado.
-    //Permiso all puede ver todos los estados
-    /**
+
     /**
      * @var array
      */

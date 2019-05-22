@@ -24,8 +24,10 @@ class UpdateStatusInspection
     {
 
         $entity = $event->entity;//Entity InspectionHistory
-        $Inspection=Inspections::find($entity->inspections_id);
-        $Inspection->inspection_status=$entity->status;
-        $Inspection->update();
+        $data=$event->data;
+        $inspection=Inspections::find($entity->inspections_id);
+        $inspection->inspection_status=$entity->status;
+        // \Log::error($data);
+        $inspection->update();
     }
 }

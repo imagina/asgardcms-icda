@@ -13,6 +13,7 @@ class Vehicles extends Model
   protected $fillable = [
     'service_type',
     'type_vehicle',
+    'vehicle_class',
     'type_fuel',
     'brand_id',
     'line_id',

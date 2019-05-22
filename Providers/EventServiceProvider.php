@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Modules\Icda\Events\InspectionWasCreated;
 use Modules\Icda\Events\InspectionWasUpdated;
 use Modules\Icda\Events\InspectionHistoryWasCreated;
+use Modules\Icda\Events\MigrateVehicle;
+use Modules\Icda\Events\Handlers\MigrateVehicleData;
 use Modules\Icda\Events\Handlers\SaveInventoryOfInspection;
 use Modules\Icda\Events\Handlers\UpdateInventoryOfInspection;
 use Modules\Icda\Events\Handlers\SaveHistoryOfInspection;
@@ -26,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         InspectionHistoryWasCreated::class => [
            UpdateStatusInspection::class
+        ],
+        MigrateVehicle::class => [
+           MigrateVehicleData::class
         ]
     ];
 }

@@ -15,6 +15,7 @@ class CreateIcdaLinesTable extends Migration
         Schema::create('icda__lines', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('brand_id')->unsigned();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
