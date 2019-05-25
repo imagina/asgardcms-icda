@@ -78,7 +78,7 @@ class VehiclesApiController extends BaseApiController
           ];
           if(isset($request->model))
           $data['model']=$request->model;
-          $vehicle=$this->vehicle->create($data);
+          $vehicle=Vehicles::firstOrCreate(["board"=>$criteria],$data);
           $statusCreated=true;
         }else if($vehicle && isset($request['user_id'])){
           //Updaate owner vehicle
