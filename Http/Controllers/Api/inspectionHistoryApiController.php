@@ -45,6 +45,7 @@ class InspectionHistoryApiController extends BaseApiController
 
     } catch (\Exception $e) {
       //Message Error
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -73,7 +74,7 @@ class InspectionHistoryApiController extends BaseApiController
       $response = ['data' => $inspectionHistory];
     } catch (\Exception $e) {
       DB::rollBack();
-
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()

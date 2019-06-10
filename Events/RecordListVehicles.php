@@ -2,10 +2,17 @@
 
 namespace Modules\Icda\Events;
 
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-class RecordListVehicles implements ShouldBroadcast
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+
+
+
+class RecordListVehicles implements ShouldBroadcastNow
 {
     use SerializesModels, InteractsWithSockets;
 
@@ -23,13 +30,28 @@ class RecordListVehicles implements ShouldBroadcast
          $this->vehicle  =$vehicle;
      }
 
+    public function broadcastWith()
+    {
+        return [
+            "vehicle"=>  $this->vehicle,
+            "message"=> $this->message,
+            "board"=>$this->vehicle->board
+        ];
+    }
+
+    public function broadcastAs()
+    {
+        return 'vehicles';
+    }
+
+
     /**
      * Get the channels the event should be broadcast on.
      *
      * @return array
      */
-     public function broadcastOn()
-     {
-         return ['vehicles-list'];
-     }
+    public function broadcastOn()
+    {
+        return new Channel('vehicle-list');
+    }
 }

@@ -51,6 +51,7 @@ class InspectionsApiController extends BaseApiController
 
     } catch (\Exception $e) {
       //Message Error
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -76,6 +77,7 @@ class InspectionsApiController extends BaseApiController
       ];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -107,7 +109,7 @@ class InspectionsApiController extends BaseApiController
       $response = ['data' => $inspection];
     } catch (\Exception $e) {
       DB::rollBack();
-
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -132,6 +134,7 @@ class InspectionsApiController extends BaseApiController
       $response = ['data' => $inspection];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -154,6 +157,7 @@ class InspectionsApiController extends BaseApiController
       $response = ['data' => ''];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -208,6 +212,7 @@ class InspectionsApiController extends BaseApiController
       $status = 200;
       $response = ["data" => ['url' => $destination_path]];
     } catch (\Exception $e) {
+
       \Log::Error($e);
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];

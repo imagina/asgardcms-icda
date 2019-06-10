@@ -27,7 +27,6 @@ class UpdateStatusInspection
         $data=$event->data;
         $inspection=Inspections::find($entity->inspections_id);
         $inspection->inspection_status=$entity->status;
-        // \Log::error($data);
         $inspection->update();
     }
 }

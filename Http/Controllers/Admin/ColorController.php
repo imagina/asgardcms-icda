@@ -9,7 +9,8 @@ use Modules\Icda\Http\Requests\CreateColorRequest;
 use Modules\Icda\Http\Requests\UpdateColorRequest;
 use Modules\Icda\Repositories\ColorRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Modules\Icda\Imports\ColorImport;
+use Maatwebsite\Excel\Facades\Excel;
 class ColorController extends AdminBaseController
 {
     /**
@@ -31,9 +32,9 @@ class ColorController extends AdminBaseController
      */
     public function index()
     {
-        //$colors = $this->color->all();
+        $colors = $this->color->all();
 
-        return view('icda::admin.colors.index', compact(''));
+        return view('icda::admin.colors.index', compact('colors'));
     }
 
     /**
@@ -99,4 +100,24 @@ class ColorController extends AdminBaseController
         return redirect()->route('admin.icda.color.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('icda::colors.title.colors')]));
     }
+
+    public function indexImport()
+    {
+      return view('icda::admin.colors.bulkload.index');
+    }
+
+    public function import(Request $request){
+      $msg="";
+      try {
+        // dd($request->importfile);
+        Excel::import(new ColorImport(), $request->importfile);
+        $msg=trans('icda::colors.bulkload.success migrate from colors');
+        return redirect()->route('admin.icda.color.index')
+        ->withSuccess($msg);
+      } catch (Exception $e) {
+        $msg  =  trans('icda::vehicles.bulkload.error in migrate from page');
+        return redirect()->route('admin.icda.color.index')
+        ->withError($msg);
+      }
+    }//importProducts()
 }

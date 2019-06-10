@@ -57,6 +57,30 @@ $router->group(['prefix' =>'/icda'], function (Router $router) {
             'uses'=>'VehiclesController@import',
              'middleware'=>'can:icda.bulkload.import',
         ]);
+        //Brands
+        $router->get('brands/index',[
+            'as'=>'admin.icda.bulkload.brands.index',
+            'uses'=>'BrandsController@indexImport',
+            'middleware'=>'can:icda.bulkload.import',
+        ]);
+
+        $router->post('brands/import',[
+            'as'=>'admin.icda.bulkload.brands.import',
+            'uses'=>'BrandsController@import',
+             'middleware'=>'can:icda.bulkload.import',
+        ]);
+        //Color
+        $router->get('colors/index',[
+            'as'=>'admin.icda.bulkload.colors.index',
+            'uses'=>'ColorController@indexImport',
+            'middleware'=>'can:icda.bulkload.import',
+        ]);
+
+        $router->post('colors/import',[
+            'as'=>'admin.icda.bulkload.colors.import',
+            'uses'=>'ColorController@import',
+             'middleware'=>'can:icda.bulkload.import',
+        ]);
     });
 
     //Inspections

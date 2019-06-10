@@ -14,6 +14,10 @@ $router->group(['prefix' => '/vehicles'/*,'middleware' => ['auth:api']*/], funct
     'as' => $locale . 'api.icda.vehicles.index',
     'uses' => 'VehiclesApiController@index',
   ]);
+  $router->get('/test', [
+    'as' => $locale . 'api.icda.vehicles.test',
+    'uses' => 'VehiclesApiController@test',
+  ]);
   $router->put('/{criteria}', [
     'as' => $locale . 'api.icda.vehicles.update',
     'uses' => 'VehiclesApiController@update',

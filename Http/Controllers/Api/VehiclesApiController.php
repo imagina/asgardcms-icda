@@ -7,7 +7,7 @@ use Modules\Icda\Http\Requests\CreateVehiclesRequest;
 use Modules\Icda\Http\Requests\UpdateVehiclesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Modules\Icda\Events\RecordListVehicles;
 // Base Api
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
@@ -20,6 +20,7 @@ use Modules\Icda\Entities\Inspections;
 
 // Repositories
 use Modules\Icda\Repositories\VehiclesRepository;
+use Modules\Icda\Events\MigrateVehicle;
 use Carbon\Carbon;
 class VehiclesApiController extends BaseApiController
 {
@@ -31,6 +32,13 @@ class VehiclesApiController extends BaseApiController
   {
     $this->vehicle = $vehicle;
   }
+
+  public function test(){
+    $inspection=Inspections::find(15);
+    //dd($inspection,$inspection->vehicle);
+    //dd($inspection->axes);
+    event(new MigrateVehicle($inspection));
+  }//test
 
   /**
    * Display a listing of the resource.
@@ -48,6 +56,7 @@ class VehiclesApiController extends BaseApiController
 
     } catch (\Exception $e) {
       //Message Error
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -79,6 +88,7 @@ class VehiclesApiController extends BaseApiController
           if(isset($request->model))
           $data['model']=$request->model;
           $vehicle=Vehicles::firstOrCreate(["board"=>$criteria],$data);
+          event(new RecordListVehicles($vehicle));
           $statusCreated=true;
         }else if($vehicle && isset($request['user_id'])){
           //Updaate owner vehicle
@@ -106,6 +116,7 @@ class VehiclesApiController extends BaseApiController
       ];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -130,6 +141,7 @@ class VehiclesApiController extends BaseApiController
       $response = ['data' => $vehicle];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -162,6 +174,7 @@ class VehiclesApiController extends BaseApiController
       $response = ['data' => ''];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()
@@ -184,6 +197,7 @@ class VehiclesApiController extends BaseApiController
       $response = ['data' => ''];
 
     } catch (\Exception $e) {
+        \Log::error($e);
       $status = 500;
       $response = [
         'errors' => $e->getMessage()

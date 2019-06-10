@@ -1,5 +1,16 @@
 url: https://github.com/imagina/asgardcms-icda
 versions:
-   "1.0.1":
-        added:
-          - Sync with all changes
+    "1.0.2":
+      added:
+        - exhosto_number and register_test in migrate an Inspection entity
+        - Masive import for vehicles, brand, color, line
+      changed:
+        - Inspection history pusher
+        - Vehicles pusher
+        - Line Trasforormer
+        - UpdateStatusInspections
+        - InspectionsTrasformer
+
+    "1.0.1":
+      added:
+        - Sync with all changes

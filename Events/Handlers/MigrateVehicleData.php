@@ -57,6 +57,7 @@ class MigrateVehicleData
       //$user->number_document
       $cliente=ClientesExternalMySql::where("numero_identificacion",$user->number_document)->first();
       if(!$cliente){
+          $phone="+57".$user->phone;
         $cliente=ClientesExternalMySql::create([
           "numero_identificacion"=>$user->number_document,
           "tipo_identificacion"=>1,
@@ -64,9 +65,22 @@ class MigrateVehicleData
           "apellido1"=>$user->last_name,
           "correo"=>$user->email,
           "propietario"=>1,
-          "telefono1"=>"000000000",
+          "telefono1"=>$phone,
           "cod_ciudad"=>11001,
         ]);
+      }else{
+          try{
+              $phone="+57".$user->phone;
+              $cliente->update([
+                  "correo"=>$user->email,
+                  "propietario"=>1,
+                  "telefono1"=>$phone,
+                  "cod_ciudad"=>11001,
+              ]);
+          }catch (\Exception $e){
+              Log::eror($e);
+          }
+
       }
       $data=[];
       $externalVehicle=VehiclesExternalMySql::where('numero_placa',$vehicle->board)->first();
@@ -90,7 +104,7 @@ class MigrateVehicleData
       }else
         throw new \Exception("Vehicle doesn't brand and line data",500);
       if($vehicle->color_id){
-        $color=ColorExternalMySql::where("nombre","like","%".$vehicle->color->name."%")->first();
+        $color=ColorExternalMySql::where("nombre",$vehicle->color->name)->first();
         if(!$color)
           $color=ColorExternalMySql::create(["nombre"=>$vehicle->color->name]);
         $data['idcolor']=$color->idcolor;
@@ -104,8 +118,8 @@ class MigrateVehicleData
       $data['idtipocombustible']=$vehicle->type_fuel;
       $data['ano_modelo']=$vehicle->model;
       $data['numero_motor']=$vehicle->engine_number;
-      $data['numero_serie']="---";
-      $data['numero_tarjeta_propiedad']="---";
+      $data['numero_serie']=$vehicle->chasis_number;
+      $data['numero_tarjeta_propiedad']="$vehicle->transit_license";
       $data['idsoat']=1;
       $data['cilindraje']=$vehicle->displacement;
       $data['kilometraje']=$entity->mileage;
@@ -121,10 +135,10 @@ class MigrateVehicleData
       $data['cilindros']=$entity->engine_cylinders;
       else
       $data['cilindros']=0;
-      $data['tiempos']=0;
+      $data['tiempos']=4;
       $data['ensenanza']=$entity->teaching_vehicle;
       $data['idpais']=90;
-      $data['fecha_matricula']=date("Y-m-d");
+      $data['fecha_matricula']=$vehicle->enrollment_date;
       $data['blindaje']=0;
       $data['polarizado']=$entity->polarized_glasses;
       $data['numsillas']=0;
@@ -133,7 +147,7 @@ class MigrateVehicleData
       $data['numero_lote']=0;
       $data['diseno']=0;
       $data['transmision']=0;
-      $data['scooter']=0;
+      $data['scooter']=$entity->pre_inspections->scooter??0;
       //Esto viene de el campo axes de inspection
       $data['numejes']=count($entity->axes);
       $num_llantas=0;

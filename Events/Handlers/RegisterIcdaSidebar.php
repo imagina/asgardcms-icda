@@ -46,7 +46,6 @@ class RegisterIcdaSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->item(trans('icda::vehicles.title.vehicles'), function (Item $item) {
                     $item->icon('fa fa-car');
                     $item->weight(0);
-                    $item->append('admin.icda.vehicles.create');
                     $item->route('admin.icda.vehicles.index');
                     $item->authorize(
                         $this->auth->hasAccess('icda.vehicles.index')
@@ -62,14 +61,14 @@ class RegisterIcdaSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                     );
                 });
 
-                $item->item(trans('icda::vehicles.bulkload.title'), function (Item $item) {
+                /*$item->item(trans('icda::vehicles.bulkload.title'), function (Item $item) {
                     $item->icon('fa fa-upload');
                     $item->weight(0);
                     $item->route('admin.icda.bulkload.index');
                     $item->authorize(
                         $this->auth->hasAccess('icda.bulkload.import')
                     );
-                });
+                });*/
                 // $item->item(trans('icda::brands.title.brands'), function (Item $item) {
                 //     $item->icon('fa fa-copy');
                 //     $item->weight(0);

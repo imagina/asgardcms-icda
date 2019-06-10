@@ -34,6 +34,8 @@
               <tr>
                 <th>ID</th>
                 <th>Status</th>
+                <th>Matricula</th>
+                <th>Usuario</th>
                 <th>{{ trans('core::core.table.created at') }}</th>
                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
               </tr>
@@ -46,6 +48,8 @@
                     <td>
                       {{icda_get_Inspectionstatus()->get($inspections->inspection_status)}}
                     </td>
+                    <td>{{$inspections->vehicle->board}}</td>
+                    <td>{{$inspections->vehicle->user->present()->fullName()}}</td>
                     <td>
                       <a href="{{ route('admin.icda.inspections.edit', [$inspections->id]) }}">
                         {{ $inspections->created_at }}

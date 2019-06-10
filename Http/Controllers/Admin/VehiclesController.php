@@ -50,7 +50,7 @@ class VehiclesController extends AdminBaseController
   */
   public function index()
   {
-    $vehicles = $this->vehicles->all();
+    $vehicles = $this->vehicles->paginate(20);
 
     return view('icda::admin.vehicles.index', compact('vehicles'));
   }

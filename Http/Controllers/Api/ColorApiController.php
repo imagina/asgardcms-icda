@@ -74,6 +74,7 @@ class ColorApiController extends BaseApiController
       ];
 
     } catch (\Exception $e) {
+
       $status = 500;
       $response = [
         'errors' => $e->getMessage()

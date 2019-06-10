@@ -61,6 +61,9 @@ class EloquentLineRepository extends EloquentBaseRepository implements LineRepos
     if ($params->filter) {
       $filter = $params->filter;
 
+        if (isset($filter->brand)) {
+            $query->where('brand_id',$filter->brand);
+        }
       //Filter by date
       if (isset($filter->date)) {
         $date = $filter->date;//Short filter date

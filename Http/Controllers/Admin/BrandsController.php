@@ -9,7 +9,8 @@ use Modules\Icda\Http\Requests\CreateBrandsRequest;
 use Modules\Icda\Http\Requests\UpdateBrandsRequest;
 use Modules\Icda\Repositories\BrandsRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-
+use Modules\Icda\Imports\BrandsImport;
+use Maatwebsite\Excel\Facades\Excel;
 class BrandsController extends AdminBaseController
 {
     /**
@@ -31,9 +32,9 @@ class BrandsController extends AdminBaseController
      */
     public function index()
     {
-        //$brands = $this->brands->all();
+        $brands = $this->brands->all();
 
-        return view('icda::admin.brands.index', compact(''));
+        return view('icda::admin.brands.index', compact('brands'));
     }
 
     /**
@@ -99,4 +100,24 @@ class BrandsController extends AdminBaseController
         return redirect()->route('admin.icda.brands.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('icda::brands.title.brands')]));
     }
+
+    public function indexImport()
+    {
+      return view('icda::admin.brands.bulkload.index');
+    }
+
+    public function import(Request $request){
+      $msg="";
+      try {
+        // dd($request->importfile);
+        Excel::import(new BrandsImport(), $request->importfile);
+        $msg=trans('icda::brands.bulkload.success migrate from brands');
+        return redirect()->route('admin.icda.brands.index')
+        ->withSuccess($msg);
+      } catch (Exception $e) {
+        $msg  =  trans('icda::vehicles.bulkload.error in migrate from page');
+        return redirect()->route('admin.icda.brands.index')
+        ->withError($msg);
+      }
+    }//importProducts()
 }

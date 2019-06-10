@@ -5,10 +5,9 @@ namespace Modules\Icda\Entities;
 
 class TypesVehicles
 {
-  const HEAVY = 0;//PESADO
+  const HEAVY = 2;//PESADO
   const LIGHT = 1;//LIGERO
-  const MOTORCYCLE = 2;//MOTOCICLETA
-  const CAR = 3;//AUTOMOVIL
+  const MOTORCYCLE = 3;//MOTOCICLETA
 
   /**
    * @var array
@@ -21,7 +20,7 @@ class TypesVehicles
           self::HEAVY => trans('icda::type_vehicles.heavy'),
           self::LIGHT => trans('icda::type_vehicles.light'),
           self::MOTORCYCLE => trans('icda::type_vehicles.motorcycle'),
-          self::CAR => trans('icda::type_vehicles.car'),
+          //self::CAR => trans('icda::type_vehicles.car'),
       ];
   }
 
